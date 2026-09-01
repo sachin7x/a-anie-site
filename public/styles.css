@@ -1,0 +1,425 @@
+/* A-Anie — Design tokens (Bootstrap-compatible) */
+:root {
+  --bg-cream: #FDFCE8;
+  --ink: #131313;
+  --ink-2: #1a1a1a;
+  --bg-dark: #0F0F0F;
+  --accent-lav: #E4CCFA;
+  --accent-lav-line: #B98BE8;
+  --text-muted: #5A5A55;
+  --ghost: #C9C9C0;
+  --amber: #F5B04C;
+  --saffron: #E8A33D;
+  --india-green: #1F5C3D;
+
+  --font-display: 'Instrument Serif', 'Newsreader', 'Playfair Display', Georgia, serif;
+  --font-ui: 'Outfit', 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --radius-card: 16px;
+
+  /* 8pt spacing scale (named for readability, not used yet — slice 3+ will adopt) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+  --space-16: 128px;
+  --space-20: 160px;
+  --space-24: 192px;
+
+  /* Radii */
+  --radius-pill: 999px;
+  --radius-input: 8px;
+
+  /* Shadow */
+  --shadow-card-hover: 0 4px 12px rgba(19, 19, 19, 0.06);
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 2px var(--bg-cream), 0 0 0 4px var(--accent-lav-line);
+}
+
+/* Override Bootstrap primary to match brand ink color */
+:root {
+  --bs-primary: #131313;
+  --bs-primary-rgb: 19, 19, 19;
+  --bs-body-color: #131313;
+  --bs-body-font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --bs-link-color: #131313;
+  --bs-link-hover-color: #1a1a1a;
+}
+
+body {
+  font-family: var(--font-ui);
+  color: var(--ink);
+  background: var(--bg-cream);
+}
+
+/* Display font for headlines */
+h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -.01em;
+}
+
+.lead {
+  font-family: var(--font-ui);
+  font-weight: 400;
+}
+
+/* Custom eyebrow label */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 28px;
+  padding: 6px 12px;
+  border: 1px solid rgba(19, 19, 19, .12);
+  border-radius: 999px;
+  background: transparent;
+}
+
+/* Skip-link accessibility */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  width: auto;
+  height: auto;
+  padding: 8px 12px;
+  background: var(--ink);
+  color: var(--bg-cream);
+  z-index: 9999;
+  border-radius: 8px;
+}
+
+/* Navbar brand spacing */
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -.01em;
+}
+
+/* Force Bootstrap navbar to use the dark theme properly */
+.navbar.bg-dark {
+  background: var(--bg-dark) !important;
+}
+
+/* Navbar links in dark mode readable */
+.navbar-dark .nav-link,
+.navbar-dark .navbar-brand {
+  color: rgba(253, 252, 232, .85);
+}
+.navbar-dark .nav-link:hover,
+.navbar-dark .nav-link:focus {
+  color: var(--bg-cream);
+}
+.navbar-dark .nav-link.active,
+.navbar-dark .nav-link[aria-current="page"] {
+  color: var(--bg-cream);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-lav-line);
+  text-underline-offset: 4px;
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-dark);
+  color: var(--bg-cream);
+}
+.footer h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ghost);
+  margin: 0 0 14px;
+}
+.footer a {
+  color: var(--bg-cream);
+  text-decoration: none;
+  opacity: .9;
+  transition: opacity .2s var(--ease);
+}
+.footer a:hover {
+  opacity: 1;
+  color: var(--accent-lav-line);
+}
+
+/* Hero section */
+.hero {
+  padding: 32px 0 96px;
+  text-align: left;
+}
+.hero-h {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin: 0 0 24px;
+  color: var(--ink);
+  max-width: 18ch;
+}
+.hero-h em {
+  font-feature-settings: "ss01" on;
+}
+.hero-sub {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 62ch;
+  margin: 0 0 36px;
+}
+
+/* Mic button - keeps custom waveform button styling */
+.mic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.wave-svg {
+  height: 80px;
+  background: rgba(19, 19, 19, .03);
+  border-radius: 12px;
+}
+
+/* Anjali story section */
+.anjali-call {
+  padding: 24px;
+  background: rgba(19, 19, 19, .04);
+  border-radius: var(--bs-border-radius-lg, 16px);
+  margin-bottom: 16px;
+}
+.anjali-call-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+.anjali-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--ink);
+  margin: 0 0 8px;
+  font-style: italic;
+}
+.anjali-call-from {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Pricing plan card */
+.plan-price {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+.plan-price .per {
+  font-size: 18px;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  margin-left: 6px;
+}
+.plan-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+/* Story section */
+.story-section {
+  padding: 64px 0;
+  border-top: 1px solid rgba(19, 19, 19, .08);
+}
+.story-section h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  margin: 0 0 24px;
+  max-width: 22ch;
+}
+.story-section p {
+  font-size: 18px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  max-width: 64ch;
+  margin: 0 0 18px;
+}
+.story-section blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--ink);
+  margin: 24px 0;
+  padding-left: 28px;
+  border-left: 3px solid var(--accent-lav-line);
+  max-width: 56ch;
+}
+.story-callout {
+  background: #fff;
+  border: 1px solid rgba(19, 19, 19, .08);
+  border-radius: var(--bs-border-radius-lg, 16px);
+  padding: 24px 28px;
+  margin: 32px 0;
+}
+.story-callout h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin: 0 0 8px;
+  font-weight: 400;
+}
+.story-demo {
+  background: #fff;
+  border: 1px solid rgba(19, 19, 19, .1);
+  border-radius: var(--bs-border-radius-lg, 16px);
+  padding: 28px 32px;
+  margin: 32px 0;
+}
+.story-demo-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.story-demo-raw {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+.story-demo-arrow {
+  margin: 0 0 16px;
+  color: var(--accent-lav-line);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+.story-demo-out {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Tech grid cards */
+.tech-key {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+.tech-val {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* How-it-works flow */
+.hiw-step {
+  padding: 32px 0;
+  border-top: 1px solid rgba(19, 19, 19, .08);
+}
+.hiw-step-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.hiw-step pre {
+  background: #fff;
+  border: 1px solid rgba(19, 19, 19, .08);
+  border-radius: 14px;
+  padding: 18px 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.hiw-step pre .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 10px;
+}
+.hiw-step pre .raw { color: var(--text-muted); font-style: italic; }
+.hiw-step pre .clean { color: var(--ink); }
+.hiw-step pre .tag {
+  color: var(--accent-lav-line);
+  font-size: 11px;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Data-controls tables */
+.dc-callout {
+  background: #fff;
+  border: 1px solid rgba(19, 19, 19, .08);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--bs-border-radius-lg, 16px);
+  padding: 24px 28px;
+  margin: 32px 0;
+}
+
+/* Login specific */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-cream);
+}
+.login-status {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  min-height: 20px;
+  text-align: center;
+}
+.login-status.is-error { color: #9a2424; }
+.login-status.is-success { color: var(--india-green); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
