@@ -1,0 +1,57 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Personalization visualization -->
+  <defs>
+    <filter id="drop-shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.1)"/>
+    </filter>
+  </defs>
+
+  <!-- Tone selector -->
+  <g transform="translate(50, 50)">
+    <text x="0" y="-20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10" fill="#131313">
+      Tone
+    </text>
+    <rect x="-30" y="-10" width="60" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Formal</text>
+  </g>
+
+  <!-- Language selector -->
+  <g transform="translate(50, 100)">
+    <text x="0" y="-20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10" fill="#131313">
+      Language
+    </text>
+    <rect x="-30" y="-10" width="60" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Hinglish</text>
+  </g>
+
+  <!-- Personal dictionary -->
+  <g transform="translate(150, 50)">
+    <text x="0" y="-20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10" fill="#131313">
+      Dictionary
+    </text>
+    <rect x="-30" y="-10" width="60" height="40" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">
+      Kishangarh
+    </text>
+    <text x="0" y="12" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">
+      Dohdiya
+    </text>
+    <text x="0" y="24" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">
+      A-Anie
+    </text>
+  </g>
+
+  <!-- Example transformation -->
+  <g transform="translate(100, 150)">
+    <text x="0" y="-20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10" fill="#131313">
+      Example
+    </text>
+    <rect x="-40" y="-10" width="80" height="30" rx="4" fill="rgba(253,252,232,0.8)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="5" text-anchor="middle" font-family="Instrument Serif, Newsreader, Georgia, serif" font-size="10" fill="#131313">
+      "uh yeah that seems fine"
+    </text>
+    <text x="0" y="20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313" opacity="0.7">
+      → "That works on my end."
+    </text>
+  </g>
+</svg>

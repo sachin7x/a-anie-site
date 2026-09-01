@@ -1,0 +1,56 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Indian English / Hinglish visualization -->
+  <defs>
+    <filter id="drop-shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.1)"/>
+    </filter>
+  </defs>
+
+  <!-- Language tags -->
+  <g transform="translate(50, 50)">
+    <text x="0" y="-20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10" fill="#131313">
+      Languages
+    </text>
+    <rect x="-40" y="-10" width="80" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Hinglish</text>
+  </g>
+
+  <g transform="translate(150, 50)">
+    <rect x="-40" y="-10" width="80" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Hindi</text>
+  </g>
+
+  <g transform="translate(50, 120)">
+    <rect x="-40" y="-10" width="80" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Marathi</text>
+  </g>
+
+  <g transform="translate(150, 120)">
+    <rect x="-40" y="-10" width="80" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Tamil</text>
+  </g>
+
+  <g transform="translate(50, 190)">
+    <rect x="-40" y="-10" width="80" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Bengali</text>
+  </g>
+
+  <g transform="translate(150, 190)">
+    <rect x="-40" y="-10" width="80" height="20" rx="3" fill="rgba(253,252,232,0.5)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">Telugu</text>
+  </g>
+
+  <!-- Code-switching example -->
+  <g transform="translate(100, 150)">
+    <text x="0" y="-20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="10" fill="#131313">
+      Code-switching
+    </text>
+    <rect x="-60" y="-10" width="120" height="30" rx="4" fill="rgba(253,252,232,0.8)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="8" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">
+      "bhai kal ki meeting postpone kar do"
+    </text>
+    <text x="0" y="24" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313" opacity="0.8">
+      → "Please postpone tomorrow's meeting"
+    </text>
+  </g>
+</svg>

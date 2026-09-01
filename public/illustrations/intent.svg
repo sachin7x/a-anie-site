@@ -1,0 +1,48 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- How A-Anie understands speech -->
+  <defs>
+    <filter id="drop-shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.1)"/>
+    </filter>
+  </defs>
+
+  <!-- Speech bubbles with transformation -->
+  <g transform="translate(50, 50)">
+    <!-- Raw speech -->
+    <ellipse cx="0" cy="0" rx="60" ry="30" fill="rgba(253,252,232,0.3)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="-10" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313" opacity="0.7">
+      "uhh so yeah I think"
+    </text>
+    <text x="0" y="5" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313" opacity="0.7">
+      "maybe uh Tuesday would"
+    </text>
+  </g>
+
+  <!-- Transformation arrows -->
+  <path d="M110 20 Q130 0 150 20" stroke="#B98BE8" strokeWidth="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M110 0 Q130 -20 150 0" stroke="#B98BE8" strokeWidth="2" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- Processing indicators -->
+  <g transform="translate(150, -10)">
+    <rect x="-15" y="-15" width="30" height="30" rx="4" fill="rgba(253,252,232,0.8)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#131313">AI</text>
+    <text x="0" y="8" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#131313">Processing</text>
+  </g>
+
+  <!-- Clean speech -->
+  <g transform="translate(200, 50)">
+    <ellipse cx="0" cy="0" rx="60" ry="30" fill="rgba(253,252,232,0.3)" stroke="#B98BE8" strokeWidth="1"/>
+    <text x="0" y="-10" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">
+      "I think Tuesday would"
+    </text>
+    <text x="0" y="5" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#131313">
+      "work better"
+    </text>
+  </g>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="3" refY="2" orient="auto">
+      <path d="M0 0 L0 4 L6 2 z" fill="#B98BE8"/>
+    </marker>
+  </defs>
+</svg>
