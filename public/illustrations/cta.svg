@@ -1,56 +1,18 @@
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- Call-to-action visualization -->
-  <defs>
-    <filter id="drop-shadow">
-      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.1)"/>
-    </filter>
-    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:rgba(253,252,232,0.05);stop-opacity:1" />
-      <stop offset="100%" style="stop-color:rgba(253,252,232,0.15);stop-opacity:1" />
-    </linearGradient>
-  </defs>
-
-  <!-- Background -->
-  <rect width="200" height="200" fill="url(#bg-gradient)"/>
-
-  <!-- Title -->
-  <text x="100" y="25" text-anchor="middle" font-family="Outfit, sans-serif" font-size="12" fill="#131313" font-weight="600">
-    Ready to Try?
-  </text>
-
-  <!-- Main button -->
-  <g transform="translate(100, 80)">
-    <rect x="-60" y="-20" width="120" height="40" rx="8" fill="#B98BE8" stroke="none"/>
-    <text x="0" y="5" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="#ffffff" font-weight="600">
-      Try A-Anie Free
-    </text>
-    <text x="0" y="20" text-anchor="middle" font-family="Outfit, sans-serif" font-size="9" fill="#ffffff" opacity="0.9">
-      No credit card required
-    </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Cursor arrow rotated 45° pointing down-right into a frame corner -->
+  <!-- Cursor (rotated 45° clockwise from up-left origin) -->
+  <g transform="rotate(45 40 40)">
+    <path d="M30 28 L30 52 L36 46 L40 54 L43 52 L39 44 L46 44 Z" fill="var(--ink)" stroke="none" />
   </g>
 
-  <!-- Glow effect -->
-  <g transform="translate(100, 80)">
-    <rect x="-62" y="-22" width="124" height="44" rx="10" fill="none" stroke="#B98BE8" strokeWidth="2" opacity="0.3"/>
-  </g>
+  <!-- Frame (rectangle) at the bottom-right -->
+  <rect x="50" y="50" width="60" height="60" rx="2" />
 
-  <!-- Microphone icon -->
-  <g transform="translate(100, 140)">
-    <rect x="-8" y="-18" width="16" height="20" rx="2" fill="#131313"/>
-    <circle cx="0" cy="-23" r="8" fill="#131313"/>
-    <text x="0" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#131313" opacity="0.7">🎤</text>
-  </g>
+  <!-- Accent dot at the cursor tip (45° rotation puts the tip at ~52,52) -->
+  <circle cx="56" cy="56" r="2.5" fill="var(--accent-lav)" stroke="none" />
 
-  <!-- Arrow from mic to button -->
-  <path d="M100 150 Q100 130 100 110" stroke="#B98BE8" strokeWidth="1.5" fill="none" stroke-dasharray="4,2"/>
-
-  <!-- Trust badges -->
-  <g transform="translate(100, 170)">
-    <text x="-30" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#6B7280">•</text>
-    <text x="-20" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#6B7280">Privacy First</text>
-    <text x="0" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#6B7280">•</text>
-    <text x="10" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#6B7280">Solo Built</text>
-    <text x="30" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#6B7280">•</text>
-    <text x="40" y="0" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8" fill="#6B7280">Made in India</text>
-  </g>
+  <!-- Two horizontal lines inside the frame to suggest text -->
+  <line x1="58" y1="68" x2="102" y2="68" />
+  <line x1="58" y1="80" x2="92" y2="80" />
+  <line x1="58" y1="92" x2="98" y2="92" />
 </svg>
