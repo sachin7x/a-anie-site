@@ -4,6 +4,31 @@
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ── Mobile nav toggle ──
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  if (navToggle && navMenu){
+    const setOpen = (open)=>{
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      navMenu.classList.toggle('is-open', open);
+    };
+    navToggle.addEventListener('click', ()=>{
+      setOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+    });
+    navMenu.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        if (matchMedia('(max-width: 820px)').matches) setOpen(false);
+      });
+    });
+    document.addEventListener('keydown', e=>{
+      if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true'){
+        setOpen(false);
+        navToggle.focus();
+      }
+    });
+  }
+
   // ── IntersectionObserver: reveal on scroll ──
   const obs = new IntersectionObserver((entries)=>{
     for (const e of entries){

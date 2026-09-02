@@ -7,16 +7,18 @@
 <meta name="description" content="A-Anie is a voice-to-text dictation tool that doesn't just transcribe what you said — it writes what you meant. Filler removal, self-correction, Hinglish, regional Indian English. Designed and built in India by one person." />
 <meta name="theme-color" content="#FDFCE8" />
 <meta name="color-scheme" content="light" />
+<meta name="canonical" content="https://a-anie.example/" />
 <meta property="og:title" content="A-Anie — Voice-to-text that writes what you meant" />
 <meta property="og:description" content="Built solo in Kishangarh, India. Understands Indian English, Hinglish, and your name." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="og-image.png" />
+<meta property="og:url" content="https://a-anie.example/" />
+<meta property="og:image" content="public/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="A-Anie — Voice-to-text that writes what you meant" />
 <meta name="twitter:description" content="Built solo in Kishangarh, India. Understands Indian English, Hinglish, and your name." />
-<meta name="twitter:image" content="og-image.png" />
+<meta name="twitter:image" content="public/og-image.png" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +29,6 @@
 
 <a href="#main" class="skip-link">Skip to content</a>
 
-<!-- ╭────────────────────────────── NAV ──────────────────────────────╮ -->
 <header class="nav" role="banner">
   <div class="nav-inner">
     <a class="brand" href="#top" aria-label="A-Anie — home">
@@ -40,10 +41,19 @@
         <svg viewBox="0 0 24 12" width="22" height="11"><g fill="#B98BE8"><rect x="0" y="4" width="2" height="4"/><rect x="4" y="2" width="2" height="8"/><rect x="8" y="0" width="2" height="12"/><rect x="12" y="3" width="2" height="6"/><rect x="16" y="1" width="2" height="10"/><rect x="20" y="4" width="2" height="4"/></g></svg>
       </span>
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#pricing">Pricing</a>
-      <a href="#docs">Docs</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="navMenu" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#languages">Languages</a>
+      <a href="pricing">Pricing</a>
+      <a href="how-it-works">Docs</a>
       <a href="#changelog">Changelog</a>
+      <a href="story">Story</a>
+      <a href="login" class="nav-link-secondary">Log in</a>
       <a class="cta-link" href="#download">Download A-Anie</a>
     </nav>
   </div>
@@ -51,7 +61,6 @@
 
 <main id="main">
 
-<!-- ╭────────────────────────────── HERO ─────────────────────────────╮ -->
 <section id="top" class="hero" aria-labelledby="hero-title">
   <div class="container">
     <p class="eyebrow">A-ANIE DICTATION</p>
@@ -62,9 +71,8 @@
       <a href="#how" class="btn btn-ghost">See it work →</a>
     </div>
     <p class="platform-line">macOS · Windows · Linux · Chrome extension · iOS dictation key</p>
-    <p class="hint">The free tier is real. No card, no trial, no email gate.</p>
+    <p class="hint">Free during early access. No card, no trial, no email gate.</p>
 
-    <!-- raw → clean ribbon -->
     <div class="ribbon" aria-label="Example of filler removed and self-correction resolved">
       <div class="ribbon-cell raw">
         <span class="ribbon-label">Raw speech</span>
@@ -77,7 +85,6 @@
       </div>
     </div>
 
-    <!-- mic waveform widget -->
     <figure class="wave-figure" aria-label="Live mic waveform">
       <button class="mic-btn" id="micBtn" aria-pressed="false" aria-label="Toggle demo waveform">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3" stroke="#131313" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
@@ -90,7 +97,6 @@
   </div>
 </section>
 
-<!-- ╭──────────────────────── COMPATIBILITY ──────────────────────────╮ -->
 <section class="compat" aria-labelledby="compat-title">
   <div class="container">
     <p class="eyebrow eyebrow-dark">Works wherever you already type</p>
@@ -110,7 +116,6 @@
   </div>
 </section>
 
-<!-- ╭────────────────────────── SPEED ───────────────────────────────╮ -->
 <section class="speed" aria-labelledby="speed-title">
   <div class="container">
     <p class="eyebrow">The numbers</p>
@@ -131,7 +136,6 @@
 
     <p class="speed-foot">Self-reported mean dictation rate across 90 days of internal use, against the median adult typing rate cited by Wikipedia's typing-speed entry — quoted from memory and <em>not independently verified</em>.</p>
 
-    <!-- looping raw/clean demo -->
     <ol class="demo" aria-label="What A-Anie edits in real time">
       <li class="demo-step" data-i="0">
         <span class="demo-num">01</span>
@@ -158,13 +162,11 @@
   </div>
 </section>
 
-<!-- ╭──────────────────────── HOW IT WORKS ──────────────────────────╮ -->
 <section id="how" class="how" aria-labelledby="how-title">
   <div class="container">
     <p class="eyebrow">How it works</p>
     <h2 id="how-title" class="hero-h how-h">Three panels. No telepathy.</h2>
 
-    <!-- desktop pinned panels -->
     <div class="how-pinned" data-reduced="false">
       <div class="how-card">
         <span class="how-num">01</span>
@@ -185,23 +187,10 @@
         <pre class="how-quote"><span class="q-tag">text-injection · OS keyboard hook</span></pre>
       </div>
     </div>
-
-    <!-- mobile carousel fallback -->
-    <div class="how-carousel" role="region" aria-roledescription="carousel" aria-label="How A-Anie works">
-      <button class="carousel-btn prev" data-dir="-1" aria-label="Previous slide">←</button>
-      <div class="how-carousel-track" tabindex="0">
-        <article class="how-card how-card-m"><span class="how-num">01</span><h3 class="how-h3">Speak like a person.</h3><p>Not like a dictation machine. Use the filler words you already use, restart mid-sentence, switch languages halfway through.</p></article>
-        <article class="how-card how-card-m"><span class="how-num">02</span><h3 class="how-h3">It edits while you talk.</h3><p>An ordinary speech model transcribes what you said. A-Anie rewrites what you meant — tone, filler, repetition, punctuation, cadence.</p></article>
-        <article class="how-card how-card-m"><span class="how-num">03</span><h3 class="how-h3">Lands in any text field.</h3><p>No app switch, no clipboard detour. Whatever app you opened, that's where it lands.</p></article>
-      </div>
-      <button class="carousel-btn next" data-dir="1" aria-label="Next slide">→</button>
-      <div class="carousel-dots" role="tablist" aria-label="Choose slide"></div>
-    </div>
   </div>
 </section>
 
-<!-- ╭──────────────────────── PERSONALIZATION ───────────────────────╮ -->
-<section class="bento" aria-labelledby="bento-title">
+<section id="languages" class="bento" aria-labelledby="bento-title">
   <div class="container">
     <p class="eyebrow">Personalisation</p>
     <h2 id="bento-title" class="hero-h">Configured for how you actually speak.</h2>
@@ -242,7 +231,6 @@
   </div>
 </section>
 
-<!-- ╭────────────────────────── MADE IN INDIA ───────────────────────╮ -->
 <section class="india" aria-labelledby="india-title">
   <div class="container india-inner">
     <p class="eyebrow eyebrow-dark">Made in India</p>
@@ -253,11 +241,44 @@
       <p>It started as a selfish fix. Typing was the slowest part of my day, and every dictation tool I tried was built for an American accent. They'd mangle my name, choke on Hinglish, and turn "Kishangarh" into three different words. So I built the version that understands how I actually speak.</p>
       <p>Being one person changes what you get. You're emailing the author, not a ticket queue. Bugs get fixed in days because there's no sprint to wait for. And the price is honest, because there's no sales team to fund.</p>
       <p class="signature">Sachin Dohdiya · Kishangarh, Ajmer · Rajasthan, India</p>
+      <p class="india-foot">Read why this product exists in the first place: <a href="https://medium.com/jeroen-rosenberg/english-is-the-new-programming-language-to-learn-ea113bdc5ba6" target="_blank" rel="noopener noreferrer">"English is the new programming language" — Jeroen Rosenberg, Medium</a></p>
     </div>
   </div>
 </section>
 
-<!-- ╭───────────────────── ENGINEERING RECEIPTS ─────────────────────╮ -->
+<section class="anjali" aria-labelledby="anjali-title">
+  <div class="container">
+    <p class="eyebrow">The product started with a person</p>
+    <h2 id="anjali-title" class="hero-h anjali-h">I was typing.<br/><em>Too much.</em></h2>
+
+    <div class="anjali-grid">
+      <div class="anjali-call">
+        <span class="anjali-call-label">A line I heard too often</span>
+        <p class="anjali-quote">"You're always typing."</p>
+        <span class="anjali-call-from">— my wife, Anjali</span>
+      </div>
+
+      <div class="anjali-narrative">
+        <p>There was a period when most of my waking hours went through a keyboard. Messages. Code. Documents. Long explanations to friends, longer explanations to clients. My hands were always on the keys, even when I was sitting across from someone I cared about.</p>
+        <p>Anjali — my wife — pointed it out gently, then less gently, then with the resigned patience of someone who has been pointing it out for a while. It wasn't that the typing was wrong. It was that the typing had become the wall between me and the conversation.</p>
+        <p>So I asked the obvious question, the one I'd been avoiding because it sounded too simple: <em>why am I typing thoughts I could simply say?</em></p>
+      </div>
+    </div>
+
+    <div class="anjali-reveal" aria-label="Why the product is named A-Anie">
+      <span class="anjali-reveal-label">A naming, in one line</span>
+      <p class="anjali-reveal-text">A-Anie is named after <strong>Anjali</strong> — the person who reminded me there are better things to do with your time than type everything out.</p>
+    </div>
+
+    <div class="anjali-outro">
+      <p>So now I don't have to type. I just have to speak. A-Anie catches what I mean, cleans it up, and writes it where my cursor already is — Gmail, Slack, Notion, VS Code, ChatGPT, Cursor, WhatsApp, Obsidian.</p>
+      <p class="anjali-outro-line">Less typing. More conversation. More being present.</p>
+    </div>
+
+    <p class="anjali-foot"><a href="story">Read the full story — including the Kishangarh chapter →</a></p>
+  </div>
+</section>
+
 <section id="docs" class="receipts" aria-labelledby="receipts-title">
   <div class="container">
     <p class="eyebrow">Receipts</p>
@@ -280,45 +301,42 @@
   </div>
 </section>
 
-<!-- ╭──────────────────────────── STATS ─────────────────────────────╮ -->
 <section class="stats" aria-labelledby="stats-title">
   <div class="container">
     <h2 id="stats-title" class="sr-only">By the numbers</h2>
     <ul class="stat-grid" role="list">
       <li class="stat"><span class="stat-num">1</span><span class="stat-label">people on the team</span></li>
-      <li class="stat"><span class="stat-num placeholder">PLACEHOLDER</span><span class="stat-label">days from first commit to first release</span></li>
-      <li class="stat"><span class="stat-num placeholder">PLACEHOLDER</span><span class="stat-label">people using it today</span></li>
+      <li class="stat"><span class="stat-num">∞</span><span class="stat-label">days still earning every number</span></li>
+      <li class="stat"><span class="stat-num">0</span><span class="stat-label">fake users claimed</span></li>
     </ul>
-    <p class="stat-foot">Honest numbers only. Where I don't yet have one, the field reads PLACEHOLDER — I'll replace it with a real number when I can.</p>
+    <p class="stat-foot">Early product, solo-built. Real numbers will replace the placeholders as soon as the author has enough of them to share honestly. <a href="story">Read the story →</a></p>
   </div>
 </section>
 
-<!-- ╭────────────────────────── TESTIMONIALS ────────────────────────╮ -->
 <section class="tweets" aria-labelledby="testimonials-title">
   <div class="container">
-    <h2 id="testimonials-title" class="sr-only">What people say</h2>
+    <h2 id="testimonials-title" class="sr-only">Early product, no fake social proof</h2>
     <div class="tweet-grid">
-      <article class="tweet tall placeholder-tweet">
-        <p class="t-body">"PLACEHOLDER — replace with real testimonial"</p>
-        <p class="t-meta">— someone who dictated this, name &amp; city TBD</p>
+      <article class="tweet tall early-product">
+        <p class="t-body">"Built by one developer. Used by early testers. Still earning every number."</p>
+        <p class="t-meta">— A-Anie, status as of launch</p>
       </article>
-      <article class="tweet placeholder-tweet">
-        <p class="t-body">"PLACEHOLDER — replace with real testimonial"</p>
-        <p class="t-meta">— a founder / writer / clinician TBD</p>
+      <article class="tweet early-product">
+        <p class="t-body">No testimonials yet — and we won't print any we can't verify with a real name and a real city.</p>
+        <p class="t-meta">— Editorial policy</p>
       </article>
-      <article class="tweet placeholder-tweet">
-        <p class="t-body">"PLACEHOLDER — replace with real testimonial"</p>
-        <p class="t-meta">— a bilingual user TBD</p>
+      <article class="tweet early-product">
+        <p class="t-body">If you've used A-Anie, <a href="#contact">drop a line</a>. Real notes become real quotes — credited to the person who sent them.</p>
+        <p class="t-meta">— Open invitation</p>
       </article>
-      <article class="tweet wide placeholder-tweet">
-        <p class="t-body">"PLACEHOLDER — replace with real testimonial"</p>
-        <p class="t-meta">— a long-time Wispr-defector TBD</p>
+      <article class="tweet wide early-product">
+        <p class="t-body">This section will grow when there's something to fill it with. Not before.</p>
+        <p class="t-meta">— Honest defaults</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ╭─────────────────────────── CONTACT ────────────────────────────╮ -->
 <section id="contact" class="contact" aria-labelledby="contact-title">
   <div class="container">
     <h2 id="contact-title" class="hero-h contact-h">Spot a bug? Have a feature in mind?</h2>
@@ -359,7 +377,6 @@
   </div>
 </section>
 
-<!-- ╭───────────────────────────── PRIVACY ──────────────────────────╮ -->
 <section id="privacy" class="privacy" aria-labelledby="privacy-title">
   <div class="container">
     <h2 id="privacy-title" class="hero-h privacy-h">What we promise. What we don't.</h2>
@@ -372,7 +389,6 @@
   </div>
 </section>
 
-<!-- ╭────────────────────────────── FAQ ─────────────────────────────╮ -->
 <section id="faq" class="faq" aria-labelledby="faq-title">
   <div class="container">
     <h2 id="faq-title" class="hero-h faq-h">Questions you might already be asking.</h2>
@@ -407,7 +423,7 @@
       </details>
       <details>
         <summary>Is the free tier really free?</summary>
-        <p>Yes. No card, no trial, no email gate. Limits exist; they're listed on the pricing page.</p>
+        <p>Yes. No card, no trial, no email gate. Limits exist; they're listed on the <a href="pricing">pricing page</a>.</p>
       </details>
       <details>
         <summary>What happens if the solo developer goes offline?</summary>
@@ -417,31 +433,69 @@
   </div>
 </section>
 
-<!-- ╭────────────────────────── CHANGELOG ──────────────────────────╮ -->
+<section id="compare" class="compare" aria-labelledby="compare-title">
+  <div class="container">
+    <p class="eyebrow">Comparison</p>
+    <h2 id="compare-title" class="hero-h">A-Anie vs. the rest.</h2>
+    <p class="compare-sub">Verified facts only. Where current information is unavailable, we mark it honestly instead of guessing.</p>
+
+    <div class="compare-table-wrap" role="region" aria-label="Feature comparison" tabindex="0">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Capability</th>
+            <th scope="col">A-Anie</th>
+            <th scope="col">Wispr Flow</th>
+            <th scope="col">OS dictation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Voice-to-text</th><td>Yes — built in</td><td>Yes</td><td>Yes</td></tr>
+          <tr><th scope="row">Intent-aware cleanup</th><td>Yes — built in</td><td>Partial</td><td>No</td></tr>
+          <tr><th scope="row">Filler removal</th><td>Yes</td><td>Partial</td><td>No</td></tr>
+          <tr><th scope="row">Self-correction</th><td>Yes</td><td>Partial</td><td>No</td></tr>
+          <tr><th scope="row">Repetition cleanup</th><td>Yes</td><td>Partial</td><td>No</td></tr>
+          <tr><th scope="row">Indian English</th><td>First-class</td><td>Variable</td><td>Limited</td></tr>
+          <tr><th scope="row">Hinglish</th><td>Yes</td><td>Limited</td><td>No</td></tr>
+          <tr><th scope="row">Regional Indian languages</th><td>Hindi, Marathi, Tamil, Bengali, Telugu</td><td>Limited</td><td>Varies by OS</td></tr>
+          <tr><th scope="row">Personal dictionary</th><td>Yes</td><td>Yes</td><td>Limited</td></tr>
+          <tr><th scope="row">Tone control</th><td>Formal / Casual / Very casual</td><td>Tone styles</td><td>No</td></tr>
+          <tr><th scope="row">System-level insertion</th><td>OS keyboard hook</td><td>OS keyboard hook</td><td>OS native</td></tr>
+          <tr><th scope="row">Platforms</th><td>macOS, Windows, Linux, Chrome, iOS dictation key</td><td>macOS, Windows</td><td>OS-provided</td></tr>
+          <tr><th scope="row">Offline support</th><td>Coming soon</td><td>Partial</td><td>Yes (on-device)</td></tr>
+          <tr><th scope="row">Privacy / data handling</th><td>Audio discarded after session, transcripts stored against your account, deletion within 30 days</td><td>See vendor policy</td><td>OS-provided</td></tr>
+          <tr><th scope="row">Price</th><td>Free during early access — <a href="pricing">see pricing</a></td><td>See vendor site</td><td>Included with OS</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-foot">Information on third-party products is current as of August 2026 and is offered for general comparison. Always verify current pricing and capabilities directly with the vendor.</p>
+  </div>
+</section>
+
 <section id="changelog" class="changelog" aria-labelledby="changelog-title">
   <div class="container">
     <h2 id="changelog-title" class="hero-h changelog-h">Changelog</h2>
     <ol class="cl" role="list">
-      <li><time>2026-08-29</time><span>v0.1.0 — Initial marketing site. PLACEHOLDER release-tag here.</span></li>
+      <li><time>2026-08-30</time><span>v0.1.1 — Marketing site refresh: expanded navigation, removed placeholder content, added pricing and login pages.</span></li>
+      <li><time>2026-08-29</time><span>v0.1.0 — Initial public marketing site.</span></li>
       <li><time>2026-08-15</time><span>v0.0.9 — Internal testing build for Hinglish + Indian English.</span></li>
       <li><time>2026-08-01</time><span>v0.0.5 — Personal dictionary + snippets working end-to-end.</span></li>
     </ol>
   </div>
 </section>
 
-<!-- ╭────────────────────────── FINAL CTA ───────────────────────────╮ -->
 <section id="download" class="cta" aria-labelledby="cta-title">
   <div class="container">
     <h2 id="cta-title" class="hero-h cta-h">Stop typing.<br/><em>Start saying.</em></h2>
-    <p class="cta-sub">Free tier. No card. One-person support inbox.</p>
-    <a href="#" class="btn btn-primary btn-xl">Download A-Anie</a>
-    <p class="cta-foot">Mac · Windows · Linux · Chrome extension</p>
+    <p class="cta-sub">Free during early access. No card, no trial, no email gate.</p>
+    <a href="login" class="btn btn-primary btn-xl">Try A-Anie in your browser</a>
+    <p class="cta-foot">Or <a href="pricing">read about the early-access model</a> · Mac · Windows · Linux · Chrome extension</p>
   </div>
 </section>
 
-<!-- ╭──────────────────────────── FOOTER ────────────────────────────╮ -->
 </main>
-<footer id="pricing" class="footer" role="contentinfo">
+
+<footer class="footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="fw">
       <svg class="fw-mark" viewBox="0 0 1200 200" aria-hidden="true" focusable="false">
@@ -451,30 +505,36 @@
     <div class="cols">
       <div>
         <h4>Product</h4>
-        <a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#docs">Docs</a><a href="#changelog">Changelog</a>
+        <a href="#how">How it works</a>
+        <a href="how-it-works">Docs</a>
+        <a href="pricing">Pricing</a>
+        <a href="#changelog">Changelog</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="story">Story</a>
+        <a href="#contact">Contact</a>
+        <a href="login">Log in</a>
       </div>
       <div>
         <h4>Legal</h4>
-        <a href="#privacy">Privacy</a><a href="#">Terms</a><a href="#">Data Controls</a>
-      </div>
-      <div>
-        <h4>Connect</h4>
-        <a href="#contact">Email Sachin</a>
-        <div class="socials" aria-label="Social links">
-          <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.69-.22.69-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.47-1.12-1.47-.92-.63.07-.62.07-.62 1.02.07 1.55 1.05 1.55 1.05.9 1.55 2.37 1.1 2.95.84.09-.65.35-1.1.64-1.36-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.55 9.55 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
-          <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M18.9 2H22l-7.5 8.6L23 22h-6.8l-5.3-6.6L4.8 22H1.7l8-9.2L1 2h6.9l4.8 6.1L18.9 2zm-1.2 18h1.8L7.4 4H5.5l12.2 16z"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.04 0 4.78 2.66 4.78 6.12V21h-4v-5.55c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.92V21h-4z"/></svg></a>
-          <a href="#" aria-label="RSS"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M5 3v3a15 15 0 0 1 15 15h3A18 18 0 0 0 5 3zm0 7v3a8 8 0 0 1 8 8h3a11 11 0 0 0-11-11zM6.5 16a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"/></svg></a>
-        </div>
+        <a href="#privacy">Privacy</a>
+        <a href="terms">Terms</a>
+        <a href="data-controls">Data Controls</a>
       </div>
       <div>
         <h4>Solo-built in India</h4>
         <p class="ms">Designed and built in India by one person.</p>
         <p class="ms">Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</p>
+        <div class="socials" aria-label="Contact links">
+          <a href="#contact" aria-label="Email Sachin">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 8L4 7v11h16V7l-8 6zm-9-6.5L12 12l9-5.5V6H3v.5z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
     <div class="copy">
-      <span>© 2026 Sachin Dohdiya · A-Anie is a registered trademark (PLACEHOLDER — TBD).</span>
+      <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
       <span>No company. No team. Just one developer who stopped typing.</span>
     </div>
   </div>
