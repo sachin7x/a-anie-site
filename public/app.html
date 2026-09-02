@@ -398,6 +398,13 @@
                 copyBtn.disabled = true;
                 return;
               }
+              if (out.status === 401) {
+                transcriptEl.textContent = 'Preview is behind Vercel SSO (401). The transcription endpoint is not deployed; the page just hit the deployment-protection layer first. Use the A-Anie desktop app for real dictation, or email sachin@a-anie.example to be notified when the web backend ships.';
+                transcriptEl.classList.remove('empty');
+                setStatus('Preview protected', 'idle');
+                copyBtn.disabled = true;
+                return;
+              }
               if (out.status >= 200 && out.status < 300 && out.j && out.j.text) {
                 transcript = out.j.text;
                 transcriptEl.textContent = transcript;
