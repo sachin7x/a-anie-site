@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>How it works — A-Anie</title>
+    <meta name="description" content="A-Anie transforms natural speech into polished text in five stages: speak, understand, clean, personalise, write. No plugins, no SDK, no app switch." />
+    <meta name="theme-color" content="#FDFCE8" />
+    <meta name="color-scheme" content="light" />
+    <meta name="canonical" content="https://a-anie.example/how-it-works" />
+    <meta property="og:title" content="How it works — A-Anie" />
+    <meta property="og:description" content="Five stages between speaking and polished text." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://a-anie.example/how-it-works" />
+    <meta property="og:image" content="og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How it works — A-Anie" />
+    <meta name="twitter:description" content="Five stages between speaking and polished text." />
+    <meta name="twitter:image" content="og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <svg width="24" height="24" aria-hidden="true" focusable="false">
+            <rect width="24" height="24" rx="6" fill="#131313"/>
+            <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+          </svg>
+          <span class="ms-2">A-Anie</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html#how">How it works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#languages">Languages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="how-it-works.html">Docs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#changelog">Changelog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="story.html">Story</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-secondary" href="login.html">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light ms-2" href="index.html#download">Download A-Anie</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <!-- Hero Section -->
+      <section class="hiw-hero py-5 bg-light">
+        <div class="container">
+          <p class="eyebrow text-muted">How it works</p>
+          <h1>From speech to polished text — <em>in five stages.</em></h1>
+          <p class="lead">A-Anie doesn't just transcribe. It listens, understands, edits, personalises, and writes. Here's what happens between pressing the hotkey and the text appearing in your document.</p>
+        </div>
+      </section>
+
+      <!-- Five Steps Section -->
+      <section class="hiw-flow py-5">
+        <div class="container">
+          <h2 id="flow-title" class="mb-5 text-center">The five stages.</h2>
+          <div class="row g-4">
+            <div class="col-md-2">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle p-3">
+                <span class="fs-4">01</span>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h3 id="step1-title" class="h4 mb-3">Speak</h3>
+                  <p>Hold the hotkey and talk. Speak the way you'd actually talk to a colleague — filler words, self-corrections, half-finished sentences, language switches, names pronounced the way you say them. The engine is listening for intent, not for perfect speech.</p>
+                  <div class="mb-3">
+                    <small class="text-muted"><span class="label">What you say</span><span class="raw">"bhai kal ki meeting postpone kar do, client busy hai"</span><span class="tag">natural Hinglish · filler · name pronunciation</span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-2">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle p-3">
+                <span class="fs-4">02</span>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h3 id="step2-title" class="h4 mb-3">Understand</h3>
+                  <p>A speech model converts audio to text. A-Anie's processing layer then reads that text and understands what you were trying to say — including the parts you corrected yourself on, the parts you restarted, and the parts you trailed off. This is not just transcription; it is interpretation.</p>
+                  <div class="mb-3">
+                    <small class="text-muted"><span class="label">What the engine sees</span><span class="raw">"bhai kal ki meeting postpone kar do, client busy hai — oh wait, actually day after tomorrow bhi possible hai, check karo"</span><span class="tag">raw · self-correction · trailing thought · code-switching</span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-2">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle p-3">
+                <span class="fs-4">03</span>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h3 id="step3-title" class="h4 mb-3">Clean</h3>
+                  <p>The cleaned version of your speech is produced by applying a sequence of edits: filler words are removed, repeated words are merged, self-corrections are resolved (the word you said, not the one you abandoned), punctuation is added based on cadence, and sentence structure is normalised. The result reads as a human wrote it — because a human did.</p>
+                  <div class="mb-3">
+                    <small class="text-muted"><span class="label">Raw speech</span><span class="raw">"uhhh so the the meeting is — no wait, let's do it Wednesday, Tuesday is uh busy"</span>
+                      <br><span class="label" style="margin-top:4px">Cleaned output</span><span class="clean">"Wednesday works. Tuesday is busy."</span><span class="tag">filler removed · repetition merged · self-correction resolved · punctuation added</span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-2">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle p-3">
+                <span class="fs-4">04</span>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h3 id="step4-title" class="h4 mb-3">Personalise</h3>
+                  <p>Before the text is written, your personal dictionary and current tone setting are applied. Names you have taught A-Anie are written correctly. The tone — Formal, Casual, or Very Casual — determines word choice and sentence structure. Language detection ensures that Hinglish input produces clean English output when you choose English.</p>
+                  <div class="mb-3">
+                    <small class="text-muted"><span class="label">Personal dictionary entry</span><span class="clean">Kishangarh — Kishangarh, not "Kishan Garh" or "Kishan-garh"
+Dohdiya — Dohdiya, pronounced "Doh-dee-yah"
+A-Anie — A-Anie, pronounced "A-Nee"</span>
+                      <br><span class="label" style="margin-top:4px">Tone: Casual</span><span class="clean">"yeah let's move it to Wednesday"</span>
+                      <br><span class="label" style="margin-top:4px">Tone: Formal</span><span class="clean">"Please move the meeting to Wednesday."</span><span class="tag">personal dictionary · tone control · language detection</span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-2">
+              <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle p-3">
+                <span class="fs-4">05</span>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h3 id="step5-title" class="h4 mb-3">Write</h3>
+                  <p>The polished, personalised text is inserted at the current cursor position in whatever application you are in. There is no clipboard step, no save-then-paste, no modal to confirm. You pressed the hotkey, you spoke, and the text appears where your cursor is. The cursor moves to the end of the inserted text so you can continue dictating or switch to typing.</p>
+                  <div class="mb-3">
+                    <small class="text-muted"><span class="label">What lands in your document</span><span class="clean">"Please check if the day after tomorrow works — the client mentioned being available then."</span><span class="tag">text injection · OS keyboard hook · cursor repositioning</span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What Makes It Different Section -->
+      <section class="hiw-architecture py-5 bg-light">
+        <div class="container">
+          <h2 id="arch-title" class="mb-5 text-center">What makes it different.</h2>
+          <div class="row g-4">
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">Processing</h6>
+                  <p class="h5 mb-0">Real-time, session-level</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">Audio retention</h6>
+                  <p class="h5 mb-0">Discarded after session</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">Insertion method</h6>
+                  <p class="h5 mb-0">OS keyboard hook</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">App compatibility</h6>
+                  <p class="h5 mb-0">Any focused text field</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row g-4 mt-4">
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">Filler removal</h6>
+                  <p class="h5 mb-0">Built-in, always on</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">Self-correction</h6>
+                  <p class="h5 mb-0">Resolved before output</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">Indian English</h6>
+                  <p class="h5 mb-0">First-class support</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0 text-center">
+                <div class="card-body">
+                  <h6 class="text-muted text-uppercase">Hinglish</h6>
+                  <p class="h5 mb-0">Code-switching supported</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Traditional vs A-Anie Section -->
+      <section class="hiw-vs py-5">
+        <div class="container">
+          <h2 id="vs-title" class="mb-5 text-center">Traditional dictation vs. A-Anie.</h2>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h3 class="h4 mb-3">Traditional dictation</h3>
+                  <p>What you said, transcribed literally. No editing, no interpretation, no understanding of intent. The output needs a human editor before it is useful.</p>
+                  <ul class="list-0 mb-4">
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-muted"><i class="bi bi-check"></i></span>
+                      <div>Transcribes exactly what was said</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-muted"><i class="bi bi-check"></i></span>
+                      <div>Preserves filler words and repetition</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-muted"><i class="bi bi-check"></i></span>
+                      <div>Keeps self-corrections verbatim</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-muted"><i class="bi bi-check"></i></span>
+                      <div>No tone or language customisation</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-muted"><i class="bi bi-check"></i></span>
+                      <div>No personal dictionary support</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-muted"><i class="bi bi-check"></i></span>
+                      <div>No understanding of code-switching</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card h-100 shadow-sm border-0 bg-primary text-white">
+                <div class="card-body">
+                  <h3 class="h4 mb-3">A-Anie</h3>
+                  <p>What you meant, written clearly. The engine listens for intent, resolves ambiguity, applies your personal settings, and writes output that doesn't need editing.</p>
+                  <ul class="list-0 mb-4">
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-white"><i class="bi bi-check"></i></span>
+                      <div>Writes what you meant, not what you said</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-white"><i class="bi bi-check"></i></span>
+                      <div>Removes filler words automatically</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-white"><i class="bi bi-check"></i></span>
+                      <div>Resolves self-corrections intelligently</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-white"><i class="bi bi-check"></i></span>
+                      <div>Tone control: Formal, Casual, Very Casual</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-white"><i class="bi bi-check"></i></span>
+                      <div>Personal dictionary with your names and terms</div>
+                    </li>
+                    <li class="d-flex align-items-start mb-2">
+                      <span class="flex-shrink-0 me-3 text-white"><i class="bi bi-check"></i></span>
+                      <div>Full Hinglish and Indian English support</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="hiw-cta py-5 text-center bg-primary text-white">
+        <div class="container">
+          <h2 id="cta-title" class="mb-4">Hear the difference in your own voice.</h2>
+          <p class="lead">Download A-Anie and dictate the way you'd actually talk — not the way a dictation machine expects.</p>
+          <a href="index.html#download" class="btn btn-light btn-lg">Download A-Anie</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white-50 py-4">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h4>Product</h4>
+            <ul class="list-unstyled">
+              <li><a href="index.html#how" class="text-white text-decoration-none active" aria-current="page">How it works</a></li>
+              <li><a href="how-it-works.html" class="text-white text-decoration-none">Docs</a></li>
+              <li><a href="pricing.html" class="text-white text-decoration-none">Pricing</a></li>
+              <li><a href="index.html#changelog" class="text-white text-decoration-none">Changelog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>Company</h4>
+            <ul class="list-unstyled">
+              <li><a href="story.html" class="text-white text-decoration-none">Story</a></li>
+              <li><a href="index.html#contact" class="text-white text-decoration-none">Contact</a></li>
+              <li><a href="login.html" class="text-white text-decoration-none">Log in</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>Legal</h4>
+            <ul class="list-unstyled">
+              <li><a href="index.html#privacy" class="text-white text-decoration-none">Privacy</a></li>
+              <li><a href="terms.html" class="text-white text-decoration-none">Terms</a></li>
+              <li><a href="data-controls.html" class="text-white text-decoration-none">Data Controls</a></li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <div class="border-top pt-3 mt-4">
+              <p class="mb-0 text-center">
+                <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+                <span class="ms-2">No company. No team. Just one developer who stopped typing.</span>
+              </p>
+              <p class="text-center mt-2">
+                <small>Designed and built in India by one person.</small><br>
+                <small>Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
