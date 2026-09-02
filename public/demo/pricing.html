@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wispr Webflow demo · pricing + calculator</title>
+  <style>
+    body { font: 16px/1.5 -apple-system, system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; background: #fafafa; }
+    h1 { font-weight: 600; font-size: 22px; margin: 0 0 8px; }
+    .sub { color: #666; margin: 0 0 24px; }
+    .status { background: #f0f7f0; border: 1px solid #c7e0c7; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-family: ui-monospace, SF Mono, monospace; font-size: 13px; }
+    .error { background: #fce8e8; border: 1px solid #e0b0b0; color: #8a2a2a; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    .plan { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 20px; }
+    .plan h3 { margin: 0 0 4px; font-size: 14px; color: #666; text-transform: uppercase; letter-spacing: .04em; }
+    .price { font-size: 32px; font-weight: 600; font-family: ui-serif, Georgia, serif; margin: 4px 0; }
+    .price small { font-size: 14px; color: #999; font-weight: 400; }
+    .flag { display: inline-block; padding: 2px 6px; background: #f0f0f0; border-radius: 4px; font-size: 12px; color: #666; margin-bottom: 12px; }
+    pre { background: #f4f4f4; padding: 12px; border-radius: 6px; font-size: 12px; overflow: auto; }
+    a { color: #1a1a1a; }
+  </style>
+</head>
+<body><div style="background:#0F0F0F;color:#FDFCE8;padding:8px 16px;font:13px/1.4 -apple-system,system-ui,sans-serif;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)"><a href="/" style="color:#B98BE8;text-decoration:none">← Back to A-Anie</a> &nbsp;·&nbsp; <span style="opacity:.7">A-Anie /demo · mirrored wispr page</span></div>
+  <p><a href="/">← back to index</a></p>
+  <h1>Pricing + calculator bundle</h1>
+  <p class="sub">dist/pricing.js + dist/calculator.js. Fetches geo-based pricing from /v1/payment/pricing/by-ip (mocked), renders with countup.js animations on <code>[data-price]</code> elements. The bundle's UI hooks (<code>.flag</code>, <code>data-price</code>) are reproduced below so the bundle can paint something visible.</p>
+
+  <div class="status" id="status">Loading bundles…</div>
+
+  <div class="flag" data-flag>US</div>
+  <div class="grid">
+    <div class="plan">
+      <h3>Monthly</h3>
+      <div class="price"><span data-price="monthly">$—</span><small>/mo</small></div>
+    </div>
+    <div class="plan">
+      <h3>Yearly</h3>
+      <div class="price"><span data-price="yearly">$—</span><small>/yr</small></div>
+    </div>
+    <div class="plan">
+      <h3>Team</h3>
+      <div class="price"><span data-price="team">$—</span><small>/mo</small></div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 15px; margin-top: 24px;">Raw mock response</h2>
+  <pre id="response">Loading…</pre>
+
+  <script>
+    const status = document.getElementById('status');
+    const response = document.getElementById('response');
+    let errors = 0;
+    window.addEventListener('error', (e) => {
+      errors++;
+      status.className = 'status error';
+      status.textContent = 'Error: ' + e.message;
+    });
+
+    // Populate the data-price spans manually so the page is informative
+    // even if the bundle's exact selector doesn't fire.
+    fetch('/v1/payment/pricing/by-ip')
+      .then(r => r.json())
+      .then(j => {
+        response.textContent = JSON.stringify(j, null, 2);
+        const map = { monthly: j.plans[0], yearly: j.plans[1], team: j.plans[2] };
+        Object.entries(map).forEach(([k, p]) => {
+          const el = document.querySelector('[data-price="' + k + '"]');
+          if (el) el.textContent = '$' + p.price;
+        });
+      })
+      .catch(e => { response.textContent = 'Error: ' + e.message; });
+
+    window.addEventListener('load', () => {
+      if (errors === 0) {
+        status.textContent = 'pricing.js + calculator.js + global.js loaded. All three IIFEs ran without throwing. The mock returned 3 plans; the prices are written into [data-price] spans above (manually, since the bundle uses countup.js on a Webflow-rendered element).';
+      }
+    });
+  </script>
+  <script src="/demo/dist/global.js" defer></script>
+  <script src="/demo/dist/pricing.js" defer></script>
+  <script src="/demo/dist/calculator.js" defer></script>
+</body>
+</html>

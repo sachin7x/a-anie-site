@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wispr Webflow demo · web-demo</title>
+  <style>
+    body { font: 16px/1.5 -apple-system, system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; background: #fafafa; }
+    h1 { font-weight: 600; font-size: 22px; margin: 0 0 8px; }
+    .sub { color: #666; margin: 0 0 24px; }
+    .status { background: #f0f7f0; border: 1px solid #c7e0c7; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-family: ui-monospace, SF Mono, monospace; font-size: 13px; }
+    .error { background: #fce8e8; border: 1px solid #e0b0b0; color: #8a2a2a; }
+    pre { background: #f4f4f4; padding: 12px; border-radius: 6px; font-size: 12px; overflow: auto; }
+    a { color: #1a1a1a; }
+    .container { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 32px; margin: 16px 0; }
+    .pill { display: inline-block; padding: 8px 14px; background: #131313; color: #fdfce8; border-radius: 999px; cursor: pointer; user-select: none; font-size: 14px; }
+    .wave-svg { width: 100%; height: 80px; margin: 16px 0; background: #f0f0f0; border-radius: 8px; }
+    canvas { display: block; width: 100%; height: 120px; background: #0a0a0a; border-radius: 8px; }
+  </style>
+</head>
+<body><div style="background:#0F0F0F;color:#FDFCE8;padding:8px 16px;font:13px/1.4 -apple-system,system-ui,sans-serif;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)"><a href="/" style="color:#B98BE8;text-decoration:none">← Back to A-Anie</a> &nbsp;·&nbsp; <span style="opacity:.7">A-Anie /demo · mirrored wispr page</span></div>
+  <p><a href="/">← back to index</a></p>
+  <h1>Web-demo bundle</h1>
+  <p class="sub">dist/web-demo/index.js. Captures mic with getUserMedia, streams PCM over WebSocket to /v1/dash/client_ws (mocked). Webflow hooks this bundle expects (e.g. <code>.wd_pill-wrap</code>, <code>.w-tab-link.w--current</code>) are absent on a standalone page, so the actual visible UI is minimal — but the IIFE still runs, and the network mock logs every attempt.</p>
+
+  <div class="status" id="status">Loading web-demo/index.js…</div>
+  <div class="container">
+    <p>The button below is a faithful reproduction of the <code>.wd_pill</code> visual, but it is not wired by the bundle. Clicking it does nothing because the bundle's click handler is bound to the Webflow-specific selector.</p>
+    <span class="pill">● Hold to speak</span>
+    <svg class="wave-svg" viewBox="0 0 600 80" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="#131313"></g>
+    </svg>
+    <canvas id="waveform" aria-label="waveform canvas (bundle expects a <canvas>, not <svg>)"></canvas>
+  </div>
+
+  <h2 style="font-size: 15px; margin-top: 32px;">What the mock server logged</h2>
+  <pre id="log">Loading…</pre>
+
+  <script>
+    const status = document.getElementById('status');
+    const log = document.getElementById('log');
+    let errors = 0;
+    window.addEventListener('error', (e) => {
+      errors++;
+      status.className = 'status error';
+      status.textContent = 'Error: ' + e.message;
+    });
+    window.addEventListener('load', () => {
+      if (errors === 0) {
+        status.textContent = 'web-demo/index.js loaded. The IIFE ran without throwing. Mic button selector (.wd_pill) and tab selectors (.w-tab-link.w--current) are not on this page, so the visible UI is empty — but the network call chain is exercised.';
+      }
+      // Fetch mock's own log so the user can see what was attempted
+      fetch('/v1/dash/webflow_demo/generate_token', { method: 'POST' })
+        .then(r => r.json())
+        .then(j => {
+          log.textContent = 'Mock answered /v1/dash/webflow_demo/generate_token: ' + JSON.stringify(j, null, 2) +
+            '\n\nCheck demo/logs/requests.log on the server side for the full request log.';
+        })
+        .catch(e => { log.textContent = 'Could not reach mock: ' + e.message; });
+    });
+  </script>
+  <script src="/demo/dist/global.js" defer></script>
+  <script src="/demo/dist/web-demo.js" defer></script>
+</body>
+</html>

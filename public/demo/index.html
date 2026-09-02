@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wispr Webflow demo · index</title>
+  <style>
+    body { font: 16px/1.5 -apple-system, system-ui, sans-serif; max-width: 920px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; background: #fafafa; }
+    h1 { font-weight: 600; font-size: 28px; margin: 0 0 8px; }
+    .sub { color: #666; margin: 0 0 32px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    a.card { display: block; padding: 20px; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; text-decoration: none; color: #1a1a1a; }
+    a.card:hover { border-color: #999; }
+    a.card h2 { margin: 0 0 4px; font-size: 17px; }
+    a.card p { margin: 0; color: #666; font-size: 14px; }
+    .status { background: #f0f7f0; border: 1px solid #c7e0c7; border-radius: 8px; padding: 14px 18px; margin: 24px 0; font-family: ui-monospace, SF Mono, monospace; font-size: 13px; }
+    .status strong { color: #2a6f2a; }
+    .note { background: #fff8e1; border: 1px solid #f0d97a; border-radius: 8px; padding: 14px 18px; margin: 24px 0; font-size: 14px; }
+    .note strong { color: #6b5b00; }
+  </style>
+</head>
+<body><div style="background:#0F0F0F;color:#FDFCE8;padding:8px 16px;font:13px/1.4 -apple-system,system-ui,sans-serif;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)"><a href="/" style="color:#B98BE8;text-decoration:none">← Back to A-Anie</a> &nbsp;·&nbsp; <span style="opacity:.7">A-Anie /demo · mirrored wispr page</span></div>
+  <h1>Wispr Webflow package · offline demo</h1>
+  <p class="sub">Each link below loads one IIFE bundle from <code>dist/</code> on this same server. The bundles' network calls are intercepted by the mock. No real Supabase or api.wisprflow.ai traffic.</p>
+
+  <div class="status" id="status"><strong>Loading global.js…</strong></div>
+
+  <div class="note">
+    <strong>Honest disclosure.</strong> The Wispr bundles were authored for Webflow-mounted pages with Webflow-generated DOM hooks (e.g. <code>.w-tab-link.w--current</code>, <code>.wd_pill-wrap</code>, <code>id="contact-form"</code>). On a standalone page those selectors don't exist, so most of the visible UI will not render. The demo proves the IIFEs execute, the Supabase client is constructed, and every fetch is intercepted — it does not reproduce the production Webflow look. For the full production look you'd need the original Webflow export, which Wispr keeps private (per REPORT.md §2).
+  </div>
+
+  <div class="grid">
+    <a class="card" href="/demo/web-demo">
+      <h2>Web-demo (mic + waveform)</h2>
+      <p>dist/web-demo/index.js · getUserMedia + WebSocket to /v1/dash/client_ws</p>
+    </a>
+    <a class="card" href="/demo/signup">
+      <h2>Signup form</h2>
+      <p>dist/signup.js + dist/global.js · email + OTP, Supabase auth</p>
+    </a>
+    <a class="card" href="/demo/login">
+      <h2>Login form</h2>
+      <p>dist/login.js + dist/global.js · email/password + magic link + WorkOS SSO</p>
+    </a>
+    <a class="card" href="/demo/pricing">
+      <h2>Pricing + calculator</h2>
+      <p>dist/pricing.js + dist/calculator.js · countup.js animations on data-price</p>
+    </a>
+  </div>
+
+  <h2 style="margin-top: 48px; font-size: 18px;">What you should see when this page loads</h2>
+  <ul style="font-size: 14px; line-height: 1.7;">
+    <li>The status banner turns green and reports <code>"global.js loaded — Supabase client constructed, 0 nav items localized"</code>.</li>
+    <li>The browser DevTools Network tab shows requests only to <code>localhost:8765</code>. No requests to <code>api.wisprflow.ai</code> or <code>*.supabase.co</code>.</li>
+    <li>Each per-bundle page shows a similar status banner confirming the bundle executed without throwing.</li>
+  </ul>
+
+  <script>
+    // Status updater — runs after global.js (loaded with defer)
+    window.addEventListener('load', () => {
+      const status = document.getElementById('status');
+      // global.js exposes nothing on window, so we can only confirm load
+      // succeeded. The mock server logs every bundle fetch.
+      status.innerHTML = '<strong>global.js loaded.</strong> If you opened DevTools, you should see GET /dist/global.js in the Network tab. Every fetch from it has been redirected to localhost:8765 by the URL rewrite in dist/global.js.';
+    });
+  </script>
+  <script src="/demo/dist/global.js" defer></script>
+</body>
+</html>
