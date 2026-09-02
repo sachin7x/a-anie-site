@@ -1,7 +1,12 @@
 # Preview Deployment Verification — 2026-09-03
 
 ## Preview URL
-`https://a-anie-site-oh3u9ct9p-sachin7xs-projects.vercel.app`
+`https://a-anie-site-raqw1co8r-sachin7xs-projects.vercel.app`
+
+(Each commit redeploys to a new preview URL; the canonical preview
+link is the most recent deploy. The list of historical previews is
+in the commit log: 86e6845 → oh3u9ct9p, e5cbddc → dzygm0ymw,
+769f609 → no preview (docs only), 3fec3b2 → raqw1co8r.)
 
 This is a preview deploy from the `main` branch (commit `86e6845`).
 Production URL `https://aanie-frontend.vercel.app/` is **not** touched.
@@ -42,6 +47,24 @@ the actual function responses:
 | `/api/auth/login` | POST (JSON) | **501** `{ok:false, error:"Login is not enabled yet..."}` |
 | `/api/contact` | POST (JSON) | **200** `{message:"Message sent. Thanks — Sachin will reply soon."}` |
 | `/api/auth/login` | GET | **405** `{ok:false, error:"Method not allowed"}` |
+
+## Login form round-trip (new in 3fec3b2)
+
+`public/login.html` previously had a submit button with no JS handler
+(the form would have done a default browser POST and reloaded the
+page). The new handler:
+
+- `login-form` submit → POST `/api/auth/login` with `{email, password}`
+- `register-form` submit → POST `/api/auth/signup` with `{email, password, name}`
+
+Both handlers render the verbatim backend response. Three branches:
+- 401 → "Preview is behind Vercel SSO (401). The {endpoint} is not
+  deployed; the page just hit the deployment-protection layer first."
+- 501 / `{ok:false, error:"..."}` → verbatim `error` string
+- Network error → "Network error. Email sachin@a-anie.example to be
+  notified when signup is live."
+
+No fake success, no fake session, no silent fallback.
 
 ## Frontend ↔ API contract
 
