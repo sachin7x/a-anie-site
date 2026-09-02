@@ -127,7 +127,7 @@
   </form>
 
   <h2 style="font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:48px 0 12px;padding-top:24px;border-top:1px solid rgba(19,19,19,.08);">What happens after you submit</h2>
-  <p>The form posts to the only server-side endpoint on this site, <code>/api/contact</code>. The handler validates the input, emails a copy to the developer, and returns a small JSON response. There is no database, no CRM, no marketing automation. The email lands in a normal inbox; replies come from the same address.</p>
+  <p>The form posts to <code>/api/contact</code>. The handler validates the input, logs the submission to the Vercel function log, and returns a small JSON response. There is no email step yet &mdash; the form returns a 501-like success shape but the developer only sees the message when they read the deploy log. Until the email step is wired up, please write directly to <code>sachin@a-anie.example</code> for anything time-sensitive.</p>
   <p>Best-effort reply within a working week. If you do not hear back within seven days, write again — the most common cause is spam filtering, not a deliberate non-reply.</p>
 
   <h2 style="font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:48px 0 12px;padding-top:24px;border-top:1px solid rgba(19,19,19,.08);">If you used A-Anie and want to be quoted</h2>
@@ -187,13 +187,27 @@
     status.textContent = 'Sending…';
     submit.disabled = true;
     var data = new FormData(form);
-    fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+    // The handler at /api/contact reads {name, email, topic, message} from JSON.
+    // The form posts FormData (multipart). Translate the subject field to topic
+    // and serialize as JSON to match the API contract.
+    var payload = {
+      name: data.get('name') || '',
+      email: data.get('email') || '',
+      topic: data.get('subject') || '',
+      message: data.get('message') || ''
+    };
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j }; }); })
       .then(function (out) {
         submit.disabled = false;
-        if (out.ok && out.j && out.j.ok) {
+        // The API returns {message: '...'} on success and {error: '...'} on failure.
+        if (out.status >= 200 && out.status < 300 && out.j && out.j.message && !out.j.error) {
           status.className = 'status success';
-          status.textContent = 'Thanks — message sent. You will hear back within a working week.';
+          status.textContent = out.j.message + ' (You can also write directly to sachin@a-anie.example.)';
           form.reset();
         } else {
           status.className = 'status error';
