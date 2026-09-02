@@ -141,6 +141,31 @@ curl -s -o /dev/null -w "/api/auth/verify-otp: %{http_code}\n" -X POST "https://
 Expected: all 200 for pages (some 200-with-content), 405/501 for the
 API stubs (405 for wrong method, 501 for the not-deployed path).
 
+## Verifying preview-deploy API stubs (Vercel SSO)
+
+Vercel Deployment Protection intercepts every request to a preview
+deploy with a 401 "Protected deployment" response before it ever
+reaches the function. The front-end on `/app` already detects this
+401 and surfaces it honestly ("Preview is behind Vercel SSO"). To
+verify the actual stub response (e.g. that `/api/auth/signup` returns
+501 with the correct body), bypass the SSO gate with the Vercel CLI:
+
+```bash
+# from the repo root, with `vercel link` already done:
+vercel curl "<preview-url>/api/auth/signup" \
+  -X POST -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com"}'
+# → {"ok":false,"error":"Signup is not enabled yet..."}
+```
+
+`vercel curl` injects the `x-vercel-protection-bypass` header
+automatically. The same trick works for every `/api/*` endpoint on
+any preview URL. Without the bypass, public traffic sees 401 — that
+is the deployment-protection layer, not a stub bug.
+
+The production URL is **not** behind SSO (it is the verified domain
+`aanie-frontend.vercel.app`); its API stubs are reachable normally.
+
 ## How to update the Bootstrap SRI hash (do not, unless forced)
 
 The hashes are pinned to a specific Bootstrap 5.3.3 build. If you
