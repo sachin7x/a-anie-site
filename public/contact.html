@@ -1,0 +1,212 @@
+<!doctype html>
+<!--
+  Contact page — standalone form page. Mirrors the #contact anchor on the
+  index but reachable at /contact directly. The form posts to the
+  api/contact.js serverless function (the only server-side code on the
+  site). Wispr Flow has a /talk-to-sales page; the honest A-Anie
+  equivalent is a /contact page with no sales motion attached.
+  Delete when: not applicable.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Contact — A-Anie</title>
+<meta name="description" content="Get in touch with the A-Anie developer. One inbox, three things you can write about: feedback, security disclosures, and unsolicited pitches. No ticket system, no sales team." />
+<meta name="theme-color" content="#FDFCE8" />
+<meta name="color-scheme" content="light" />
+<meta name="canonical" content="https://aanie-frontend.vercel.app/contact" />
+<meta property="og:title" content="Contact — A-Anie" />
+<meta property="og:description" content="Get in touch with the A-Anie developer." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://aanie-frontend.vercel.app/contact" />
+<meta property="og:image" content="og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .page-section{padding:80px 0 64px}
+  .page-section h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,5vw,3.25rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 12px;max-width:20ch}
+  .page-section .lede{font-family:var(--font-display);font-style:italic;font-size:1.25rem;color:var(--ink-2);max-width:42ch;margin:0 0 32px;line-height:1.5}
+  .page-section p{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 18px;max-width:68ch}
+  .page-section h2{font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:32px 0 12px;padding-top:24px;border-top:1px solid rgba(19,19,19,.08)}
+  .page-section ul{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 18px;padding-left:24px;max-width:68ch}
+  .page-section li{margin-bottom:8px}
+  .page-section code{font-family:var(--font-mono);font-size:13px;background:#f4f4f4;padding:1px 6px;border-radius:3px}
+  .page-section .meta{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin:0 0 32px}
+  .contact-form{background:#fff;border:1px solid rgba(19,19,19,.08);border-radius:var(--radius-card);padding:28px 32px;max-width:540px;margin:24px 0 0}
+  .contact-form .field{margin:0 0 18px}
+  .contact-form label{display:block;font-family:var(--font-sans);font-size:13px;font-weight:600;margin:0 0 6px;color:var(--ink)}
+  .contact-form label .req{color:#8a3a3a;margin-left:2px}
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea{width:100%;font-family:var(--font-sans);font-size:15px;padding:10px 12px;border:1px solid rgba(19,19,19,.15);border-radius:6px;background:#FDFCE8;color:var(--ink)}
+  .contact-form input:focus,
+  .contact-form textarea:focus{outline:2px solid #B98BE8;outline-offset:2px;border-color:#B98BE8}
+  .contact-form textarea{min-height:140px;resize:vertical}
+  .contact-form .submit{display:inline-block;background:#131313;color:#FDFCE8;border:0;border-radius:6px;padding:10px 20px;font-family:var(--font-sans);font-weight:600;font-size:15px;cursor:pointer}
+  .contact-form .submit:hover{background:#2a2a2a}
+  .contact-form .submit:disabled{opacity:.5;cursor:wait}
+  .contact-form .status{margin:14px 0 0;font-size:14px;color:var(--ink-2)}
+  .contact-form .status.success{color:#2f6b3a}
+  .contact-form .status.error{color:#8a3a3a}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="A-Anie — home">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="8" fill="#131313"/>
+        <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+      </svg>
+      <span class="brand-name">A-Anie</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="navMenu" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#languages">Languages</a>
+      <a href="pricing">Pricing</a>
+      <a href="how-it-works">Docs</a>
+      <a href="changelog">Changelog</a>
+      <a href="story">Story</a>
+      <a href="security">Trust</a>
+      <a class="cta-link" href="index.html#download">Download A-Anie</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="container page-section">
+  <h1>Contact.</h1>
+  <p class="lede">One developer, one inbox, three reasons to write. There is no ticket system, no chat widget, and no sales team.</p>
+  <p class="meta">Last updated: 3 September 2026</p>
+
+  <h2>What to write about</h2>
+  <p>The inbox is read by the developer. Three categories of message are useful, and one is not.</p>
+  <ul>
+    <li><strong>Feedback &amp; bug reports.</strong> What you tried, what happened, what you expected. The best feedback is specific: the version of the app, the language you were using, the operating system, and a screenshot if the issue is visual. Use the form below or write to <code>sachin@a-anie.example</code>.</li>
+    <li><strong>Security disclosures.</strong> Use the address in <a href="/.well-known/security.txt"><code>/.well-known/security.txt</code></a>, not the form. The form is not encrypted in transit, and the form's server-side handler emails a copy to the developer, which means a security issue submitted via this form gets a permanent copy on a third-party email provider. See <a href="security">Security &amp; trust</a> for the disclosure workflow.</li>
+    <li><strong>Unsolicited pitches</strong> (partnership, press, investment, distribution). Welcome, no reply is a reply of &ldquo;not now,&rdquo; the developer is one person and reads in batches.</li>
+  </ul>
+  <p>What is not useful: requests for &ldquo;enterprise pricing,&rdquo; &ldquo;a custom integration,&rdquo; or &ldquo;a demo for my team.&rdquo; A-Anie is a free, solo-built, early-access product. There is no enterprise tier, no integration team, and no demo for teams. The closest thing to all three is this page and the docs.</p>
+
+  <h2>The form</h2>
+  <form class="contact-form" id="contactForm" action="/api/contact" method="POST" novalidate>
+    <div class="field">
+      <label for="contact-name">Your name <span class="req" aria-hidden="true">*</span></label>
+      <input id="contact-name" name="name" type="text" required autocomplete="name" maxlength="120" />
+    </div>
+    <div class="field">
+      <label for="contact-email">Email <span class="req" aria-hidden="true">*</span></label>
+      <input id="contact-email" name="email" type="email" required autocomplete="email" maxlength="200" />
+    </div>
+    <div class="field">
+      <label for="contact-subject">Subject <span class="req" aria-hidden="true">*</span></label>
+      <input id="contact-subject" name="subject" type="text" required maxlength="200" />
+    </div>
+    <div class="field">
+      <label for="contact-message">Message <span class="req" aria-hidden="true">*</span></label>
+      <textarea id="contact-message" name="message" required maxlength="4000" aria-describedby="contact-message-hint"></textarea>
+      <small id="contact-message-hint" style="display:block;margin-top:4px;font-size:12px;color:var(--text-muted)">Up to 4,000 characters. For longer write-ups, send an email attachment.</small>
+    </div>
+    <button type="submit" class="submit" id="contactSubmit">Send message</button>
+    <p class="status" id="contactStatus" role="status" aria-live="polite"></p>
+  </form>
+
+  <h2 style="font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:48px 0 12px;padding-top:24px;border-top:1px solid rgba(19,19,19,.08);">What happens after you submit</h2>
+  <p>The form posts to the only server-side endpoint on this site, <code>/api/contact</code>. The handler validates the input, emails a copy to the developer, and returns a small JSON response. There is no database, no CRM, no marketing automation. The email lands in a normal inbox; replies come from the same address.</p>
+  <p>Best-effort reply within a working week. If you do not hear back within seven days, write again — the most common cause is spam filtering, not a deliberate non-reply.</p>
+
+  <h2 style="font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:48px 0 12px;padding-top:24px;border-top:1px solid rgba(19,19,19,.08);">If you used A-Anie and want to be quoted</h2>
+  <p>Real notes become real quotes in the marketing copy, attributed to the person who sent them. If you have a sentence or two about how the app fits into your day and you would like it used, say so in your message. The default is to keep the message private unless you say otherwise.</p>
+</div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="index.html#how">How it works</a>
+        <a href="how-it-works">Docs</a>
+        <a href="pricing">Pricing</a>
+        <a href="changelog">Changelog</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="story">Story</a>
+        <a href="contact">Contact</a>
+        <a href="careers">Careers</a>
+        <a href="support">Support</a>
+        <a href="login">Log in</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="data-controls">Data Controls</a>
+        <a href="security">Security &amp; trust</a>
+        <a href="accessibility">Accessibility</a>
+        <a href="terms">Terms</a>
+        <a href="/.well-known/security.txt">Security disclosure</a>
+      </div>
+      <div>
+        <h4>Solo-built in India</h4>
+        <p class="ms">Designed and built in India by one person.</p>
+        <p class="ms">Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+      <span>No company. No team. Just one developer who stopped typing.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('contactStatus');
+  var submit = document.getElementById('contactSubmit');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.className = 'status';
+    status.textContent = 'Sending…';
+    submit.disabled = true;
+    var data = new FormData(form);
+    fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (out) {
+        submit.disabled = false;
+        if (out.ok && out.j && out.j.ok) {
+          status.className = 'status success';
+          status.textContent = 'Thanks — message sent. You will hear back within a working week.';
+          form.reset();
+        } else {
+          status.className = 'status error';
+          status.textContent = 'Could not send: ' + ((out.j && out.j.error) || 'try again, or email sachin@a-anie.example directly.');
+        }
+      })
+      .catch(function () {
+        submit.disabled = false;
+        status.className = 'status error';
+        status.textContent = 'Network error. Please try again, or email sachin@a-anie.example directly.';
+      });
+  });
+})();
+</script>
+</body>
+</html>

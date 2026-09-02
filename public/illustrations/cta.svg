@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Cursor arrow rotated 45° pointing down-right into a frame corner -->
+  <!-- Cursor (rotated 45° clockwise from up-left origin) -->
+  <g transform="rotate(45 40 40)">
+    <path d="M30 28 L30 52 L36 46 L40 54 L43 52 L39 44 L46 44 Z" fill="var(--ink)" stroke="none" />
+  </g>
+
+  <!-- Frame (rectangle) at the bottom-right -->
+  <rect x="50" y="50" width="60" height="60" rx="2" />
+
+  <!-- Accent dot at the cursor tip (45° rotation puts the tip at ~52,52) -->
+  <circle cx="56" cy="56" r="2.5" fill="var(--accent-lav)" stroke="none" />
+
+  <!-- Two horizontal lines inside the frame to suggest text -->
+  <line x1="58" y1="68" x2="102" y2="68" />
+  <line x1="58" y1="80" x2="92" y2="80" />
+  <line x1="58" y1="92" x2="98" y2="92" />
+</svg>

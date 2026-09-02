@@ -1,0 +1,172 @@
+<!doctype html>
+<!--
+  Accessibility statement — WCAG 2.2 AA conformance, honestly scoped.
+  Why: a credible one-person site should still publish a conformance
+  statement. Wispr Flow has an /accessibility page; the A-Anie version
+  is shorter and limited to what the developer has actually verified
+  (no third-party audit, manual review only).
+  Delete when: a third-party accessibility audit is published and the
+  current state is replaced with audited results.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Accessibility — A-Anie</title>
+<meta name="description" content="A-Anie's accessibility statement. WCAG 2.2 AA target, manual review only, no third-party audit. Current conformance, known gaps, and how to report a barrier." />
+<meta name="theme-color" content="#FDFCE8" />
+<meta name="color-scheme" content="light" />
+<meta name="canonical" content="https://aanie-frontend.vercel.app/accessibility" />
+<meta property="og:title" content="Accessibility — A-Anie" />
+<meta property="og:description" content="A-Anie's accessibility statement." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://aanie-frontend.vercel.app/accessibility" />
+<meta property="og:image" content="og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .page-section{padding:80px 0 64px}
+  .page-section h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,5vw,3.25rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 12px;max-width:20ch}
+  .page-section .lede{font-family:var(--font-display);font-style:italic;font-size:1.25rem;color:var(--ink-2);max-width:42ch;margin:0 0 32px;line-height:1.5}
+  .page-section p{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 18px;max-width:68ch}
+  .page-section h2{font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:32px 0 12px;padding-top:24px;border-top:1px solid rgba(19,19,19,.08)}
+  .page-section ul{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 18px;padding-left:24px;max-width:68ch}
+  .page-section li{margin-bottom:8px}
+  .page-section code{font-family:var(--font-mono);font-size:13px;background:#f4f4f4;padding:1px 6px;border-radius:3px}
+  .page-section .meta{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin:0 0 32px}
+  .a11y-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0}
+  .a11y-card{background:#fff;border:1px solid rgba(19,19,19,.08);border-radius:var(--radius-card);padding:18px 20px}
+  .a11y-card .label{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin:0 0 6px}
+  .a11y-card .value{font-family:var(--font-display);font-size:1.15rem;line-height:1.2;margin:0;color:var(--ink)}
+  .a11y-card .value.partial{color:#7a5a14}
+  .a11y-card .value.no{color:#8a3a3a}
+  .a11y-card .value.yes{color:#2f6b3a}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="A-Anie — home">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="8" fill="#131313"/>
+        <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+      </svg>
+      <span class="brand-name">A-Anie</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="navMenu" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#languages">Languages</a>
+      <a href="pricing">Pricing</a>
+      <a href="how-it-works">Docs</a>
+      <a href="changelog">Changelog</a>
+      <a href="story">Story</a>
+      <a href="security">Trust</a>
+      <a class="cta-link" href="index.html#download">Download A-Anie</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="container page-section">
+  <h1>Accessibility.</h1>
+  <p class="lede">A-Anie aims to meet WCAG 2.2 Level AA. This page is the honest status: what has been verified, what hasn't, and how to tell us when something is in the way.</p>
+  <p class="meta">Last updated: 3 September 2026 · Manual review only, no third-party audit</p>
+
+  <h2>Conformance status, at a glance</h2>
+  <div class="a11y-grid">
+    <div class="a11y-card"><p class="label">Target</p><p class="value">WCAG 2.2 AA</p></div>
+    <div class="a11y-card"><p class="label">Marketing site</p><p class="value yes">Manually reviewed</p></div>
+    <div class="a11y-card"><p class="label">Demo pages</p><p class="value yes">Manually reviewed</p></div>
+    <div class="a11y-card"><p class="label">Desktop app</p><p class="value partial">Partial — keyboard + contrast yes; full audit pending</p></div>
+    <div class="a11y-card"><p class="label">Third-party audit</p><p class="value no">Not performed</p></div>
+    <div class="a11y-card"><p class="label">VPAT / ACR</p><p class="value no">Not published</p></div>
+  </div>
+
+  <h2>What we have done</h2>
+  <ul>
+    <li><strong>Skip-to-content link</strong> on every page, visible on focus. The first interactive element on each page is the skip link, so keyboard users can bypass the nav.</li>
+    <li><strong>Semantic landmarks</strong>: <code>&lt;header role="banner"&gt;</code>, <code>&lt;nav aria-label="Primary"&gt;</code>, <code>&lt;main id="main"&gt;</code>, <code>&lt;footer role="contentinfo"&gt;</code>. Screen readers can navigate by region.</li>
+    <li><strong>Visible focus rings</strong>: the default Bootstrap focus ring is overridden in <code>styles.css</code> to a high-contrast outline, not removed.</li>
+    <li><strong>Color contrast</strong>: body text against the cream background (<code>#FDFCE8</code>) uses <code>#131313</code>, well above 7:1. Muted text uses <code>#5a5a5a</code>, above 4.5:1. Link blue is checked against the same backgrounds.</li>
+    <li><strong>Responsive layout</strong>: tested at 360px, 768px, 1024px, and 1440px widths. No horizontal scroll on any standard viewport.</li>
+    <li><strong>Mobile nav toggle</strong>: the hamburger button is keyboard-reachable, has an <code>aria-expanded</code> state, and the menu traps no focus (it is a simple disclosure).</li>
+    <li><strong>Form labels</strong>: every input on the contact and login forms has an associated <code>&lt;label&gt;</code>. Required fields are marked with <code>aria-required</code> and visual asterisks.</li>
+    <li><strong>Reduced motion</strong>: no motion runs on the site. The <code>prefers-reduced-motion</code> media query is honored trivially because nothing animates.</li>
+    <li><strong>Language</strong>: every page declares <code>html lang="en"</code>. Headings form a single <code>h1</code> per page, with a logical <code>h2</code>/<code>h3</code> outline below it.</li>
+  </ul>
+
+  <h2>Known gaps</h2>
+  <ul>
+    <li><strong>No automated scan results</strong> published. The site has not been run through axe-core or a Lighthouse accessibility audit on a recurring basis; the developer's manual review is what is here.</li>
+    <li><strong>SVG illustrations</strong> have <code>aria-hidden="true"</code> because they are decorative. There is no long description for the few that convey information; if a screen reader user finds one of the illustrations missing, that's a real gap to report.</li>
+    <li><strong>The hero waveform animation</strong> on the index page is a CSS keyframe; it is paused under <code>prefers-reduced-motion: reduce</code> but the static frame is decorative. There is no audio description.</li>
+    <li><strong>The desktop app</strong> is partially audited: keyboard navigation works, contrast meets AA in light mode, dark mode is in development. Screen reader testing on Windows and macOS is pending. The current app is usable with VoiceOver on macOS for the core flow (record → transcribe → copy).</li>
+    <li><strong>Third-party content</strong>: the Wispr Flow demo mirror under <a href="demo/index.html"><code>/demo</code></a> is unmodified. Its accessibility is what Wispr Flow shipped; it is not covered by this statement.</li>
+  </ul>
+
+  <h2>Reporting a barrier</h2>
+  <p>If something on this site is in your way, write to the address in <a href="/.well-known/security.txt"><code>/.well-known/security.txt</code></a> with the subject line starting <code>ACCESSIBILITY</code>. Include the page URL, the assistive technology you are using, the browser, and what you expected to happen. A fix or an honest &ldquo;won't fix, here's why&rdquo; reply is the target; the current cadence is best-effort within a working week.</p>
+
+  <h2>Compatibility we test against</h2>
+  <p>The site is built with progressive enhancement in mind: it works without JavaScript for every page except the form validation, which is progressive enhancement on top of native HTML5 validation. Browsers we explicitly check before deploy are current Chrome, Firefox, Safari, and Edge. Screen readers we have tested with are VoiceOver on macOS and iOS, and NVDA on Windows. If you use something else and find an issue, that is the report we most want.</p>
+
+  <h2>What will change this page</h2>
+  <p>This page is updated whenever a real change to the site is shipped. The next planned improvement is a Lighthouse accessibility check on every deploy, with the score published on this page. That work is in flight, not done; the day it is done, this page will be rewritten to link to the report instead of describing the manual review.</p>
+</div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="index.html#how">How it works</a>
+        <a href="how-it-works">Docs</a>
+        <a href="pricing">Pricing</a>
+          <a href="changelog">Changelog</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="story">Story</a>
+        <a href="contact">Contact</a>
+        <a href="careers">Careers</a>
+        <a href="login">Log in</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="data-controls">Data Controls</a>
+        <a href="security">Security &amp; trust</a>
+        <a href="accessibility">Accessibility</a>
+        <a href="terms">Terms</a>
+        <a href="/.well-known/security.txt">Security disclosure</a>
+      </div>
+      <div>
+        <h4>Solo-built in India</h4>
+        <p class="ms">Designed and built in India by one person.</p>
+        <p class="ms">Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+      <span>No company. No team. Just one developer who stopped typing.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

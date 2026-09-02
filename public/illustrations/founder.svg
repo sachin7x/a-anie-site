@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Hanging light at top -->
+  <line x1="60" y1="14" x2="60" y2="28" />
+  <circle cx="60" cy="34" r="6" fill="var(--accent-lav)" stroke="none" />
+  <circle cx="60" cy="34" r="6" />
+
+  <!-- Person (head + shoulders) -->
+  <circle cx="60" cy="58" r="10" />
+  <path d="M40 92 Q40 72 60 72 Q80 72 80 92" />
+
+  <!-- Desk top + two legs -->
+  <line x1="20" y1="100" x2="100" y2="100" />
+  <line x1="28" y1="100" x2="28" y2="110" />
+  <line x1="92" y1="100" x2="92" y2="110" />
+
+  <!-- Tiny microphone on desk -->
+  <circle cx="60" cy="96" r="2" fill="var(--ink)" stroke="none" />
+</svg>

@@ -1,0 +1,10 @@
+# A-Anie security disclosures — RFC 9116
+# Reports go to security@aanie.app. PGP key URL is included when a key is published.
+# This file is regenerated from /public/.well-known/security.txt at deploy time.
+
+Contact: mailto:security@aanie.app
+Contact: https://aanie-frontend.vercel.app/data-controls
+Expires: 2027-09-02T00:00:00z
+Canonical: https://aanie-frontend.vercel.app/.well-known/security.txt
+Acknowledgments: https://aanie-frontend.vercel.app/data-controls
+Preferred-Languages: en, hi

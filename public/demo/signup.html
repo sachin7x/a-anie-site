@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wispr Webflow demo · signup</title>
+  <style>
+    body { font: 16px/1.5 -apple-system, system-ui, sans-serif; max-width: 480px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; background: #fafafa; }
+    h1 { font-weight: 600; font-size: 22px; margin: 0 0 8px; }
+    .sub { color: #666; margin: 0 0 24px; }
+    .status { background: #f0f7f0; border: 1px solid #c7e0c7; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-family: ui-monospace, SF Mono, monospace; font-size: 13px; }
+    .error { background: #fce8e8; border: 1px solid #e0b0b0; color: #8a2a2a; }
+    label { display: block; font-size: 13px; color: #666; margin: 12px 0 4px; }
+    input, button { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box; }
+    button { background: #131313; color: #fdfce8; cursor: pointer; margin-top: 16px; border: none; }
+    pre { background: #f4f4f4; padding: 12px; border-radius: 6px; font-size: 12px; overflow: auto; }
+    a { color: #1a1a1a; }
+  </style>
+</head>
+<body><div style="background:#0F0F0F;color:#FDFCE8;padding:10px 16px;font:13px/1.5 -apple-system,system-ui,sans-serif;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)"><a href="/" style="color:#B98BE8;text-decoration:none;font-weight:600">← Back to A-Anie</a><a href="/security" style="color:#B98BE8;text-decoration:none;margin-left:14px">Trust</a> &nbsp;·&nbsp; <span style="opacity:.85">A-Anie /demo · mirrored research artifact from wisprflow.ai. Demo backend is not deployed here; form submits will not complete.</span></div>
+  <p><a href="/">← back to index</a></p>
+  <h1>Signup bundle</h1>
+  <p class="sub">dist/signup.js + dist/global.js. Email + OTP signup via Supabase auth. The bundle's form handler is bound via <code>getElementById(...)</code> against ids the bundle builds at runtime, so the visible form below is a faithful but unwired reproduction — pressing "Sign up" posts to the mock directly, exercising the same path the bundle would.</p>
+
+  <div class="status" id="status">Loading bundles…</div>
+
+  <form id="signup-form" onsubmit="return demoSignup(event)">
+    <label>Email
+      <input type="email" name="email" required data-1p-ignore data-ph-no-capture autocomplete="off" placeholder="you@example.com" />
+    </label>
+    <label>Password
+      <input type="password" name="password" required data-1p-ignore data-ph-no-capture data-private autocomplete="off" placeholder="••••••••" />
+    </label>
+    <button type="submit">Sign up (mock)</button>
+  </form>
+
+  <h2 style="font-size: 15px; margin-top: 24px;">Mock response</h2>
+  <pre id="response">Submit the form to see the mock answer.</pre>
+
+  <script>
+    const status = document.getElementById('status');
+    const response = document.getElementById('response');
+    let errors = 0;
+    window.addEventListener('error', (e) => {
+      errors++;
+      status.className = 'status error';
+      status.textContent = 'Error: ' + e.message;
+    });
+
+    function demoSignup(ev) {
+      ev.preventDefault();
+      const fd = new FormData(ev.target);
+      const body = { email: fd.get('email'), password: fd.get('password') };
+      fetch('/supabase/auth/v1/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': 'mock_apikey' },
+        body: JSON.stringify(body)
+      })
+        .then(r => r.json())
+        .then(j => { response.textContent = JSON.stringify(j, null, 2); })
+        .catch(e => { response.textContent = 'Error: ' + e.message; });
+      return false;
+    }
+
+    window.addEventListener('load', () => {
+      if (errors === 0) {
+        status.textContent = 'signup.js + global.js loaded. Both IIFEs ran without throwing. The signup form is bound by the bundle via getElementById on ids generated at runtime; the form below is a faithful but unwired reproduction. Submit to see the mock answer.';
+      }
+    });
+  </script>
+  <script src="/demo/dist/global.js" defer></script>
+  <script src="/demo/dist/signup.js" defer></script>
+</body>
+</html>

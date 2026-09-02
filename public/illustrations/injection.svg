@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Cursor at left, inside a small window outline on the right, with a flow arrow from off-canvas left -->
+  <!-- Cursor (text caret) at x=24 -->
+  <line x1="24" y1="44" x2="24" y2="76" />
+  <line x1="24" y1="44" x2="30" y2="48" />
+  <line x1="24" y1="44" x2="30" y2="40" />
+
+  <!-- Flow arrow line from cursor toward window (accent-lav) -->
+  <path d="M34 60 L60 60" stroke="var(--accent-lav)" />
+  <path d="M56 56 L60 60 L56 64" stroke="var(--accent-lav)" />
+
+  <!-- Window outline (rounded rect, 3 horizontal lines inside) -->
+  <rect x="66" y="36" width="42" height="48" rx="4" />
+  <line x1="72" y1="48" x2="102" y2="48" />
+  <line x1="72" y1="56" x2="96" y2="56" />
+  <line x1="72" y1="64" x2="100" y2="64" />
+  <line x1="72" y1="72" x2="92" y2="72" />
+</svg>

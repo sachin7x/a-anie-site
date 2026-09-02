@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Three concentric speech-bubble outlines, smallest one filled with accent-lav -->
+  <!-- Outer bubble: rounded rect with tail at bottom-left -->
+  <path d="M16 26 Q16 20 22 20 L98 20 Q104 20 104 26 L104 70 Q104 76 98 76 L40 76 L32 84 L34 76 L22 76 Q16 76 16 70 Z" />
+  <!-- Middle bubble -->
+  <path d="M28 32 Q28 28 32 28 L88 28 Q92 28 92 32 L92 62 Q92 66 88 66 L48 66 L42 72 L44 66 L32 66 Q28 66 28 62 Z" />
+  <!-- Inner bubble: filled with accent-lav -->
+  <path d="M40 38 Q40 36 42 36 L78 36 Q80 36 80 38 L80 56 Q80 58 78 58 L52 58 L48 62 L50 58 L42 58 Q40 58 40 56 Z" fill="var(--accent-lav)" stroke="none" />
+</svg>

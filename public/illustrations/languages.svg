@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Three glyphs in circles: Devanagari 'अ' (left), Han '中' (middle, filled accent-lav), Arabic 'ع' (right) -->
+  <!-- Left circle: Devanagari -->
+  <circle cx="28" cy="60" r="18" />
+  <!-- Devanagari 'अ' (simplified: a triangle with horizontal line + vertical stroke) -->
+  <path d="M22 56 L34 56" />
+  <path d="M28 56 L28 70" />
+  <path d="M22 64 Q28 60 34 64" />
+
+  <!-- Middle circle: Han '中' (filled accent-lav background) -->
+  <circle cx="60" cy="60" r="18" fill="var(--accent-lav)" stroke="none" />
+  <circle cx="60" cy="60" r="18" />
+  <!-- 中: vertical line through horizontal rectangle -->
+  <line x1="60" y1="48" x2="60" y2="72" />
+  <line x1="50" y1="56" x2="70" y2="56" />
+  <line x1="50" y1="64" x2="70" y2="64" />
+
+  <!-- Right circle: Arabic 'ع' (simplified loop) -->
+  <circle cx="92" cy="60" r="18" />
+  <path d="M84 60 Q88 50 96 54 Q100 60 92 66 Q88 68 84 60" />
+</svg>

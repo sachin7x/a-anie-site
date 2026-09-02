@@ -1,0 +1,205 @@
+<!doctype html>
+<!--
+  Terms of Service — intentionally minimal layout.
+
+  Why no Bootstrap navbar here: this page is a legal document, not a product
+  surface. It's set as noindex/nofollow and rarely visited. The marketing-style
+  navbar from index.html would be visual noise. Keep this page focused: type,
+  a single Back link, and the legal text. If we ever add account/legal pages
+  that are part of the user journey, migrate them to the full Bootstrap layout
+  along with the rest of the public site.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Terms of Service — A-Anie</title>
+<meta name="description" content="A-Anie Terms of Service. One developer, no company, plain language." />
+<meta name="theme-color" content="#FDFCE8" />
+<meta name="color-scheme" content="light" />
+<meta name="canonical" content="https://a-anie.example/terms" />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .legal-page{padding:80px 0 120px}
+  .legal-page h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:-.02em;margin:0 0 12px;max-width:18ch}
+  .legal-date{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin:0 0 48px}
+  .legal-toc{background:#fff;border:1px solid rgba(19,19,19,.08);border-radius:var(--radius-card);padding:28px 32px;margin-bottom:48px}
+  .legal-toc h2{font-family:var(--font-display);font-size:1.3rem;margin:0 0 16px;font-weight:400}
+  .legal-toc ol{list-style:none;padding:0;margin:0;display:grid;gap:8px;counter-reset:toc}
+  .legal-toc li{padding:0;counter-increment:toc}
+  .legal-toc li::before{content:counter(toc) ". ";font-family:var(--font-mono);font-size:12px;color:var(--text-muted)}
+  .legal-toc a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--ghost)}
+  .legal-section{margin-bottom:48px}
+  .legal-section h2{font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:0 0 16px;padding-top:32px;border-top:1px solid rgba(19,19,19,.08)}
+  .legal-section p{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 14px;max-width:68ch}
+  .legal-section ul{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 14px;padding-left:24px}
+  .legal-section li{margin-bottom:8px}
+  .legal-section strong{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="A-Anie — home">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="8" fill="#131313"/>
+        <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+      </svg>
+      <span class="brand-name">A-Anie</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="navMenu" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#languages">Languages</a>
+      <a href="pricing">Pricing</a>
+      <a href="how-it-works">Docs</a>
+      <a href="index.html#changelog">Changelog</a>
+      <a href="story">Story</a>
+      <a href="careers">Careers</a>
+      <a href="accessibility">Accessibility</a>
+      <a href="support">Support</a>
+      <a href="changelog">Changelog</a>
+      <a href="security">Trust</a>
+      <a href="login" class="nav-link-secondary">Log in</a>
+      <a class="cta-link" href="index.html#download">Download A-Anie</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="container legal-page">
+  <h1>Terms of Service</h1>
+  <p class="legal-date">Effective: 30 August 2026</p>
+
+  <nav class="legal-toc" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#acceptance">Acceptance of terms</a></li>
+      <li><a href="#service">The service</a></li>
+      <li><a href="#accounts">Accounts</a></li>
+      <li><a href="#usage">Acceptable use</a></li>
+      <li><a href="#ip">Intellectual property</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#third-party">Third-party services</a></li>
+      <li><a href="#availability">Availability and maintenance</a></li>
+      <li><a href="#liability">Limitation of liability</a></li>
+      <li><a href="#changes">Changes to these terms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <div class="legal-section" id="acceptance">
+    <h2>1. Acceptance of terms</h2>
+    <p>By creating an account or using A-Anie, you agree to be bound by these Terms of Service. If you do not agree to these terms, do not use the service.</p>
+  </div>
+
+  <div class="legal-section" id="service">
+    <h2>2. The service</h2>
+    <p>A-Anie is a voice-to-text tool that applies intent-aware editing to spoken input. The product is provided during an early-access period. During this period, the service is provided free of charge, subject to the terms set out here.</p>
+    <p>The service processes audio input to produce edited text output. Audio is not stored long-term. Transcripts are retained against your account for the purpose of account management and, if applicable, usage tracking.</p>
+  </div>
+
+  <div class="legal-section" id="accounts">
+    <h2>3. Accounts</h2>
+    <p>You are responsible for keeping your account credentials secure. You are responsible for all activity that occurs under your account. If you believe your account has been compromised, contact <a href="index.html#contact">via the contact form</a> immediately.</p>
+    <p>Accounts are personal. You may not transfer your account to another person or allow others to use your credentials.</p>
+  </div>
+
+  <div class="legal-section" id="usage">
+    <h2>4. Acceptable use</h2>
+    <p>You agree not to use A-Anie for any illegal purpose, or in a way that infringes the rights of others. The service is provided for lawful personal and professional use consistent with its described purpose.</p>
+    <p>You are responsible for the content you dictate using A-Anie. A-Anie does not claim ownership of any text produced using the service.</p>
+  </div>
+
+  <div class="legal-section" id="ip">
+    <h2>5. Intellectual property</h2>
+    <p>A-Anie, including its name, logo, and the design of the service, is the intellectual property of Sachin Dohdiya. All rights are reserved.</p>
+    <p>You retain ownership of text you produce using A-Anie.</p>
+  </div>
+
+  <div class="legal-section" id="privacy">
+    <h2>6. Privacy</h2>
+    <p>Your privacy is governed by the privacy information on the <a href="index.html#privacy">homepage</a> and the <a href="data-controls">Data Controls page</a>. Audio is discarded after processing. Account data is retained until you delete your account or request deletion.</p>
+    <p>We do not sell your data. We do not share your data with third parties for advertising purposes. We do not claim certifications we do not hold.</p>
+  </div>
+
+  <div class="legal-section" id="third-party">
+    <h2>7. Third-party services</h2>
+    <p>A-Anie uses third-party speech-to-text services to process audio input. The privacy and data-handling practices of those services apply to the audio processing stage. We will update this section with the names of providers once the early-access architecture is stabilised.</p>
+  </div>
+
+  <div class="legal-section" id="availability">
+    <h2>8. Availability and maintenance</h2>
+    <p>A-Anie is a solo-built product. There is no guaranteed uptime SLA. Maintenance and updates happen when the developer has time to make them. If the service is discontinued, users will be given notice — by email to registered accounts, and on the website — before any shutdown.</p>
+  </div>
+
+  <div class="legal-section" id="liability">
+    <h2>9. Limitation of liability</h2>
+    <p>A-Anie is provided "as is", without warranty of any kind. To the maximum extent permitted by law, the developer is not liable for any direct, indirect, incidental, or consequential damages arising from the use of the service.</p>
+    <p>The service does not claim to be suitable for any particular purpose, including but not limited to medical, legal, or safety-critical uses. Use your judgment.</p>
+  </div>
+
+  <div class="legal-section" id="changes">
+    <h2>10. Changes to these terms</h2>
+    <p>These terms may be updated from time to time. Material changes will be communicated to registered users by email and by notice on this page. Continued use of the service after changes constitutes acceptance of the revised terms.</p>
+  </div>
+
+  <div class="legal-section" id="contact">
+    <h2>11. Contact</h2>
+    <p>Questions about these terms? <a href="index.html#contact">Send a message via the contact form</a>. Every message reaches the developer directly.</p>
+  </div>
+</div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="index.html#how">How it works</a>
+        <a href="how-it-works">Docs</a>
+        <a href="pricing">Pricing</a>
+          <a href="index.html#changelog">Changelog</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="story">Story</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="login">Log in</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="index.html#privacy">Privacy</a>
+        <a href="terms">Terms</a>
+        <a href="data-controls">Data Controls</a>
+        <a href="security">Security &amp; trust</a>
+        <a href="/.well-known/security.txt">Security disclosure</a>
+      </div>
+      <div>
+        <h4>Solo-built in India</h4>
+        <p class="ms">Designed and built in India by one person.</p>
+        <p class="ms">Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+      <span>No company. No team. Just one developer who stopped typing.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

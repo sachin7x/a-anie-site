@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>How it works — A-Anie</title>
+    <meta name="description" content="A-Anie listens, writes, and inserts at your cursor — all on your Mac. The actual architecture, the actual cleanup, and the actual limits of a solo-built on-device dictation app." />
+    <meta name="theme-color" content="#FDFCE8" />
+    <meta name="color-scheme" content="light" />
+    <meta name="canonical" content="https://a-anie.example/how-it-works" />
+    <meta property="og:title" content="How it works — A-Anie" />
+    <meta property="og:description" content="From your Mac's microphone to your cursor: the actual pipeline, the actual cleanup, and what A-Anie does not do." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://a-anie.example/how-it-works" />
+    <meta property="og:image" content="og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How it works — A-Anie" />
+    <meta name="twitter:description" content="The actual pipeline of a solo-built on-device dictation app." />
+    <meta name="twitter:image" content="og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <svg width="24" height="24" aria-hidden="true" focusable="false">
+            <rect width="24" height="24" rx="6" fill="#131313"/>
+            <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+          </svg>
+          <span class="ms-2">A-Anie</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html#how">How it works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#languages">Languages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="how-it-works.html">Docs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#changelog">Changelog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="story.html">Story</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="careers.html">Careers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="accessibility.html">Accessibility</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="support.html">Support</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="security">Trust</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-secondary" href="login.html">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light ms-2" href="index.html#download">Download A-Anie</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hiw-hero py-5 bg-light">
+        <div class="container">
+          <p class="eyebrow text-muted">How it works</p>
+          <h1>A-Anie listens, writes, and inserts at your cursor — <em>all on your Mac.</em></h1>
+          <p class="lead">No upload. No cloud round-trip. No transcription server. A <code>whisper.cpp</code> binary on your machine does the actual speech-to-text, a small local pass polishes the output, and the text lands wherever your cursor is. This page is the architecture, end to end — and the things A-Anie does <em>not</em> do.</p>
+        </div>
+      </section>
+
+      <!-- Architecture diagram -->
+      <section class="hiw-flow py-5">
+        <div class="container">
+          <h2 id="flow-title" class="mb-4">From your microphone to your cursor.</h2>
+          <p class="text-muted mb-4">Audio does not branch off to a server at any point. The personal dictionary is a side input into the local cleanup pass, not the encoder.</p>
+
+          <ol class="list-group list-group-numbered list-group-flush hiw-pipeline">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Microphone</div>
+                Your Mac's built-in mic or any connected input.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">macOS audio capture</div>
+                CoreAudio / AVFoundation. Mono PCM, 16 kHz target after resample.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Silence trim</div>
+                Threshold-based. Drop leading and trailing silence so the decoder doesn't burn cycles on it.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">whisper.cpp encoder</div>
+                Converts PCM to a log-mel spectrogram.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">whisper.cpp decoder</div>
+                Beam search. Returns token IDs. VAD runs inside the decode loop.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">whisper.cpp text output</div>
+                The raw transcript, with the language hint you chose.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Local cleanup pass</div>
+                Sentence-case capitalisation. Conservative filler trim. Punctuation spacing. Personal dictionary applied.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Text injection</div>
+                Inserted at the cursor in the focused macOS app. No clipboard detour.
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Cursor in focused app</div>
+                Email · chat · code · notes · terminal · browser.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- What runs on your Mac -->
+      <section class="hiw-local py-5 bg-light">
+        <div class="container">
+          <h2 class="mb-3">What runs on your Mac.</h2>
+          <p>A-Anie is one binary. Inside it, a <code>whisper.cpp</code> engine does the actual speech-to-text, fully on your machine. There is no upload step, no cloud round-trip, no transcription server. When you press the hotkey, audio is captured from your microphone by the macOS audio APIs, trimmed of silence, and handed to whisper.cpp directly. The text it returns is what gets written into the focused field. The whole loop is local. The marketing page's "works offline, on-device" claim is the literal architecture, not a metaphor.</p>
+        </div>
+      </section>
+
+      <!-- How the cleanup actually works -->
+      <section class="hiw-cleanup py-5">
+        <div class="container">
+          <h2 class="mb-3">How the cleanup actually works.</h2>
+          <p>After whisper.cpp returns text, A-Anie applies a small, fixed set of local edits — capitalisation at the start of a sentence, a few common filler patterns stripped (this part is conservative, because over-eager cleanup eats real words), spacing around punctuation fixed, and the personal dictionary applied. There is no LLM in this path. There is no "intent rewrite." What A-Anie writes is closer to "the transcript, lightly polished" than to "what an editor would have written." That is intentional — you can always edit; the product's job is to remove the worst friction, not to invent words.</p>
+        </div>
+      </section>
+
+      <!-- Languages and code-switching -->
+      <section class="hiw-languages py-5 bg-light">
+        <div class="container">
+          <h2 class="mb-3">Languages and code-switching.</h2>
+          <p>A-Anie targets six Indian languages and the way people actually mix them. The supported set today is Hindi, Marathi, Tamil, Bengali, Telugu, and Gujarati. The model is the same Whisper family across all of them; what changes is the language hint that is passed in. When you switch languages — by menu or by hotkey — the next dictation uses the new hint. Code-switching is handled by Whisper itself, not by A-Anie, which means Hinglish comes out the way you spoke it. There is no "auto-detect" mode in A-Anie today; you pick the dominant language and adjust.</p>
+        </div>
+      </section>
+
+      <!-- Personal dictionary -->
+      <section class="hiw-dictionary py-5">
+        <div class="container">
+          <h2 class="mb-3">Your personal dictionary.</h2>
+          <p>A-Anie ships with a small local dictionary where you can teach it names, project terms, and words you keep re-teaching. The dictionary sits on disk next to the app; nothing leaves your Mac. It is loaded once at startup and applied as a post-transcription replacement pass. A-Anie's dictionary is opt-in, manually edited, and not used to train anything. There is no auto-learn loop. If you stop using A-Anie, the dictionary file can be deleted like any other file.</p>
+        </div>
+      </section>
+
+      <!-- Where the text lands -->
+      <section class="hiw-output py-5 bg-light">
+        <div class="container">
+          <h2 class="mb-3">Where the text lands.</h2>
+          <p>You press the hotkey, you talk, you release the hotkey. The text appears at your cursor in whatever app you were in. A-Anie uses a text-injection approach, not a clipboard detour, so the text does not touch your clipboard and does not displace whatever was there. There is no app switch, no modal to confirm, no save-then-paste step. If the focused field is a code editor, the text lands as plain text — A-Anie does not currently turn your words into IDE mentions or clickable chips. That is a known limitation, not a hidden feature.</p>
+        </div>
+      </section>
+
+      <!-- What A-Anie does not do -->
+      <section class="hiw-not py-5">
+        <div class="container">
+          <h2 class="mb-3">What A-Anie does not do.</h2>
+          <p>It is faster to list what A-Anie is not, than to overstate what it is.</p>
+          <ul>
+            <li>Not a meeting-notes product.</li>
+            <li>Not a voice assistant that can be commanded.</li>
+            <li>Not multi-tenant. Not enterprise-managed.</li>
+            <li>No SOC 2 report, no pen-test, no SSO, no team admin.</li>
+            <li>No proprietary model — the speech engine is <code>whisper.cpp</code>, upstream and open.</li>
+            <li>No cloud LLM in the dictation path. The audio never leaves your Mac.</li>
+            <li>No "50% faster than typing" claim. No specific latency number. No specific accuracy number. Those are not measured in A-Anie's code.</li>
+            <li>No Windows, Linux, iOS, or Android support. macOS only today.</li>
+          </ul>
+          <p class="text-muted">When the architecture changes, this page will change. Until then, treat the above as the spec.</p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="hiw-cta py-5 text-center bg-primary text-white">
+        <div class="container">
+          <h2 id="cta-title" class="mb-4">Hear it in your own voice.</h2>
+          <p class="credibility-stip small mb-3">Built by Sachin Dohdiya from Kishangarh. v0.x ships every Friday. <a href="index.html#changelog" class="text-decoration-none">Open changelog</a> · <a href="data-controls.html" class="text-decoration-none">on-device, your audio never uploads</a></p>
+          <p class="lead">Download A-Anie and dictate the way you'd actually talk — not the way a dictation machine expects.</p>
+          <a href="index.html#download" class="btn btn-light btn-lg">Download A-Anie free — works offline, on-device</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white-50 py-4">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h4>Product</h4>
+            <ul class="list-unstyled">
+              <li><a href="index.html#how" class="text-white text-decoration-none active" aria-current="page">How it works</a></li>
+              <li><a href="how-it-works.html" class="text-white text-decoration-none">Docs</a></li>
+              <li><a href="pricing.html" class="text-white text-decoration-none">Pricing</a></li>
+              <li><a href="index.html#changelog" class="text-white text-decoration-none">Changelog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>Company</h4>
+            <ul class="list-unstyled">
+              <li><a href="careers.html" class="text-white text-decoration-none">Careers</a></li>
+              <li><a href="support.html" class="text-white text-decoration-none">Support</a></li>
+              <li><a href="story.html" class="text-white text-decoration-none">Story</a></li>
+              <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+              <li><a href="login.html" class="text-white text-decoration-none">Log in</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>Legal</h4>
+            <ul class="list-unstyled">
+              <li><a href="data-controls.html" class="text-white text-decoration-none">Data Controls</a></li>
+              <li><a href="accessibility.html" class="text-white text-decoration-none">Accessibility</a></li>
+              <li><a href="terms.html" class="text-white text-decoration-none">Terms</a></li>
+              <li><a href="security" class="text-white text-decoration-none">Security &amp; trust</a></li>
+              <li><a href="/.well-known/security.txt" class="text-white text-decoration-none">Security disclosure</a></li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <div class="border-top pt-3 mt-4">
+              <p class="mb-0 text-center">
+                <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+                <span class="ms-2">No company. No team. Just one developer who stopped typing.</span>
+              </p>
+              <p class="text-center mt-2">
+                <small>Designed and built in India by one person.</small><br>
+                <small>Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
