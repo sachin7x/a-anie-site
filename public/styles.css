@@ -325,6 +325,39 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
 .hero-h em {
   font-feature-settings: "ss01" on;
 }
+
+/* Source-faithful editorial typography (CSS-only, no HTML changes).
+   The reference /Users/sachin/Pictures/a-anie-site 2/index.html uses
+   Instrument Serif display type with <em> italic-accent emphasis for
+   brand voice. Bootstrap's display-4 fw-bold in current HTML overrides
+   this; below restores the source's visual language across all H1/H2. */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+h1 em, h2 em {
+  font-style: italic;
+  color: var(--accent-lav-line);
+  font-feature-settings: "ss01" on;
+}
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.05;
+}
+.text-center.mb-5,
+h2.text-center {
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
 .hero-sub {
   font-size: 20px;
   line-height: 1.55;
@@ -570,7 +603,7 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
 .comparison-table th,
 .comparison-table td {
   vertical-align: middle;
-  border-color: #ECE7DC;
+  border-color: var(--ghost);
 }
 .comparison-table .table-primary-subtle {
   background-color: rgba(228, 204, 250, 0.22) !important;
