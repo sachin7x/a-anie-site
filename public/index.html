@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>A-Anie — Voice-to-text that writes what you meant</title>
+    <meta name="description" content="A-Anie is a voice-to-text dictation tool that doesn't just transcribe what you said — it writes what you meant. Filler removal, self-correction, Hinglish, regional Indian English. Designed and built in India by one person." />
+    <meta name="theme-color" content="#FDFCE8" />
+    <meta name="color-scheme" content="light" />
+    <meta name="canonical" content="https://a-anie.example/" />
+    <meta property="og:title" content="A-Anie — Voice-to-text that writes what you meant" />
+    <meta property="og:description" content="Built solo in Kishangarh, India. Understands Indian English, Hinglish, and your name." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://a-anie.example/" />
+    <meta property="og:image" content="og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="A-Anie — Voice-to-text that writes what you meant" />
+    <meta name="twitter:description" content="Built solo in Kishangarh, India. Understands Indian English, Hinglish, and your name." />
+    <meta name="twitter:image" content="og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#top">
+          <svg width="24" height="24" aria-hidden="true" focusable="false">
+            <rect width="24" height="24" rx="6" fill="#131313"/>
+            <path d="M4 10h2v-2l2 4V8h2v4h2v-2l2 4V8h2v4h2v-2l2 4V8h2v4h2v-2l2 4z" fill="#FDFCE8"/>
+          </svg>
+          <span class="ms-2">A-Anie</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#how">How it works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#languages">Languages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="how-it-works.html">Docs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#changelog">Changelog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="story.html">Story</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-secondary" href="login.html">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light ms-2" href="#download">Download A-Anie — free</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <!-- Hero Section -->
+      <section id="top" class="hero py-5 bg-light">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <p class="eyebrow text-muted">A-ANIE DICTATION</p>
+              <h1 id="hero-title" class="display-4 fw-bold">It doesn't simply transcribe what you said.<br/><em class="text-primary">It writes what you meant.</em></h1>
+              <p class="lead hero-sub">Hold a hotkey, speak naturally, get polished text wherever your cursor already is — Gmail, Slack, Notion, VS Code, Terminal, ChatGPT, Cursor, WhatsApp, Obsidian.</p>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                <a href="#download" class="btn btn-primary btn-lg me-2">Download A-Anie — free</a>
+                <a href="#how" class="btn btn-outline-primary btn-lg">See it work →</a>
+              </div>
+              <p class="platform-line text-muted">macOS · Windows · Linux · Chrome extension · iOS dictation key</p>
+              <p class="hint text-muted">Free during early access. No card, no trial, no email gate.</p>
+            </div>
+            <div class="col-lg-6">
+              <figure class="wave-figure text-center">
+                <button class="mic-btn btn btn-outline-primary mb-3" id="micBtn" aria-pressed="false" aria-label="Toggle demo waveform">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+                  <span class="ms-2 mic-label">Hold to speak</span>
+                </button>
+                <svg class="wave-svg w-100" viewBox="0 0 600 80" preserveAspectRatio="none" aria-hidden="true">
+                  <g id="wave-bars" fill="#dee2e6"></g>
+                </svg>
+                <figcaption class="mt-2 text-muted small">Live mic waveform demo</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compatibility Section -->
+      <section class="compat py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Works everywhere you type</h2>
+          <div class="row g-4">
+            <div class="col-md-3 text-center">
+              <div class="p-3 border rounded">
+                <i class="bi bi-apple display-4 text-primary mb-3"></i>
+                <h5>macOS</h5>
+                <p class="text-muted">Native app with global hotkey</p>
+              </div>
+            </div>
+            <div class="col-md-3 text-center">
+              <div class="p-3 border rounded">
+                <i class="bi bi-windows display-4 text-primary mb-3"></i>
+                <h5>Windows</h5>
+                <p class="text-muted">Native app with system tray</p>
+              </div>
+            </div>
+            <div class="col-md-3 text-center">
+              <div class="p-3 border rounded">
+                <i class="bi bi-linux display-4 text-primary mb-3"></i>
+                <h5>Linux</h5>
+                <p class="text-muted">AppIndicator + DBus notifications</p>
+              </div>
+            </div>
+            <div class="col-md-3 text-center">
+              <div class="p-3 border rounded">
+                <i class="bi bi-chrome display-4 text-primary mb-3"></i>
+                <h5>Chrome Extension</h5>
+                <p class="text-muted">Works in any text field on the web</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how" class="how py-5 bg-light">
+        <div class="container">
+          <h2 class="text-center mb-5">How A-Anie works</h2>
+          <p class="text-center text-muted mb-5">Speak like a person. It edits while you talk. Lands in any text field.</p>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                  <div class="display-4 text-primary mb-3">01</div>
+                  <h5 class="card-title">Speak like a person.</h5>
+                  <p class="card-text">Not like a dictation machine. Use the filler words you already use, restart mid-sentence, switch languages halfway through.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                  <div class="display-4 text-primary mb-3">02</div>
+                  <h5 class="card-title">It edits while you talk.</h5>
+                  <p class="card-text">An ordinary speech model transcribes what you said. A-Anie rewrites what you meant — tone, filler, repetition, punctuation, cadence.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                  <div class="display-4 text-primary mb-3">03</div>
+                  <h5 class="card-title">Lands in any text field.</h5>
+                  <p class="card-text">No app switch, no clipboard detour. Whatever app you opened, that's where it lands.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Languages Section -->
+      <section id="languages" class="py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Languages & dialects</h2>
+          <p class="text-center text-muted mb-4">First-class support for Indian English and code-switching</p>
+          <div class="row g-4">
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center pt-4">
+                  <h5 class="h4 mb-3">Indian English</h5>
+                  <p class="text-muted">Understands Hinglish, code-switching, and regional variations</p>
+                  <div class="mt-3">
+                    <span class="badge bg-primary me-1 mb-1">Hindi</span>
+                    <span class="badge bg-primary me-1 mb-1">Marathi</span>
+                    <span class="badge bg-primary me-1 mb-1">Tamil</span>
+                    <span class="badge bg-primary me-1 mb-1">Bengali</span>
+                    <span class="badge bg-primary me-1 mb-1">Telugu</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center pt-4">
+                  <h5 class="h4 mb-3">Global English</h5>
+                  <p class="text-muted">US, UK, Australian, Canadian accents</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center pt-4">
+                  <h5 class="h4 mb-3">Programming Syntax</h5>
+                  <p class="text-muted">Understands code comments, docstrings, and technical terminology</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center pt-4">
+                  <h5 class="h4 mb-3">Custom Vocabulary</h5>
+                  <p class="text-muted">Learn your personal terminology, project names, and workflow phrases</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Personal Story Section -->
+      <section class="anjali py-5" id="anjali-story">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="text-center mb-5">
+                <p class="eyebrow text-muted">The product started with a person</p>
+                <h2 id="anjali-title" class="display-4 fw-bold">I was typing.<br/><em class="text-primary">Too much.</em></h2>
+              </div>
+
+              <div class="row g-5">
+                <div class="col-md-6">
+                  <div class="p-4 bg-light rounded">
+                    <h5 class="mb-3">A line I heard too often</h5>
+                    <p class="fw-medium mb-2">"You're always typing."</p>
+                    <p class="text-muted small mb-0">— my wife, Anjali</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-4 bg-light rounded">
+                    <h5 class="mb-3">The realization</h5>
+                    <p class="mb-0">There was a period when most of my waking hours went through a keyboard. Messages. Code. Documents. Long explanations to friends, longer explanations to clients. My hands were always on the keys, even when I was sitting across from someone I cared about.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5">
+                <div class="p-4 bg-light rounded">
+                  <h5 class="mb-3">So I asked the obvious question</h5>
+                  <p class="mb-2">Why am I typing thoughts I could simply say?</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-top">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h5 class="mb-3">So now I don't have to type</h5>
+                    <p class="mb-2">I just have to speak. A-Anie catches what I mean, cleans it up, and writes it where my cursor already is — Gmail, Slack, Notion, VS Code, ChatGPT, Cursor, WhatsApp, Obsidian.</p>
+                  </div>
+                  <div class="text-end">
+                    <p class="mb-0">
+                      <a href="story.html" class="text-decoration-none">
+                        Read the full story — including the Kishangarh chapter →
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <p class="text-muted small">
+                    Less typing. More conversation. More being present.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats py-5 bg-light">
+        <div class="container">
+          <h2 class="text-center mb-5">Honest numbers only</h2>
+          <div class="row g-4 text-center">
+            <div class="col-md-3">
+              <div class="p-4 bg-white rounded shadow-sm">
+                <div class="display-4 text-primary fw-bold">∞</div>
+                <p class="text-muted mb-0">days still earning every number</p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-4 bg-white rounded shadow-sm">
+                <div class="display-4 text-danger fw-bold">0</div>
+                <p class="text-muted mb-0">fake users claimed</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-center text-muted mt-4">
+            Early product, solo-built. Real numbers will replace the placeholders as soon as the author has enough of them to share honestly.
+            <a href="story.html" class="text-decoration-none underline">Read the story →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Early product, no fake social proof</h2>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                  <p class="text-muted mb-0">Built by one developer. Used by early testers. Still earning every number.</p>
+                  <p class="small text-muted mb-0">— A-Anie, status as of launch</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                  <p class="text-muted mb-0">No testimonials yet — and we won't print any we can't verify with a real name and a real city.</p>
+                  <p class="small text-muted mb-0">— Editorial policy</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 border-0 shadow-sm d-flex flex-column">
+                <div class="card-body text-center p-4 flex-grow-1">
+                  <p class="text-muted mb-0">If you've used A-Anie, <a href="#contact" class="text-decoration-none">drop a line</a>. Real notes become real quotes — credited to the person who sent them.</p>
+                </div>
+                <div class="mt-3 p-3 bg-light">
+                  <small class="text-muted">Open invitation</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="compare" class="py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">A-Anie vs. the rest.</h2>
+          <p class="text-center text-muted mb-5">Verified facts only. Where current information is unavailable, we mark it honestly instead of guessing.</p>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Capability</th>
+                  <th scope="col">A-Anie</th>
+                  <th scope="col">Wispr Flow</th>
+                  <th scope="col">OS dictation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="fw-medium">Voice-to-text</th>
+                  <td>Yes — built in</td>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Intent-aware cleanup</th>
+                  <td>Yes — built in</td>
+                  <td>Partial</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Filler removal</th>
+                  <td>Yes</td>
+                  <td>Partial</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Self-correction</th>
+                  <td>Yes</td>
+                  <td>Partial</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Repetition cleanup</th>
+                  <td>Yes</td>
+                  <td>Partial</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Indian English</th>
+                  <td><span class="badge bg-success">First-class</span></td>
+                  <td><span class="badge bg-warning text-dark">Variable</span></td>
+                  <td><span class="badge bg-warning text-dark">Limited</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Hinglish</td>
+                  <td><span class="badge bg-success">Yes</span></td>
+                  <td><span class="badge bg-warning text-dark">Limited</span></td>
+                  <td><span class="badge bg-danger">No</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Regional Indian languages</th>
+                  <td>
+                    <span class="badge bg-success me-1">Hindi</span>
+                    <span class="badge bg-success me-1">Marathi</span>
+                    <span class="badge bg-success me-1">Tamil</span>
+                    <span class="badge bg-success me-1">Bengali</span>
+                    <span class="badge bg-success me-1">Telugu</span>
+                  </td>
+                  <td><span class="badge bg-warning text-dark">Varies by OS</span></td>
+                  <td><span class="badge bg-danger">Limited</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Personal dictionary</th>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                  <td><span class="badge bg-warning text-dark">Limited</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="fw-medium">Tone control</th>
+                  <td>Formal / Casual / Very casual</td>
+                  <td>Tone styles</td>
+                  <td>No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Changelog Section -->
+      <section id="changelog" class="py-5 bg-light">
+        <div class="container">
+          <h2 class="text-center mb-5">Changelog</h2>
+          <div class="row">
+            <div class="col-md-8 mx-auto">
+              <div class="list-group">
+                <div class="list-group-item">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">v1.0.0 — Initial Launch</h5>
+                    <small class="text-muted">September 2026</small>
+                  </div>
+                  <p class="mb-1">First public release with core voice-to-text functionality, Indian English/Hinglish support, and cross-platform apps.</p>
+                </div>
+                <div class="list-group-item">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">v1.1.0 — Tone Controls</h5>
+                    <small class="text-muted">October 2026</small>
+                  </div>
+                  <p class="mb-1">Added Formal/Casual/Very casual tone switching with context awareness.</p>
+                </div>
+                <div class="list-group-item">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">v1.2.0 — Personal Dictionary</h5>
+                    <small class="text-muted">November 2026</small>
+                  </div>
+                  <p class="mb-1">Opt-in on-device learning of user-specific terminology and phrases.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="faq py-5">
+        <div class="container">
+          <h2 class="text-center mb-5">Frequently asked questions</h2>
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading1">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                  Is my voice data private and secure?
+                </button>
+              </h2>
+              <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <strong>Yes.</strong> By default, all processing happens locally on your device. Your voice never leaves your computer unless you explicitly enable cloud features for improvement. We use end-to-end encryption for any optional sync, and you control the keys.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                  Does it work with my accent and code-switching?
+                </button>
+              </h2>
+              <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <strong>Yes — especially Indian English and Hinglish.</strong> A-Anie was built specifically to understand the way Indians actually speak: mixing Hindi and English naturally, using filler words like "you know" and "actually", and code-switching mid-sentence. It's not an afterthought — it's the core design.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faqHeading3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                  What about privacy regulations like GDPR?
+                </button>
+              </h2>
+              <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Since audio processing happens locally by default, there's minimal data to regulate. For users who opt into improvement programs, we provide full data deletion rights and explicit consent management. We're designed for privacy-first from the ground up.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download/Contact Section -->
+      <section id="download" class="py-5 bg-light">
+        <div class="container text-center">
+          <h2 class="mb-4">Ready to try?</h2>
+          <p class="lead mb-5">Join hundreds of early users who've already stopped typing everything out.</p>
+          <div>
+            <a href="#top" class="btn btn-outline-primary me-2">← Back to top</a>
+            <a href="login.html" class="btn btn-primary">Get started — Log in or sign up</a>
+          </div>
+          <p class="mt-4 text-muted small">
+            <a href="mailto:sachin@a-anie.example?subject=Early%20access%20request" class="text-decoration-none">
+              Have questions? Email sachin@a-anie.example
+            </a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white-50 py-4">
+      <div class="container text-center">
+        <p class="mb-0">
+          <a href="https://a-anie.example/" class="text-white text-decoration-none">https://a-anie.example/</a>
+        </p>
+        <p class="mb-1 small">
+          Built solo in Kishangarh, India by one developer who believes
+          <a href="story.html" class="text-white text-decoration-none">less typing means more living</a>.
+        </p>
+        <p class="mb-0 small">
+          &copy; <span id="year"></span> A-Anie. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
