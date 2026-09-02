@@ -107,34 +107,181 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
   border-radius: 8px;
 }
 
-/* Navbar brand spacing */
-.navbar-brand {
+/* Bootstrap navbar override - restyle the dark Bootstrap navbar to look like the brand pill nav.
+   Markup is unchanged. Only CSS. */
+
+.navbar.bg-dark,
+.navbar.navbar-dark {
+  position: sticky;
+  top: 14px;
+  z-index: 50;
+  background: transparent !important;
+  padding: 8px 14px;
+  margin-bottom: 0;
+}
+
+.navbar.bg-dark > .container-fluid,
+.navbar.navbar-dark > .container-fluid {
+  background: rgba(253, 252, 232, .92);
+  border: 1px solid rgba(19, 19, 19, .08);
+  border-radius: 999px;
+  padding: 10px 14px 10px 18px;
+  max-width: 1200px;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Brand mark: existing inline SVG + "A-Anie" + lavender waveform (CSS-injected) */
+.navbar .navbar-brand {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 400;
   letter-spacing: -.01em;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+.navbar .navbar-brand svg {
+  width: 28px;
+  height: 28px;
+}
+.navbar .navbar-brand::after {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 11px;
+  margin-left: 4px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 12'><g fill='%23B98BE8'><rect x='0' y='4' width='2' height='4'/><rect x='4' y='2' width='2' height='8'/><rect x='8' y='0' width='2' height='12'/><rect x='12' y='3' width='2' height='6'/><rect x='16' y='1' width='2' height='10'/><rect x='20' y='4' width='2' height='4'/></g></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-/* Force Bootstrap navbar to use the dark theme properly */
-.navbar.bg-dark {
-  background: var(--bg-dark) !important;
+/* Nav links: pill style on cream */
+.navbar .nav-link {
+  color: var(--ink-2);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 8px 14px !important;
+  border-radius: 999px;
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+  background: rgba(19, 19, 19, .06);
+  color: var(--ink);
+}
+.navbar .nav-link[aria-current="page"] {
+  background: rgba(19, 19, 19, .06);
+  color: var(--ink);
+}
+.navbar .nav-link.nav-link-secondary {
+  color: var(--text-muted);
 }
 
-/* Navbar links in dark mode readable */
-.navbar-dark .nav-link,
-.navbar-dark .navbar-brand {
-  color: rgba(253, 252, 232, .85);
+/* CTA link in navbar: black pill */
+.navbar .btn-outline-light {
+  background: var(--ink);
+  color: var(--bg-cream) !important;
+  border: 1px solid var(--ink);
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 999px;
+  font-size: 14px;
+  margin-left: 8px;
 }
-.navbar-dark .nav-link:hover,
-.navbar-dark .nav-link:focus {
-  color: var(--bg-cream);
+.navbar .btn-outline-light:hover,
+.navbar .btn-outline-light:focus-visible {
+  background: #000;
+  border-color: #000;
+  color: var(--bg-cream) !important;
 }
-.navbar-dark .nav-link.active,
-.navbar-dark .nav-link[aria-current="page"] {
-  color: var(--bg-cream);
-  text-decoration: underline;
-  text-decoration-color: var(--accent-lav-line);
-  text-underline-offset: 4px;
+
+/* Toggler (mobile) */
+.navbar .navbar-toggler {
+  border: 1px solid rgba(19, 19, 19, .12);
+  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-cream);
+}
+.navbar .navbar-toggler:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-cream), 0 0 0 4px var(--accent-lav-line);
+  outline: none;
+}
+.navbar .navbar-toggler-icon {
+  width: 18px;
+  height: 12px;
+  background-image: none;
+  position: relative;
+}
+.navbar .navbar-toggler-icon::before,
+.navbar .navbar-toggler-icon::after,
+.navbar .navbar-toggler-icon {
+  background: linear-gradient(currentColor, currentColor) center / 18px 2px no-repeat;
+  display: block;
+}
+.navbar .navbar-toggler-icon::before,
+.navbar .navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform .2s var(--ease), opacity .2s var(--ease);
+}
+.navbar .navbar-toggler-icon::before { top: 0; }
+.navbar .navbar-toggler-icon::after { bottom: 0; }
+.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background: transparent;
+}
+.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  top: 5px;
+  transform: rotate(45deg);
+}
+.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  bottom: 5px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 991.98px) {
+  .navbar .navbar-toggler {
+    display: inline-flex;
+  }
+  .navbar .navbar-collapse {
+    background: var(--bg-cream);
+    border: 1px solid rgba(19, 19, 19, .1);
+    border-radius: 18px;
+    padding: 14px;
+    margin-top: 10px;
+  }
+  .navbar .navbar-nav {
+    align-items: stretch;
+  }
+  .navbar .nav-item {
+    width: 100%;
+  }
+  .navbar .nav-link {
+    text-align: left;
+    padding: 12px 16px !important;
+    border-radius: 12px;
+  }
+  .navbar .btn-outline-light {
+    display: block;
+    text-align: center;
+    margin: 6px 0 0 0;
+    width: 100%;
+  }
 }
 
 /* Footer */
@@ -415,6 +562,19 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
 }
 .login-status.is-error { color: #9a2424; }
 .login-status.is-success { color: var(--india-green); }
+
+/* Comparison Matrix Section */
+.comparison-section {
+  background: var(--bg-cream);
+}
+.comparison-table th,
+.comparison-table td {
+  vertical-align: middle;
+  border-color: #ECE7DC;
+}
+.comparison-table .table-primary-subtle {
+  background-color: rgba(228, 204, 250, 0.22) !important;
+}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
