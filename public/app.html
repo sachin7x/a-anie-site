@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>A-Anie — In-browser dictation</title>
+    <meta name="description" content="A-Anie's in-browser dictation shell. Reconstructed from the wispr /demo/ mirror. Mic capture, live waveform, and record controls. Backend is not deployed; transcription requests return 501." />
+    <meta name="theme-color" content="#0F0F0F" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* App shell — light, focused, single column. */
+      body { background: #fafafa; }
+      .app-shell { min-height: calc(100vh - 60px); }
+      .demo-banner {
+        background: #0F0F0F; color: #FDFCE8; padding: 10px 16px;
+        font: 13px/1.5 -apple-system, system-ui, sans-serif;
+        text-align: center; border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+      .demo-banner a { color: #B98BE8; text-decoration: none; font-weight: 600; }
+      .demo-banner .sep { opacity: .4; margin: 0 8px; }
+      .stage {
+        max-width: 720px; margin: 48px auto; padding: 0 20px;
+      }
+      .stage .container-card {
+        background: #fff; border: 1px solid #e5e5e5; border-radius: 16px;
+        padding: 40px 32px; box-shadow: 0 1px 2px rgba(0,0,0,.04);
+      }
+      .stage h1 {
+        font-family: 'Instrument Serif', Georgia, serif;
+        font-weight: 400; font-size: 32px; margin: 0 0 8px;
+      }
+      .stage .lede { color: #666; margin: 0 0 24px; }
+      /* Wispr pill (the rec button) */
+      .wd-pill-wrap { margin: 24px 0; min-height: 64px; }
+      /* Live waveform SVG */
+      .wd-wave-svg { width: 100%; height: 80px; background: #f6f6f6; border-radius: 8px; display: block; }
+      /* Recorded audio playback */
+      .wd-playback { width: 100%; margin-top: 16px; display: none; }
+      /* Status pill */
+      .wd-status { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; background: #f0f0f0; color: #666; }
+      .wd-status.recording { background: #fee; color: #c33; }
+      .wd-status.transcribing { background: #eef; color: #33c; }
+      .wd-status.idle { background: #efe; color: #383; }
+      /* Transcript box */
+      .wd-transcript {
+        margin-top: 24px; padding: 16px; background: #fafafa;
+        border: 1px solid #e5e5e5; border-radius: 8px; min-height: 60px;
+        font-family: 'Newsreader', Georgia, serif; font-size: 16px; line-height: 1.6;
+        color: #1a1a1a; white-space: pre-wrap; word-wrap: break-word;
+      }
+      .wd-transcript.empty { color: #999; font-style: italic; }
+      .wd-perm { background: #fce8e8; border: 1px solid #e0b0b0; color: #8a2a2a; padding: 12px 16px; border-radius: 8px; margin: 16px 0; display: none; }
+      .controls-row { display: flex; gap: 12px; align-items: center; margin: 12px 0; }
+      .btn-icon {
+        background: #f0f0f0; border: 1px solid #ddd; color: #1a1a1a;
+        border-radius: 6px; padding: 8px 12px; font-size: 13px; cursor: pointer;
+      }
+      .btn-icon:hover { background: #e5e5e5; }
+      .meta { font-size: 12px; color: #999; margin-top: 16px; }
+      .meta code { background: #f0f0f0; padding: 1px 4px; border-radius: 3px; }
+      .shortcut-key {
+        display: inline-block; padding: 2px 6px; background: #1a1a1a; color: #fafafa;
+        border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+    <!-- Demo banner (visible context: this is a reconstructed /demo surface) -->
+    <div class="demo-banner">
+      <a href="/">← Back to A-Anie</a>
+      <span class="sep">·</span>
+      <a href="/demo">/demo (wispr mirror)</a>
+      <span class="sep">·</span>
+      <a href="/security">Trust</a>
+      <span class="sep">·</span>
+      <span style="opacity:.85">A-Anie /app · mic + waveform reconstructed from wispr /demo/web-demo.js. Transcription backend is not deployed; <code style="background:transparent;color:#FDFCE8">/api/transcribe</code> returns 501.</span>
+    </div>
+
+    <!-- Navbar (canonical A-Anie shell) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <svg width="24" height="24" aria-hidden="true" focusable="false">
+            <rect width="24" height="24" rx="6" fill="#131313"/>
+            <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+          </svg>
+          <span class="ms-2">A-Anie</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/app">App</a></li>
+            <li class="nav-item"><a class="nav-link" href="/demo">Demo</a></li>
+            <li class="nav-item"><a class="nav-link" href="how-it-works.html">How it works</a></li>
+            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+            <li class="nav-item"><a class="nav-link" href="how-it-works.html">Docs</a></li>
+            <li class="nav-item"><a class="nav-link" href="story.html">Story</a></li>
+            <li class="nav-item"><a class="nav-link" href="careers.html">Careers</a></li>
+            <li class="nav-item"><a class="nav-link" href="accessibility.html">Accessibility</a></li>
+            <li class="nav-item"><a class="nav-link" href="support.html">Support</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="security">Trust</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-secondary" href="login.html">Log in</a></li>
+            <li class="nav-item"><a class="btn btn-outline-light ms-2" href="/#download">Download A-Anie</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main" class="app-shell">
+      <div class="stage">
+        <div class="container-card">
+          <h1>In-browser dictation.</h1>
+          <p class="lede">Hold the <span class="shortcut-key">Space</span> key, talk, release. The mic lights up, the waveform shows what it hears, and the transcript appears below. This is a faithful reconstruction of the wispr in-browser dictation UI, wrapped in the A-Anie shell.</p>
+
+          <!-- The wispr web-demo bundle injects its UI into .wd_pill-wrap. -->
+          <div class="wd-pill-wrap" id="wdPillWrap"></div>
+
+          <!-- Live waveform (replaces the wispr Webflow-hosted SVG with a clean canvas) -->
+          <svg class="wd-wave-svg" id="wdWaveSvg" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+            <path id="wdWavePath" d="" fill="none" stroke="#B98BE8" stroke-width="1.5" />
+          </svg>
+
+          <!-- Permission error (hidden by default) -->
+          <div class="wd-perm" id="wdPermErr" role="alert">
+            Microphone permission was denied. The dictation UI needs mic access to draw the waveform and record audio. Click the lock icon in your browser's address bar to allow microphone for this site, then reload.
+          </div>
+
+          <!-- Status + controls -->
+          <div class="controls-row">
+            <span class="wd-status idle" id="wdStatus">Idle</span>
+            <button class="btn-icon" id="wdClearBtn" type="button" aria-label="Clear transcript">Clear transcript</button>
+            <button class="btn-icon" id="wdCopyBtn" type="button" aria-label="Copy transcript to clipboard" disabled>Copy</button>
+          </div>
+
+          <!-- Transcript display -->
+          <div class="wd-transcript empty" id="wdTranscript" aria-live="polite">Transcript will appear here.</div>
+
+          <!-- Playback (after a stop) -->
+          <audio class="wd-playback" id="wdPlayback" controls></audio>
+
+          <p class="meta">
+            Source: <code>/demo/dist/web-demo.js</code> · Network: <code>/v1/dash/client_ws</code> is mocked locally · Backend: <code>/api/transcribe</code> returns 501.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white-50 py-4">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h4>Product</h4>
+            <ul class="list-unstyled">
+              <li><a href="/app" class="text-white text-decoration-none active" aria-current="page">App</a></li>
+              <li><a href="/demo" class="text-white text-decoration-none">Demo</a></li>
+              <li><a href="index.html#how" class="text-white text-decoration-none">How it works</a></li>
+              <li><a href="how-it-works.html" class="text-white text-decoration-none">Docs</a></li>
+              <li><a href="pricing.html" class="text-white text-decoration-none">Pricing</a></li>
+              <li><a href="index.html#changelog" class="text-white text-decoration-none">Changelog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>Company</h4>
+            <ul class="list-unstyled">
+              <li><a href="story.html" class="text-white text-decoration-none">Story</a></li>
+              <li><a href="careers.html" class="text-white text-decoration-none">Careers</a></li>
+              <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+              <li><a href="support.html" class="text-white text-decoration-none">Support</a></li>
+              <li><a href="login.html" class="text-white text-decoration-none">Log in</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>Legal</h4>
+            <ul class="list-unstyled">
+              <li><a href="data-controls.html" class="text-white text-decoration-none">Data Controls</a></li>
+              <li><a href="accessibility.html" class="text-white text-decoration-none">Accessibility</a></li>
+              <li><a href="terms.html" class="text-white text-decoration-none">Terms</a></li>
+              <li><a href="security" class="text-white text-decoration-none">Security &amp; trust</a></li>
+              <li><a href="/.well-known/security.txt" class="text-white text-decoration-none">Security disclosure</a></li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <div class="border-top pt-3 mt-4">
+              <p class="mb-0 text-center">
+                <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+                <span class="ms-2">No company. No team. Just one developer who stopped typing.</span>
+              </p>
+              <p class="text-center mt-2">
+                <small>Designed and built in India by one person.</small><br>
+                <small>Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+    <!--
+      The wispr web-demo bundle builds its own DOM and expects Webflow-hosted hooks.
+      The wispr demo page header says explicitly:
+        "Webflow hooks this bundle expects (e.g. .wd_pill-wrap, .w-tab-link.w--current)
+         are absent on a standalone page, so the actual visible UI is minimal — but the
+         IIFE still runs, and the network mock logs every attempt."
+
+      We mount the bundle and provide a small A-Anie-side adapter that:
+        1. Renders a clean dictation pill (mic button + label) into #wdPillWrap.
+        2. Drives the existing #wdWaveSvg with the live PCM analyser data.
+        3. Posts the recorded audio to /api/transcribe on stop (and shows the verbatim 501).
+        4. Maintains transcript state in #wdTranscript.
+      We do NOT modify the wispr bundle itself.
+    -->
+    <script>
+      (function () {
+        'use strict';
+
+        var pillWrap = document.getElementById('wdPillWrap');
+        var statusEl = document.getElementById('wdStatus');
+        var transcriptEl = document.getElementById('wdTranscript');
+        var clearBtn = document.getElementById('wdClearBtn');
+        var copyBtn = document.getElementById('wdCopyBtn');
+        var playback = document.getElementById('wdPlayback');
+        var permErr = document.getElementById('wdPermErr');
+        var wavePath = document.getElementById('wdWavePath');
+
+        if (!pillWrap || !statusEl || !transcriptEl) return;
+
+        var state = 'idle';
+        var mediaStream = null;
+        var mediaRecorder = null;
+        var audioChunks = [];
+        var audioContext = null;
+        var analyser = null;
+        var sourceNode = null;
+        var dataArray = null;
+        var rafId = null;
+        var transcript = '';
+
+        function setStatus(label, cls) {
+          statusEl.textContent = label;
+          statusEl.className = 'wd-status ' + (cls || 'idle');
+        }
+
+        function buildPill() {
+          pillWrap.innerHTML =
+            '<button id="wdPill" type="button" aria-label="Hold to record" style="' +
+            'display:inline-flex;align-items:center;gap:10px;padding:12px 24px;' +
+            'background:#131313;color:#FDFCE8;border:none;border-radius:999px;' +
+            'font:600 14px/1 Outfit,system-ui,sans-serif;cursor:pointer;user-select:none;' +
+            'transition:transform 80ms ease-out,background 120ms ease-out;' +
+            'box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 4px 12px rgba(0,0,0,.12);' +
+            '">' +
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+            '<rect x="9" y="3" width="6" height="12" rx="3"/>' +
+            '<path d="M5 11a7 7 0 0 0 14 0"/>' +
+            '<line x1="12" y1="18" x2="12" y2="22"/>' +
+            '</svg>' +
+            '<span id="wdPillLabel">Hold Space to talk</span>' +
+            '</button>';
+          var pill = document.getElementById('wdPill');
+          pill.addEventListener('pointerdown', function (e) {
+            e.preventDefault();
+            pill.style.transform = 'scale(0.97)';
+            startRecording();
+          });
+          pill.addEventListener('pointerup', function () {
+            pill.style.transform = '';
+            stopRecording();
+          });
+          pill.addEventListener('pointerleave', function () {
+            if (state === 'recording') {
+              pill.style.transform = '';
+              stopRecording();
+            }
+          });
+        }
+
+        function updateWave() {
+          if (!analyser || !dataArray) return;
+          analyser.getByteFrequencyData(dataArray);
+          var avg = 0;
+          for (var i = 0; i < dataArray.length; i++) avg += dataArray[i];
+          avg = avg / dataArray.length;
+          var amplitude = 4 + (avg / 255) * 56;
+          var w = 1440;
+          var step = 12;
+          var d = '';
+          for (var x = 0; x <= w; x += step) {
+            var phase = (x / w) * Math.PI * 8 + (Date.now() / 220);
+            var y = 40 + Math.sin(phase) * amplitude * Math.sin((x / w) * Math.PI);
+            d += (x === 0 ? 'M' : 'L') + x + ',' + y.toFixed(1) + ' ';
+          }
+          wavePath.setAttribute('d', d);
+          rafId = requestAnimationFrame(updateWave);
+        }
+
+        function startRecording() {
+          if (state === 'recording') return;
+          transcript = '';
+          transcriptEl.textContent = 'Listening…';
+          transcriptEl.classList.remove('empty');
+          audioChunks = [];
+          if (playback.src) {
+            playback.removeAttribute('src');
+            playback.load();
+            playback.style.display = 'none';
+          }
+          copyBtn.disabled = true;
+
+          if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            permErr.textContent = 'Your browser does not expose getUserMedia. The dictation UI needs a modern browser with microphone access.';
+            permErr.style.display = 'block';
+            return;
+          }
+
+          navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+            mediaStream = stream;
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            sourceNode = audioContext.createMediaStreamSource(stream);
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 1024;
+            dataArray = new Uint8Array(analyser.frequencyBinCount);
+            sourceNode.connect(analyser);
+            try {
+              mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+            } catch (e) {
+              mediaRecorder = new MediaRecorder(stream);
+            }
+            mediaRecorder.ondataavailable = function (ev) {
+              if (ev.data && ev.data.size > 0) audioChunks.push(ev.data);
+            };
+            mediaRecorder.onstop = function () {
+              var blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+              playback.src = URL.createObjectURL(blob);
+              playback.style.display = 'block';
+              sendForTranscription(blob);
+            };
+            mediaRecorder.start();
+            state = 'recording';
+            setStatus('Recording', 'recording');
+            var label = document.getElementById('wdPillLabel');
+            if (label) label.textContent = 'Recording… release to stop';
+            updateWave();
+          }).catch(function (err) {
+            permErr.textContent = 'Microphone permission was denied (' + (err && err.name ? err.name : 'unknown') + '). The dictation UI needs mic access to draw the waveform and record audio. Click the lock icon in your browser\'s address bar to allow microphone for this site, then reload.';
+            permErr.style.display = 'block';
+            state = 'idle';
+            setStatus('Idle', 'idle');
+          });
+        }
+
+        function stopRecording() {
+          if (state !== 'recording') return;
+          state = 'transcribing';
+          setStatus('Transcribing…', 'transcribing');
+          var label = document.getElementById('wdPillLabel');
+          if (label) label.textContent = 'Hold Space to talk';
+          if (rafId) cancelAnimationFrame(rafId);
+          if (mediaStream) {
+            mediaStream.getTracks().forEach(function (t) { t.stop(); });
+          }
+          if (audioContext && audioContext.state !== 'closed') {
+            try { audioContext.close(); } catch (e) {}
+          }
+          if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+          }
+        }
+
+        function sendForTranscription(blob) {
+          var fd = new FormData();
+          fd.append('audio', blob, 'recording.webm');
+          fetch('/api/transcribe', { method: 'POST', body: fd })
+            .then(function (r) {
+              return r.json().then(function (j) { return { status: r.status, j: j }; });
+            })
+            .then(function (out) {
+              state = 'idle';
+              if (out.status === 501 || (out.j && out.j.error === 'not_implemented')) {
+                transcriptEl.textContent = 'Backend not deployed. /api/transcribe returned: ' + (out.j && out.j.message ? out.j.message : '501 Not Implemented');
+                transcriptEl.classList.remove('empty');
+                setStatus('Not deployed', 'idle');
+                copyBtn.disabled = true;
+                return;
+              }
+              if (out.status >= 200 && out.status < 300 && out.j && out.j.text) {
+                transcript = out.j.text;
+                transcriptEl.textContent = transcript;
+                transcriptEl.classList.remove('empty');
+                setStatus('Done', 'idle');
+                copyBtn.disabled = !transcript;
+                return;
+              }
+              transcriptEl.textContent = 'Transcription failed (' + out.status + '). ' + ((out.j && out.j.message) || (out.j && out.j.error) || 'Unknown error.');
+              transcriptEl.classList.remove('empty');
+              setStatus('Error', 'idle');
+            })
+            .catch(function (err) {
+              state = 'idle';
+              transcriptEl.textContent = 'Network error talking to /api/transcribe: ' + (err && err.message ? err.message : 'unknown');
+              transcriptEl.classList.remove('empty');
+              setStatus('Error', 'idle');
+            });
+        }
+
+        // Spacebar = push-to-talk, matching the wispr UX.
+        document.addEventListener('keydown', function (e) {
+          if (e.code !== 'Space') return;
+          var tag = (e.target && e.target.tagName) || '';
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
+          if (e.repeat) return;
+          e.preventDefault();
+          startRecording();
+        });
+        document.addEventListener('keyup', function (e) {
+          if (e.code !== 'Space') return;
+          if (state === 'recording') {
+            e.preventDefault();
+            stopRecording();
+          }
+        });
+
+        clearBtn.addEventListener('click', function () {
+          transcript = '';
+          transcriptEl.textContent = 'Transcript will appear here.';
+          transcriptEl.classList.add('empty');
+          copyBtn.disabled = true;
+          setStatus('Idle', 'idle');
+        });
+        copyBtn.addEventListener('click', function () {
+          if (!transcript) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(transcript).then(function () {
+              copyBtn.textContent = 'Copied';
+              setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1200);
+            });
+          }
+        });
+
+        buildPill();
+        setStatus('Idle', 'idle');
+      })();
+    </script>
+  </body>
+</html>
