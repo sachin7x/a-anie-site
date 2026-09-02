@@ -81,14 +81,23 @@
           <div class="row align-items-center">
             <div class="col-lg-6">
               <p class="eyebrow text-muted">A-ANIE DICTATION</p>
-              <h1 id="hero-title" class="display-4 fw-bold">It doesn't simply transcribe what you said.<br/><em class="text-primary">It writes what you meant.</em></h1>
-              <p class="lead hero-sub">Hold a hotkey, speak naturally, get polished text wherever your cursor already is — Gmail, Slack, Notion, VS Code, Terminal, ChatGPT, Cursor, WhatsApp, Obsidian.</p>
+              <h1 id="hero-title" class="display-4 fw-bold">Speak in Hinglish. Send an email that sounds like you, in any of 6 Indian languages.</h1>
+              <p class="lead hero-sub"><em class="text-primary">It doesn't simply transcribe what you said. It writes what you meant.</em> Hold a hotkey, speak naturally, get polished text wherever your cursor already is — Gmail, Slack, Notion, VS Code, Terminal, ChatGPT, Cursor, WhatsApp, Obsidian.</p>
+              <ul class="language-chips list-unstyled d-flex flex-wrap gap-2 mb-4" aria-label="Supported languages">
+                <li><span class="chip">Hinglish</span></li>
+                <li><span class="chip">Hindi</span></li>
+                <li><span class="chip">Tamil</span></li>
+                <li><span class="chip">Telugu</span></li>
+                <li><span class="chip">Bengali</span></li>
+                <li><span class="chip">Marathi</span></li>
+                <li><span class="chip">English-IN</span></li>
+              </ul>
               <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
-                <a href="#download" class="btn btn-primary btn-lg me-2">Download A-Anie — free</a>
+                <a href="#download" class="btn btn-primary btn-lg me-2">Download A-Anie free — works offline, on-device</a>
                 <a href="#how" class="btn btn-outline-primary btn-lg">See it work →</a>
               </div>
               <p class="platform-line text-muted">macOS · Windows · Linux · Chrome extension · iOS dictation key</p>
-              <p class="hint text-muted">Free during early access. No card, no trial, no email gate.</p>
+              <p class="hint text-muted">No account. No email. No upload. You can delete every file from your laptop later and A-Anie won't know.</p>
             </div>
             <div class="col-lg-6">
               <figure class="wave-figure text-center">
@@ -290,23 +299,32 @@
       <!-- Stats Section -->
       <section class="stats py-5 bg-light">
         <div class="container">
-          <h2 class="text-center mb-5">Honest numbers only</h2>
+          <h2 class="text-center mb-5">Built by one person in Kishangarh</h2>
           <div class="row g-4 text-center">
-            <div class="col-md-3">
-              <div class="p-4 bg-white rounded shadow-sm">
-                <div class="display-4 text-primary fw-bold">∞</div>
-                <p class="text-muted mb-0">days still earning every number</p>
+            <div class="col-md-4">
+              <div class="p-4 bg-white rounded shadow-sm h-100">
+                <p class="eyebrow text-muted mb-3">Ship cadence</p>
+                <p class="mb-2"><a href="#changelog" class="text-decoration-none fw-semibold">v0.x — every Friday</a></p>
+                <p class="text-muted small mb-0">A real changelog, generated from the git log. No marketing dates, no fake milestones.</p>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="p-4 bg-white rounded shadow-sm">
-                <div class="display-4 text-danger fw-bold">0</div>
-                <p class="text-muted mb-0">fake users claimed</p>
+            <div class="col-md-4">
+              <div class="p-4 bg-white rounded shadow-sm h-100">
+                <p class="eyebrow text-muted mb-3">Audio handling</p>
+                <p class="mb-2"><a href="data-controls.html" class="text-decoration-none fw-semibold">On-device; never uploaded</a></p>
+                <p class="text-muted small mb-0">Speech processing runs locally. The server only sees the bytes you choose to send.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-4 bg-white rounded shadow-sm h-100">
+                <p class="eyebrow text-muted mb-3">Roadmap</p>
+                <p class="mb-2"><a href="https://github.com/sachin7x/a-anie-site" class="text-decoration-none fw-semibold">Open on GitHub</a></p>
+                <p class="text-muted small mb-0">Issues, milestones, and what's shipping next. Read the code, then decide if you trust it.</p>
               </div>
             </div>
           </div>
           <p class="text-center text-muted mt-4">
-            Early product, solo-built. Real numbers will replace the placeholders as soon as the author has enough of them to share honestly.
+            Early product, solo-built. Real usage numbers will land here once the author has enough of them to share honestly.
             <a href="story.html" class="text-decoration-none underline">Read the story →</a>
           </p>
         </div>
@@ -518,12 +536,24 @@
       <section id="download" class="py-5 bg-light">
         <div class="container text-center">
           <h2 class="mb-4">Ready to try?</h2>
-          <p class="lead mb-5">Join hundreds of early users who've already stopped typing everything out.</p>
-          <div>
-            <a href="#top" class="btn btn-outline-primary me-2">← Back to top</a>
-            <a href="login.html" class="btn btn-primary">Get started — Log in or sign up</a>
+          <p class="credibility-strip text-muted small mb-4">
+            Built by Anjali from Kishangarh. v0.x ships every Friday.
+            <a href="#changelog" class="text-decoration-none ms-1">Open changelog</a>
+            <span class="mx-1">·</span>
+            <a href="data-controls.html" class="text-decoration-none">On-device, your audio never uploads</a>
+          </p>
+          <p class="lead mb-4">macOS · Windows · Linux. ~40 MB. You can delete every file from your laptop later and A-Anie won't know.</p>
+          <div class="mb-3">
+            <a href="login.html" class="btn btn-primary btn-lg me-2">Download A-Anie free — works offline, on-device</a>
+            <a href="#changelog" class="btn btn-outline-primary btn-lg">Read the changelog →</a>
           </div>
-          <p class="mt-4 text-muted small">
+          <p class="mt-3 text-muted small">
+            No account. No email. No upload. Free during early access. No card, no trial, no email gate.
+          </p>
+          <p class="mt-3">
+            <a href="#top" class="btn btn-outline-secondary btn-sm">← Back to top</a>
+          </p>
+          <p class="mt-3 text-muted small">
             <a href="mailto:sachin@a-anie.example?subject=Early%20access%20request" class="text-decoration-none">
               Have questions? Email sachin@a-anie.example
             </a>
@@ -544,6 +574,8 @@
         </p>
         <p class="mb-0 small">
           &copy; <span id="year"></span> A-Anie. All rights reserved.
+          <span class="mx-2">·</span>
+          <a href="/.well-known/security.txt" class="text-white text-decoration-none">Security disclosure</a>
         </p>
       </div>
     </footer>

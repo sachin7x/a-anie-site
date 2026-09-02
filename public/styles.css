@@ -366,6 +366,41 @@ h2.text-center {
   margin: 0 0 36px;
 }
 
+/* Hero language chips */
+.language-chips { margin: 0 0 28px; }
+.chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--ink-2);
+  background: #fff;
+  border: 1px solid rgba(19, 19, 19, .12);
+  border-radius: 999px;
+  padding: 6px 12px;
+  line-height: 1;
+}
+
+/* Single-developer credibility strip above download CTAs */
+.credibility-strip,
+.credibility-stip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .02em;
+  color: var(--text-muted);
+}
+.credibility-strip a,
+.credibility-stip a {
+  color: var(--accent-lav-line);
+  text-decoration: none;
+}
+.credibility-strip a:hover,
+.credibility-strip a:focus-visible,
+.credibility-stip a:hover,
+.credibility-stip a:focus-visible {
+  text-decoration: underline;
+}
+
 /* Mic button - keeps custom waveform button styling */
 .mic-btn {
   display: inline-flex;
