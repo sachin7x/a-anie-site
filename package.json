@@ -1,0 +1,31 @@
+{
+  "name": "a-anie-site",
+  "version": "1.0.0",
+  "description": "You are the lead product designer, senior frontend engineer, brand designer, UX writer, and conversion strategist for A-Anie.",
+  "main": "script.js",
+  "scripts": {
+    "smoke": "node scripts/smoke.mjs",
+    "smoke:prod": "BASE_URL=https://aanie-frontend.vercel.app node scripts/smoke.mjs",
+    "smoke:api": "node scripts/api-smoke.mjs",
+    "smoke:all": "npm run smoke:prod && npm run smoke:api",
+    "serve": "python3 -m http.server 8000 --directory public",
+    "test": "npm run smoke:all",
+    "deploy": "bash scripts/deploy.sh",
+    "deploy:dry": "bash scripts/deploy.sh --dry"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sachin7x/a-anie-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sachin7x/a-anie-site/issues"
+  },
+  "homepage": "https://github.com/sachin7x/a-anie-site#readme",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}
