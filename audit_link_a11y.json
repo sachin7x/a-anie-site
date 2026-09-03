@@ -1,0 +1,491 @@
+{
+  "links": {
+    "total": 0,
+    "broken": [
+      {
+        "href": "data:image/svg+xml;utf8,<svg xmlns=",
+        "testUrl": "https://aanie-frontend.vercel.app/data:image/svg+xml;utf8,<svg xmlns=",
+        "status": 404
+      },
+      {
+        "href": "https://fonts.googleapis.com",
+        "testUrl": "https://fonts.googleapis.com",
+        "status": 404
+      },
+      {
+        "href": "https://fonts.gstatic.com",
+        "testUrl": "https://fonts.gstatic.com",
+        "status": 404
+      },
+      {
+        "href": "https://a-anie.example/",
+        "testUrl": "https://a-anie.example/",
+        "reason": "Network / Fetch Failed"
+      },
+      {
+        "href": "https://medium.com/jeroen-rosenberg/english-is-the-new-programming-language-to-learn-ea113bdc5ba6",
+        "testUrl": "https://medium.com/jeroen-rosenberg/english-is-the-new-programming-language-to-learn-ea113bdc5ba6",
+        "status": 403
+      }
+    ],
+    "valid": [
+      {
+        "href": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+        "testUrl": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+        "status": 200
+      },
+      {
+        "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+        "testUrl": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+        "status": 200
+      },
+      {
+        "href": "styles.css",
+        "testUrl": "https://aanie-frontend.vercel.app/styles.css",
+        "status": 200
+      },
+      {
+        "href": "/",
+        "testUrl": "https://aanie-frontend.vercel.app/",
+        "status": 200
+      },
+      {
+        "href": "/how-it-works",
+        "testUrl": "https://aanie-frontend.vercel.app/how-it-works",
+        "status": 200
+      },
+      {
+        "href": "/app",
+        "testUrl": "https://aanie-frontend.vercel.app/app",
+        "status": 200
+      },
+      {
+        "href": "/demo",
+        "testUrl": "https://aanie-frontend.vercel.app/demo",
+        "status": 200
+      },
+      {
+        "href": "/pricing",
+        "testUrl": "https://aanie-frontend.vercel.app/pricing",
+        "status": 200
+      },
+      {
+        "href": "/story",
+        "testUrl": "https://aanie-frontend.vercel.app/story",
+        "status": 200
+      },
+      {
+        "href": "/data-controls",
+        "testUrl": "https://aanie-frontend.vercel.app/data-controls",
+        "status": 200
+      },
+      {
+        "href": "/security",
+        "testUrl": "https://aanie-frontend.vercel.app/security",
+        "status": 200
+      },
+      {
+        "href": "/careers",
+        "testUrl": "https://aanie-frontend.vercel.app/careers",
+        "status": 200
+      },
+      {
+        "href": "/login",
+        "testUrl": "https://aanie-frontend.vercel.app/login",
+        "status": 200
+      },
+      {
+        "href": "/#download",
+        "testUrl": "https://aanie-frontend.vercel.app/#download",
+        "status": 200
+      },
+      {
+        "href": "demo/index.html",
+        "testUrl": "https://aanie-frontend.vercel.app/demo/index.html",
+        "status": 200
+      },
+      {
+        "href": "/.well-known/security.txt",
+        "testUrl": "https://aanie-frontend.vercel.app/.well-known/security.txt",
+        "status": 200
+      },
+      {
+        "href": "index.html#how",
+        "testUrl": "https://aanie-frontend.vercel.app/index.html#how",
+        "status": 200
+      },
+      {
+        "href": "app",
+        "testUrl": "https://aanie-frontend.vercel.app/app",
+        "status": 200
+      },
+      {
+        "href": "how-it-works",
+        "testUrl": "https://aanie-frontend.vercel.app/how-it-works",
+        "status": 200
+      },
+      {
+        "href": "pricing",
+        "testUrl": "https://aanie-frontend.vercel.app/pricing",
+        "status": 200
+      },
+      {
+        "href": "changelog",
+        "testUrl": "https://aanie-frontend.vercel.app/changelog",
+        "status": 200
+      },
+      {
+        "href": "story",
+        "testUrl": "https://aanie-frontend.vercel.app/story",
+        "status": 200
+      },
+      {
+        "href": "contact",
+        "testUrl": "https://aanie-frontend.vercel.app/contact",
+        "status": 200
+      },
+      {
+        "href": "careers",
+        "testUrl": "https://aanie-frontend.vercel.app/careers",
+        "status": 200
+      },
+      {
+        "href": "login",
+        "testUrl": "https://aanie-frontend.vercel.app/login",
+        "status": 200
+      },
+      {
+        "href": "data-controls",
+        "testUrl": "https://aanie-frontend.vercel.app/data-controls",
+        "status": 200
+      },
+      {
+        "href": "security",
+        "testUrl": "https://aanie-frontend.vercel.app/security",
+        "status": 200
+      },
+      {
+        "href": "accessibility",
+        "testUrl": "https://aanie-frontend.vercel.app/accessibility",
+        "status": 200
+      },
+      {
+        "href": "terms",
+        "testUrl": "https://aanie-frontend.vercel.app/terms",
+        "status": 200
+      },
+      {
+        "href": "how-it-works.html",
+        "testUrl": "https://aanie-frontend.vercel.app/how-it-works.html",
+        "status": 200
+      },
+      {
+        "href": "pricing.html",
+        "testUrl": "https://aanie-frontend.vercel.app/pricing.html",
+        "status": 200
+      },
+      {
+        "href": "index.html#changelog",
+        "testUrl": "https://aanie-frontend.vercel.app/index.html#changelog",
+        "status": 200
+      },
+      {
+        "href": "story.html",
+        "testUrl": "https://aanie-frontend.vercel.app/story.html",
+        "status": 200
+      },
+      {
+        "href": "careers.html",
+        "testUrl": "https://aanie-frontend.vercel.app/careers.html",
+        "status": 200
+      },
+      {
+        "href": "contact.html",
+        "testUrl": "https://aanie-frontend.vercel.app/contact.html",
+        "status": 200
+      },
+      {
+        "href": "support.html",
+        "testUrl": "https://aanie-frontend.vercel.app/support.html",
+        "status": 200
+      },
+      {
+        "href": "login.html",
+        "testUrl": "https://aanie-frontend.vercel.app/login.html",
+        "status": 200
+      },
+      {
+        "href": "data-controls.html",
+        "testUrl": "https://aanie-frontend.vercel.app/data-controls.html",
+        "status": 200
+      },
+      {
+        "href": "accessibility.html",
+        "testUrl": "https://aanie-frontend.vercel.app/accessibility.html",
+        "status": 200
+      },
+      {
+        "href": "terms.html",
+        "testUrl": "https://aanie-frontend.vercel.app/terms.html",
+        "status": 200
+      },
+      {
+        "href": "support",
+        "testUrl": "https://aanie-frontend.vercel.app/support",
+        "status": 200
+      },
+      {
+        "href": "index.html#languages",
+        "testUrl": "https://aanie-frontend.vercel.app/index.html#languages",
+        "status": 200
+      },
+      {
+        "href": "index.html#contact",
+        "testUrl": "https://aanie-frontend.vercel.app/index.html#contact",
+        "status": 200
+      },
+      {
+        "href": "index.html#privacy",
+        "testUrl": "https://aanie-frontend.vercel.app/index.html#privacy",
+        "status": 200
+      },
+      {
+        "href": "index.html#download",
+        "testUrl": "https://aanie-frontend.vercel.app/index.html#download",
+        "status": 200
+      },
+      {
+        "href": "https://github.com/sachin7x/a-anie-site",
+        "testUrl": "https://github.com/sachin7x/a-anie-site",
+        "status": 200
+      },
+      {
+        "href": "https://wisprflow.ai/privacy",
+        "testUrl": "https://wisprflow.ai/privacy",
+        "status": 200
+      }
+    ]
+  },
+  "forms": {},
+  "a11y": {
+    "accessibility.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "app.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 4,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h1",
+          "to": "h4"
+        }
+      ]
+    },
+    "careers.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "changelog.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "contact.html": {
+      "h1Count": 1,
+      "inputsCount": 4,
+      "buttonsCount": 2,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "data-controls.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "how-it-works.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h6"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "index.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 5,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        }
+      ]
+    },
+    "login.html": {
+      "h1Count": 1,
+      "inputsCount": 6,
+      "buttonsCount": 3,
+      "issues": []
+    },
+    "pricing.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 7,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h1",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "security.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "signup.html": {
+      "h1Count": 1,
+      "inputsCount": 7,
+      "buttonsCount": 3,
+      "issues": []
+    },
+    "story.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h5"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h6"
+        },
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "support.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    },
+    "terms.html": {
+      "h1Count": 1,
+      "inputsCount": 0,
+      "buttonsCount": 1,
+      "issues": [
+        {
+          "type": "heading_skip",
+          "from": "h2",
+          "to": "h4"
+        }
+      ]
+    }
+  },
+  "routesChecked": {}
+}
