@@ -9,6 +9,18 @@
 // `{ok:false, error}`) so the front-end can handle it the same way it
 // would handle a transient backend failure.
 //
+// What the six-phase audio-processing-failure contract says about
+// this endpoint's current state (see
+// harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md for the full contract):
+//   - Phase 0 (Capture and finalize) is implemented client-side by
+//     public/app.html via getUserMedia + MediaRecorder.
+//   - Phases 1-5 (Promote, Recognize, Clean up, Commit, Deliver) are
+//     not implemented in this web surface. The /app page does not
+//     send audio to any transcription service; it surfaces this 501
+//     honestly so the user knows what is and is not attached.
+//   - No aidictation cloud STT, no Groq / OpenAI / Ollama call, no
+//     Supabase round-trip, no auth, no billing is involved.
+//
 // When the server-side transcription path is built, replace the body
 // of this handler. The function signature, content-type handling, and
 // response shape are all already correct for the front-end to call.
@@ -37,6 +49,6 @@ export default async function handler(req, res) {
   // error string in the textbox so users know what happened.
   return res.status(501).json({
     ok: false,
-    error: 'Transcription endpoint is not deployed. Use the A-Anie desktop app for real transcription. The web demo on this page is for mic-permission and waveform testing only.'
+    error: 'Transcription endpoint is not deployed. The /app web surface only provides phase 0 (browser capture); phases 1-5 (Promote, Recognize, Clean up, Commit, Deliver) are not built here. No audio is sent to a transcription service by this stub. Use the A-Anie desktop app for real transcription; the web demo on this page is for mic-permission and waveform testing only. See harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md for the full six-phase model.'
   });
 }
