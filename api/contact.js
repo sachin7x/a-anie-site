@@ -25,15 +25,22 @@ export default async function handler(req, res) {
     console.log('Contact form submission:', { name, email, topic, message });
 
     // In a real implementation you would send an email here.
-    // Example (pseudo):
+    // For now, the message lands in the function log only. The success
+    // string below is honest about that — the user is told exactly what
+    // happened (logged) and what to do for time-sensitive mail (write
+    // directly to the address). See harness/state/facts.md F011 and
+    // harness/state/decisions.md D001 for the no-fabrication policy.
+    //
+    // Example (pseudo) once the email step is wired up:
     // await sendEmail({
     //   to: 'sachin@a-anie.example',
     //   subject: `[A-Anie Contact] ${topic} from ${name}`,
     //   text: `Name: ${name}\nEmail: ${email}\nTopic: ${topic}\n\nMessage:\n${message}`
     // });
 
-    // Return success
-    return res.status(200).json({ message: 'Message sent. Thanks — Sachin will reply soon.' });
+    return res.status(200).json({
+      message: 'Logged. I read these in the Vercel function log when I check the deploy. For anything time-sensitive, write directly to sachin@a-anie.example.'
+    });
   } catch (err) {
     console.error('Contact form error:', err);
     return res.status(500).json({ error: 'Could not send. Please try again later.' });

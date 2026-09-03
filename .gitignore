@@ -4,3 +4,7 @@ node_modules/
 .DS_Store
 .vercel
 .env*
+
+# Local reference clones — read-only, large, never committed.
+# Re-clone with: git clone --depth 1 https://github.com/writingmate/aidictation harness/reference/aidictation
+harness/reference/
