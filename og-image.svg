@@ -1,0 +1,110 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Open Graph Image for A-Anie (Flat Token-Compliant per SPEC.md §3) -->
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FDF8E8"/>
+
+  <!-- Outer Canvas Border -->
+  <rect x="40" y="40" width="1120" height="550" rx="24" fill="none" stroke="#E4DCCF" stroke-width="1.5"/>
+
+  <!-- Origin Pill Badge -->
+  <g transform="translate(600, 95)">
+    <rect x="-135" y="-16" width="270" height="32" rx="16" fill="#F2ECE0" stroke="#DFD7C7" stroke-width="1.5"/>
+    <circle cx="-110" cy="0" r="4.5" fill="#F5B04C"/>
+    <text x="-95" y="5" font-family="Outfit, Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#5A5A55" letter-spacing="0.5">
+      BUILT IN KISHANGARH, INDIA
+    </text>
+  </g>
+
+  <!-- Main Title & Tagline -->
+  <text x="600" y="175" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="56" font-weight="800" fill="#131313" letter-spacing="-1">
+    A-Anie
+  </text>
+  <text x="600" y="215" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="22" font-weight="400" fill="#5A5A55">
+    Speak in your natural flow. It types structured, formatted text anywhere.
+  </text>
+
+  <!-- Left: Voice Input Card -->
+  <g transform="translate(230, 370)">
+    <rect x="-130" y="-80" width="260" height="160" rx="18" fill="#FFFFFF" stroke="#131313" stroke-width="2"/>
+    <!-- Mic icon -->
+    <rect x="-100" y="-45" width="24" height="36" rx="12" fill="#E4CCFA" stroke="#131313" stroke-width="2"/>
+    <path d="M-106 -25 C-106 -10, -70 -10, -70 -25" fill="none" stroke="#131313" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-88" y1="-10" x2="-88" y2="2" stroke="#131313" stroke-width="2" stroke-linecap="round"/>
+    <!-- Voice waveform lines -->
+    <line x1="-50" y1="-25" x2="-50" y2="-5" stroke="#131313" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-38" y1="-38" x2="-38" y2="8" stroke="#131313" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-26" y1="-48" x2="-26" y2="18" stroke="#131313" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-14" y1="-30" x2="-14" y2="0" stroke="#131313" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-2" y1="-42" x2="-2" y2="12" stroke="#131313" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="10" y1="-20" x2="10" y2="-10" stroke="#131313" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <text x="-100" y="35" font-family="Outfit, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#131313">
+      Raw Voice Audio
+    </text>
+    <text x="-100" y="55" font-family="Outfit, Inter, system-ui, sans-serif" font-size="12" fill="#5A5A55">
+      Hinglish, English, Hindi...
+    </text>
+  </g>
+
+  <!-- Flow Connector 1 -->
+  <path d="M370 370 L460 370" fill="none" stroke="#131313" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+  <polygon points="465,370 455,364 455,376" fill="#131313"/>
+
+  <!-- Center: Engine Card -->
+  <g transform="translate(600, 370)">
+    <rect x="-110" y="-80" width="220" height="160" rx="18" fill="#FFFFFF" stroke="#131313" stroke-width="2"/>
+    <!-- Central geometric node -->
+    <circle cx="0" cy="-25" r="28" fill="#E4CCFA" stroke="#131313" stroke-width="2"/>
+    <circle cx="0" cy="-25" r="10" fill="#131313"/>
+    
+    <text x="0" y="32" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#131313">
+      Zero-Prompt Engine
+    </text>
+    <text x="0" y="54" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="12" fill="#5A5A55">
+      Context Aware &amp; Instant
+    </text>
+  </g>
+
+  <!-- Flow Connector 2 -->
+  <path d="M720 370 L810 370" fill="none" stroke="#131313" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
+  <polygon points="815,370 805,364 805,376" fill="#131313"/>
+
+  <!-- Right: Direct Active Window Injection -->
+  <g transform="translate(970, 370)">
+    <rect x="-130" y="-80" width="260" height="160" rx="18" fill="#FFFFFF" stroke="#131313" stroke-width="2"/>
+    <!-- Window top bar -->
+    <rect x="-130" y="-80" width="260" height="30" rx="18" fill="#F4F0E8" stroke="#131313" stroke-width="2"/>
+    <rect x="-130" y="-60" width="260" height="10" fill="#F4F0E8"/>
+    <line x1="-130" y1="-50" x2="130" y2="-50" stroke="#131313" stroke-width="2"/>
+    <circle cx="-110" cy="-65" r="3.5" fill="#131313"/>
+    <circle cx="-98" cy="-65" r="3.5" fill="#131313"/>
+    <circle cx="-86" cy="-65" r="3.5" fill="#131313"/>
+    
+    <!-- Output text -->
+    <text x="-105" y="-15" font-family="Outfit, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#131313">
+      "Sounds great! Let's ship it."
+    </text>
+    <rect x="80" y="-27" width="2.5" height="16" fill="#131313"/>
+
+    <text x="-105" y="32" font-family="Outfit, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#131313">
+      Direct App Injection
+    </text>
+    <text x="-105" y="52" font-family="Outfit, Inter, system-ui, sans-serif" font-size="12" fill="#5A5A55">
+      Slack, Notion, VS Code, Docs
+    </text>
+  </g>
+
+  <!-- Bottom Badges -->
+  <g transform="translate(600, 545)">
+    <text x="-220" y="0" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#131313">
+      ✓ Universal Hotkey
+    </text>
+    <text x="0" y="0" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#131313">
+      ✓ Private &amp; Secure
+    </text>
+    <text x="220" y="0" text-anchor="middle" font-family="Outfit, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#131313">
+      ✓ Instant Accessibility
+    </text>
+  </g>
+</svg>

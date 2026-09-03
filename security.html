@@ -1,0 +1,243 @@
+<!doctype html>
+<!--
+  Security & trust page — honest A-Anie scope.
+  Why: visitors from enterprise or security review ask "do you have SOC 2,
+  ISO 27001, a pen test, a bug bounty." The honest answer for a one-person
+  product is "no, and here's what we do and don't have." Modeled on the
+  structure of the Wispr Flow Trust Center (https://wisprflow.ai/privacy
+  + /Users/sachin/Documents/Wispr Flow/Wispr Flow's Trust Center
+  documentation/) but the content is scoped to what A-Anie actually is.
+  Delete when: the page becomes a real Trust Center with certifications
+  to point at. Until then, it is the truthful version.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Security & trust — A-Anie</title>
+<meta name="description" content="A-Anie's security and trust posture, honestly scoped: solo developer, no SOC 2, no pen test, no certifications held. What data we store, what we don't, and how to report a vulnerability." />
+<meta name="theme-color" content="#FDFCE8" />
+<meta name="color-scheme" content="light" />
+<meta name="canonical" content="https://aanie-frontend.vercel.app/security" />
+<meta property="og:title" content="Security & trust — A-Anie" />
+<meta property="og:description" content="A-Anie's security and trust posture, honestly scoped." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://aanie-frontend.vercel.app/security" />
+<meta property="og:image" content="og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .trust-section{padding:64px 0 24px}
+  .trust-section h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,5vw,3.25rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 12px;max-width:18ch}
+  .trust-date{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin:0 0 32px}
+  .trust-block{background:#fff;border:1px solid rgba(19,19,19,.08);border-radius:var(--radius-card);padding:28px 32px;margin-bottom:24px}
+  .trust-block h2{font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:0 0 12px;padding:0;border:0}
+  .trust-block h3{font-family:var(--font-sans);font-weight:600;font-size:1rem;margin:18px 0 6px;letter-spacing:.01em}
+  .trust-block p,.trust-block li{font-size:15px;color:var(--ink-2);line-height:1.65;max-width:68ch}
+  .trust-block ul{padding-left:22px;margin:0 0 12px}
+  .trust-block li{margin-bottom:6px}
+  .trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0 6px}
+  .trust-card{background:#FDFCE8;border:1px solid rgba(19,19,19,.08);border-radius:var(--radius-card);padding:18px 20px}
+  .trust-card .label{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin:0 0 6px}
+  .trust-card .value{font-family:var(--font-display);font-size:1.15rem;line-height:1.2;margin:0;color:var(--ink)}
+  .trust-card .value.no{color:#8a3a3a}
+  .trust-card .value.yes{color:#2f6b3a}
+  .trust-card .value.partial{color:#7a5a14}
+  .trust-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+  .trust-table th,.trust-table td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(19,19,19,.08);vertical-align:top}
+  .trust-table th{font-family:var(--font-sans);font-weight:600;background:rgba(19,19,19,.03)}
+  .trust-pgp{font-family:var(--font-mono);font-size:12px;background:#f4f4f4;padding:12px;border-radius:6px;overflow:auto;margin:8px 0 0}
+  .trust-note{font-size:13px;color:var(--text-muted);margin-top:32px;max-width:68ch}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="A-Anie — home">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="8" fill="#131313"/>
+        <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+      </svg>
+      <span class="brand-name">A-Anie</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="navMenu" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="app">App</a>
+      <a href="index.html#languages">Languages</a>
+      <a href="pricing">Pricing</a>
+      <a href="how-it-works">Docs</a>
+      <a href="index.html#changelog">Changelog</a>
+      <a href="story">Story</a>
+      <a href="careers">Careers</a>
+      <a href="accessibility">Accessibility</a>
+      <a href="support">Support</a>
+      <a href="changelog">Changelog</a>
+      <a href="security" class="nav-link-secondary" aria-current="page">Trust</a>
+      <a class="cta-link" href="index.html#download">Download A-Anie</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="container trust-section">
+  <h1>Security &amp; trust, honestly scoped.</h1>
+  <p class="trust-date">Last updated: 3 September 2026 · A-Anie is a solo-built product.</p>
+
+  <div class="trust-block">
+    <h2>The one-line answer</h2>
+    <p>A-Anie is a voice-to-text desktop app built by one developer in Kishangarh. We do not hold SOC 2, ISO 27001, HITRUST, a bug-bounty program, or a third-party penetration test. We do not have an enterprise sales motion. If your security review requires any of those, this page will not pass it &mdash; and that is the honest answer, not a gap we plan to close quietly.</p>
+    <p>This page exists so that what we <em>do</em> have is documented, what we <em>don't</em> have is named, and how to reach the developer about a security issue is one click away. The structure mirrors the kind of Trust Center a venture-funded competitor would publish &mdash; for reference, see <a href="https://wisprflow.ai/privacy" rel="noopener">Wispr Flow's public privacy page</a> and their full enterprise Trust Center, which includes SOC 2 Type 1 (April 2026), an ISO 27001 letter, and a pen-test remediation report.</p>
+  </div>
+
+  <div class="trust-block">
+    <h2>What A-Anie is, at a glance</h2>
+    <div class="trust-grid">
+      <div class="trust-card"><p class="label">Builder</p><p class="value">Sachin Dohdiya</p></div>
+      <div class="trust-card"><p class="label">Where</p><p class="value">Kishangarh, India</p></div>
+      <div class="trust-card"><p class="label">Headcount</p><p class="value">One</p></div>
+      <div class="trust-card"><p class="label">Hosted at</p><p class="value">Vercel</p></div>
+      <div class="trust-card"><p class="label">Source code</p><p class="value partial">Closed (early access)</p></div>
+      <div class="trust-card"><p class="label">Support</p><p class="value">Email only</p></div>
+    </div>
+  </div>
+
+  <div class="trust-block">
+    <h2>Certifications &mdash; the honest table</h2>
+    <table class="trust-table" aria-label="Certifications and attestations">
+      <thead>
+        <tr><th>Attestation</th><th>Status</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SOC 2 Type 1</td><td><span class="trust-card"><span class="value no">Not held</span></span></td><td>No auditor engaged. Out of scope for the current product stage.</td></tr>
+        <tr><td>SOC 2 Type 2</td><td><span class="trust-card"><span class="value no">Not held</span></span></td><td>Same as above.</td></tr>
+        <tr><td>ISO 27001</td><td><span class="trust-card"><span class="value no">Not held</span></span></td><td>No ISMS in operation. See the &ldquo;Where we'd start&rdquo; section below for what this would require.</td></tr>
+        <tr><td>HIPAA</td><td><span class="trust-card"><span class="value no">Not held</span></span></td><td>A-Anie is not a covered entity or business associate.</td></tr>
+        <tr><td>Third-party penetration test</td><td><span class="trust-card"><span class="value no">Not performed</span></span></td><td>No external pen test has been run against the marketing site, the desktop app, or the backend.</td></tr>
+        <tr><td>Vulnerability scan</td><td><span class="trust-card"><span class="value partial">Manual review only</span></span></td><td>The site is small (7 static pages + 1 serverless function). Dependencies (Bootstrap 5, Google Fonts) are pinned via SRI.</td></tr>
+        <tr><td>Bug-bounty program</td><td><span class="trust-card"><span class="value no">Not operated</span></span></td><td>Reports are accepted and acknowledged on a best-effort basis. See disclosure below.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="trust-block">
+    <h2>What we do, instead</h2>
+    <h3>Subresource Integrity on every third-party asset</h3>
+    <p>The marketing site is seven static HTML files served by Vercel. Every external stylesheet and script reference carries a Subresource Integrity (SRI) hash. A previous production incident in which a fabricated SRI hash silently broke the stylesheet is the reason this is checked in code review, not just at deploy time.</p>
+
+    <h3>Security disclosure address published at <code>/.well-known/security.txt</code></h3>
+    <p>RFC 9116 compliant. The file lives at <a href="/.well-known/security.txt"><code>/.well-known/security.txt</code></a> and is the canonical place to send a vulnerability report. It is referenced from the footer of every page on this site.</p>
+
+    <h3>No third-party analytics, advertising, or session-replay</h3>
+    <p>The site does not run Google Analytics, Meta Pixel, Hotjar, FullStory, Segment, Mixpanel, or any equivalent. No third-party JavaScript loads on the marketing pages beyond the Bootstrap 5 CSS/JS bundle (SRI-pinned) and Google Fonts.</p>
+
+    <h3>No audio retention</h3>
+    <p>The desktop app processes voice input to produce text and does not store the audio. Transcripts are kept against the user account for the duration of the account; deletion is immediate on account removal. See <a href="data-controls">Data Controls</a> for the full list.</p>
+
+    <h3>One serverless function, narrow surface</h3>
+    <p><code>api/contact.js</code> is the only server-side code on this site. It accepts a POST from the contact form, validates that the input is a name + email + short message, and emails the developer. There is no database, no auth, no user state, no admin panel.</p>
+
+    <h3>No build step, no Node server, no transpiled code in production</h3>
+    <p>Production is the contents of <code>public/</code> exactly as it sits in the repo. There is nothing to compile, nothing to bundle, nothing that runs server-side other than <code>api/contact.js</code>. This means the production attack surface is what you see in the HTML.</p>
+  </div>
+
+  <div class="trust-block">
+    <h2>Reporting a vulnerability</h2>
+    <p>Send details to the address listed in <a href="/.well-known/security.txt">security.txt</a>. Include a clear subject line, a reproducible proof of concept, and the impact you observed. Please do not file a public GitHub issue for security bugs.</p>
+    <p>What happens next, in the order it happens:</p>
+    <ul>
+      <li>An acknowledgement within 7 days. If you don't get one, write again &mdash; it may have been caught by spam filtering.</li>
+      <li>A triage decision within 30 days: accepted, duplicate, won't fix, or needs more info.</li>
+      <li>A fix on a best-effort timeline. Severity determines the calendar; critical issues are worked on first.</li>
+      <li>Public acknowledgement, if you want one, in the changelog after the fix ships.</li>
+    </ul>
+    <p>No monetary bounty. No SLA in the enterprise sense. No coordinated disclosure timeline. This is what one developer can promise, honestly.</p>
+  </div>
+
+  <div class="trust-block">
+    <h2>Where we'd start, if we went enterprise</h2>
+    <p>For a reader who is comparing A-Anie to a venture-funded competitor's Trust Center and trying to map the gap: the categories below are the ones a credible enterprise security program would need to cover. They are listed here as the &ldquo;what it would take&rdquo; answer, not as claims.</p>
+    <ul>
+      <li><strong>Information Security Policy + ISMS Manual</strong> &mdash; a written, versioned policy set covering access control, data classification, change management, vendor management, incident response, business continuity, and personnel security.</li>
+      <li><strong>Access Control &amp; Termination Policy</strong> &mdash; who has production access, how access is granted and revoked, MFA enforcement, session policy, principle of least privilege.</li>
+      <li><strong>Data Classification + Data Handling + Data Retention &amp; Disposal</strong> &mdash; the policy trio that defines what data is sensitive, how it is handled, and when it is destroyed.</li>
+      <li><strong>Change Management + SDLC</strong> &mdash; how production changes are reviewed, tested, and approved; how source code is reviewed; how dependencies are kept current.</li>
+      <li><strong>Vendor Management + Risk Assessment</strong> &mdash; how third-party services (Vercel, the STT provider, the payment provider) are evaluated and monitored.</li>
+      <li><strong>Incident Response + Breach Notification</strong> &mdash; a written runbook, named roles (even if the role is &ldquo;the developer&rdquo;), customer notification templates, regulator notification timelines.</li>
+      <li><strong>Asset Management + Baseline Hardening</strong> &mdash; an inventory of systems, hardened base images, patch cadence.</li>
+      <li><strong>AI Policy</strong> &mdash; what model is used, what data is sent to it, what is logged, what is retained, how the model is evaluated for the specific use case.</li>
+      <li><strong>Network Security + Password + Physical Security</strong> &mdash; applicable in different shapes for a hosted SaaS vs. a distributed company, but each is a required section in a SOC 2 audit.</li>
+      <li><strong>Acceptable Use + Personnel Security</strong> &mdash; what employees (here: the developer) are and are not allowed to do with the systems they have access to.</li>
+    </ul>
+    <p>None of these are written. None are in flight. If you are evaluating A-Anie and need any of them, the right next step is to ask whether your timeline tolerates waiting for them, not to interpret this page as a placeholder that will quietly fill in.</p>
+  </div>
+
+  <div class="trust-block">
+    <h2>Related documents</h2>
+    <ul>
+      <li><a href="data-controls">Data Controls</a> &mdash; what data A-Anie stores, what we don't, and how to delete it.</li>
+      <li><a href="terms">Terms of Service</a> &mdash; the legal terms of using the product.</li>
+      <li><a href="/.well-known/security.txt">security.txt</a> &mdash; the canonical disclosure address.</li>
+      <li><a href="https://wisprflow.ai/privacy" rel="noopener">Wispr Flow's privacy page</a> &mdash; the reference for what a venture-funded voice-dictation competitor publishes.</li>
+    </ul>
+  </div>
+
+  <p class="trust-note">If you have read this far: thank you. Most one-person products either don't have a security page at all, or have one that overstates the program. The point of this page is to be the latter's opposite &mdash; to tell you exactly what is here, what isn't, and who to contact if it isn't enough.</p>
+</div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="index.html#how">How it works</a>
+        <a href="app">App</a>
+        <a href="how-it-works">Docs</a>
+        <a href="pricing">Pricing</a>
+          <a href="index.html#changelog">Changelog</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="story">Story</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="login">Log in</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="index.html#privacy">Privacy</a>
+        <a href="terms">Terms</a>
+        <a href="data-controls">Data Controls</a>
+        <a href="security">Security &amp; trust</a>
+        <a href="/.well-known/security.txt">Security disclosure</a>
+      </div>
+      <div>
+        <h4>Solo-built in India</h4>
+        <p class="ms">Designed and built in India by one person.</p>
+        <p class="ms">Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+      <span>No company. No team. Just one developer who stopped typing.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

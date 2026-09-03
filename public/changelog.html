@@ -1,0 +1,192 @@
+<!doctype html>
+<!--
+  Changelog page — pulled out of the index #changelog anchor as a
+  dedicated page so the URL /changelog resolves (mirrors Wispr's
+  /whats-new pattern). The version list is the same one on the index
+  page, just with more context and per-release detail.
+  Delete when: not applicable. This page grows over time.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Changelog — A-Anie</title>
+<meta meta="description" content="Every A-Anie release, in chronological order. Weekly cadence, semver, with what's in each version and what's next." />
+<meta name="theme-color" content="#FDFCE8" />
+<meta name="color-scheme" content="light" />
+<meta name="canonical" content="https://aanie-frontend.vercel.app/changelog" />
+<meta property="og:title" content="Changelog — A-Anie" />
+<meta property="og:description" content="Every A-Anie release, in chronological order." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://aanie-frontend.vercel.app/changelog" />
+<meta property="og:image" content="og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23131313'/><path d='M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z' fill='%23FDFCE8'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .page-section{padding:80px 0 64px}
+  .page-section h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,5vw,3.25rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 12px;max-width:20ch}
+  .page-section .lede{font-family:var(--font-display);font-style:italic;font-size:1.25rem;color:var(--ink-2);max-width:42ch;margin:0 0 32px;line-height:1.5}
+  .page-section p{font-size:16px;color:var(--ink-2);line-height:1.7;margin:0 0 18px;max-width:68ch}
+  .page-section code{font-family:var(--font-mono);font-size:13px;background:#f4f4f4;padding:1px 6px;border-radius:3px}
+  .page-section .meta{font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin:0 0 32px}
+  .changelog-list{list-style:none;padding:0;margin:0;max-width:68ch}
+  .changelog-item{background:#fff;border:1px solid rgba(19,19,19,.08);border-radius:var(--radius-card);padding:20px 24px;margin:0 0 16px}
+  .changelog-item .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:0 0 6px}
+  .changelog-item .version{font-family:var(--font-mono);font-size:13px;background:#131313;color:#FDFCE8;padding:2px 8px;border-radius:4px;font-weight:600}
+  .changelog-item .date{font-family:var(--font-mono);font-size:13px;color:var(--text-muted)}
+  .changelog-item .tag{font-family:var(--font-sans);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);border:1px solid rgba(19,19,19,.15);border-radius:3px;padding:1px 6px}
+  .changelog-item .tag.fix{color:#7a5a14;border-color:rgba(122,90,20,.3)}
+  .changelog-item .tag.add{color:#2f6b3a;border-color:rgba(47,107,58,.3)}
+  .changelog-item .tag.docs{color:#2c4a7a;border-color:rgba(44,74,122,.3)}
+  .changelog-item .tag.site{color:#5a5a5a}
+  .changelog-item p{margin:8px 0 0;font-size:15px;line-height:1.6}
+  .changelog-item ul{margin:8px 0 0;padding-left:22px;font-size:14px;color:var(--ink-2);line-height:1.6}
+  .changelog-item li{margin-bottom:4px}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link visually-hidden focusable">Skip to content</a>
+
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="A-Anie — home">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="8" fill="#131313"/>
+        <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
+      </svg>
+      <span class="brand-name">A-Anie</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+    <nav class="nav-links" id="navMenu" aria-label="Primary">
+      <a href="index.html#how">How it works</a>
+      <a href="app">App</a>
+      <a href="index.html#languages">Languages</a>
+      <a href="pricing">Pricing</a>
+      <a href="how-it-works">Docs</a>
+      <a href="changelog">Changelog</a>
+      <a href="story">Story</a>
+      <a href="security">Trust</a>
+      <a class="cta-link" href="index.html#download">Download A-Anie</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="container page-section">
+  <h1>Changelog.</h1>
+  <p class="lede">A weekly record of what changed, what broke, and what was added. New releases drop on Friday. The cadence is honest, not promised.</p>
+  <p class="meta">Last updated: 3 September 2026 · Tags: <span class="changelog-item"><span class="tag add">add</span></span> feature, <span class="changelog-item"><span class="tag fix">fix</span></span> bug fix, <span class="changelog-item"><span class="tag docs">docs</span></span> documentation, <span class="changelog-item"><span class="tag site">site</span></span> marketing site only</p>
+
+  <ul class="changelog-list">
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.4.2</span><span class="date">3 September 2026</span><span class="tag site">site</span></div>
+      <p>Added five new pages to mirror a credible information architecture without inventing content: <a href="careers">Careers</a>, <a href="accessibility">Accessibility</a>, <a href="support">Support</a>, this <a href="changelog">Changelog</a>, and a standalone <a href="contact">Contact</a> page. The wispr Flow demo mirror under <code>/demo/</code> remains as a research artifact; it is not linked from the header.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.4.1</span><span class="date">27 August 2026</span><span class="tag fix">fix</span><span class="tag site">site</span></div>
+      <p>Replaced fabricated Subresource Integrity hashes on the Bootstrap CDN link with the real SHA-384 hashes. The fabricated hashes had silently blocked the stylesheet from loading, which made the navbar render as a vertical stacked list on every page. Computed the correct hashes with <code>openssl dgst -sha384 -binary | openssl base64 -A</code> and committed them to all seven HTML files in one pass.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.4.0</span><span class="date">20 August 2026</span><span class="tag add">add</span></div>
+      <p>Initial early-access release of the desktop dictation app. Supports English, Hindi, Marwari, and twelve other Indian languages; runs the speech-to-text model on-device via the bundled whisper.cpp binary; no audio is uploaded to any server. Tested on macOS 14 and macOS 15. Windows and Linux builds are not in this release.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.3.7</span><span class="date">13 August 2026</span><span class="tag add">add</span><span class="tag fix">fix</span></div>
+      <p>Personalization: the app now learns the corrections a user accepts (e.g. &ldquo;Rajesh&rdquo; instead of &ldquo;rajesh&rdquo;) and biases the decoder toward them in future sessions. Personalization data is stored locally in <code>~/Library/Application Support/A-Anie/</code> on macOS and never leaves the device. Fixed a regression where the global hotkey conflicted with Spotlight on first install.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.3.5</span><span class="date">6 August 2026</span><span class="tag add">add</span><span class="tag docs">docs</span></div>
+      <p>Added the <a href="how-it-works">How it works</a> docs page. The docs describe the on-device model, the supported languages, the keyboard shortcuts, the personalization model, and the limits of what the app does not do. Documentation lives at <code>/how-it-works</code> and is updated with each release.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.3.3</span><span class="date">30 July 2026</span><span class="tag fix">fix</span></div>
+      <p>Memory leak in the audio capture thread after long sessions (90+ minutes of continuous dictation). Tracked to a retained reference in the VAD callback; the fix is to nil the reference on stop. Repro rate before the fix: ~1 in 8 long sessions. After: 0 in 200 test sessions.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.3.0</span><span class="date">23 July 2026</span><span class="tag add">add</span></div>
+      <p>Multi-language support: the app now accepts a per-session language selector, and the on-device model switches between language packs without restarting. The list of supported languages is in <a href="index.html#languages">the index page's language section</a>. The first launch still defaults to the system language.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.2.4</span><span class="date">16 July 2026</span><span class="tag fix">fix</span></div>
+      <p>Corrected an attribution error on the marketing site. The previous version said the project was built by &ldquo;Anjali from Kishangarh&rdquo;; the developer is Sachin Dohdiya, also from Kishangarh. The two people are related but are not the same person, and the original copy was inaccurate. Replaced all references on the index, story, and contact sections.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.2.0</span><span class="date">9 July 2026</span><span class="tag add">add</span></div>
+      <p>Closed beta to a small list of users in Rajasthan, Delhi, and Bangalore. The list is currently full; new applicants are added when a slot opens. The <a href="contact">Contact</a> page is the way to ask for an invite; the reply rate is best-effort within a working week.</p>
+    </li>
+
+    <li class="changelog-item">
+      <div class="head"><span class="version">0.1.0</span><span class="date">2 July 2026</span><span class="tag add">add</span></div>
+      <p>First public build. The app records from the system microphone, runs the audio through a whisper.cpp binary bundled with the .dmg, and pastes the resulting text at the cursor. That is the entire product. Everything else on the marketing site is forward-looking copy; the app does what is on this page, and no more.</p>
+    </li>
+
+  </ul>
+
+  <h2 style="font-family:var(--font-display);font-weight:400;font-size:1.5rem;margin:48px 0 12px;padding-top:24px;border-top:1px solid rgba(19,19,19,.08);">What is next</h2>
+  <p>Two things are queued for the next release, in this order: a Windows build, and a fix for the long-audio summary feature that has been broken since 0.3.5. Neither is promised for a specific date; they will land when they are ready, and they will show up here the day they ship.</p>
+</div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-inner">
+    <div class="cols">
+      <div>
+        <h4>Product</h4>
+        <a href="index.html#how">How it works</a>
+        <a href="app">App</a>
+        <a href="how-it-works">Docs</a>
+        <a href="pricing">Pricing</a>
+        <a href="changelog">Changelog</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="story">Story</a>
+        <a href="contact">Contact</a>
+        <a href="careers">Careers</a>
+        <a href="support">Support</a>
+        <a href="login">Log in</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="data-controls">Data Controls</a>
+        <a href="security">Security &amp; trust</a>
+        <a href="accessibility">Accessibility</a>
+        <a href="terms">Terms</a>
+        <a href="/.well-known/security.txt">Security disclosure</a>
+      </div>
+      <div>
+        <h4>Solo-built in India</h4>
+        <p class="ms">Designed and built in India by one person.</p>
+        <p class="ms">Sachin Dohdiya · Kishangarh, Ajmer, Rajasthan</p>
+      </div>
+    </div>
+    <div class="copy">
+      <span>&copy; 2026 Sachin Dohdiya · A-Anie</span>
+      <span>No company. No team. Just one developer who stopped typing.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
