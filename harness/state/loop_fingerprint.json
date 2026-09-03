@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "last_processed_head": "7d486f64990861ee09a68847a5bd6bcbf070dc12",
+  "last_processed_branch": "harness+honest-contact",
+  "task_fingerprint": "7a8489c2e5ade3dadcc97cdcac7826fe",
+  "worktree_fingerprint": "101f106caebdb8024eee01e9d121f3ff",
+  "open_questions_fingerprint": "f6b1902b2ec5b7e7bc1b04cb781216fc",
+  "test_state_fingerprint": "a8ce6fb4240a7714cd20b01e7d81cd11",
+  "git_fingerprint": "c736e575239ba939601d658af0c13664",
+  "authorization_fingerprint": "6760914957846aadafdfad3459f835e3",
+  "last_outcome": "completed",
+  "last_processed_at": "2026-09-03T22:15:00+05:30",
+  "fingerprint_inputs": {
+    "task_fingerprint": "md5(ANNIE V2 (a-anie-site).md) — the loop's task ledger",
+    "worktree_fingerprint": "md5(sorted untracked-file list) — includes the 4 known untracked files; do not auto-trigger on their presence",
+    "open_questions_fingerprint": "md5(harness/state/open-questions.md) — detects Q001/Q003/Q004/Q005/Q006 status changes",
+    "test_state_fingerprint": "md5(sorted per-test RUN/SKIPPED list from harness/scripts/smoke.sh) — detects test regressions (RUN->FAIL, RUN->SKIPPED, or new tests)",
+    "git_fingerprint": "md5(sorted git ls-files output) — HEAD-independent so the file is transparent to its own amend",
+    "authorization_fingerprint": "sentinel label for the current authorization regime; change when the user gives a new top-level instruction set"
+  },
+  "no_op_rule": "A repeated loop invocation is NO-OP if and only if all six fingerprints match the recomputed values AND last_outcome in {completed, no-op, decision-required} does not indicate an outstanding action.",
+  "rewrite_rule": "Rewrite this file ONLY on a real state transition (new commit, new task, new authorization, test regression, open-question status change). A no-op must not rewrite this file.",
+  "notes": "Bootstrap fingerprint. last_processed_head points to the prior committed milestone (7d486f6, feat: harden ANNIE recording and navigation flows). The HEAD on disk is the bootstrap commit itself. The git_fingerprint is intentionally HEAD-independent (it hashes only the tracked-file set, not HEAD or branch) so the file is transparent to amend cycles. HEAD and branch are stored as separate top-level fields. Loop-iteration counter, PID, cwd, and timestamps are deliberately excluded from fingerprints so a no-op does not appear as a change."
+}
