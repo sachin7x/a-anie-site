@@ -82,7 +82,7 @@
       <span class="sep">·</span>
       <a href="/security">Trust</a>
       <span class="sep">·</span>
-      <span style="opacity:.85">A-Anie /app · mic + waveform reconstructed from wispr /demo/web-demo.js. Transcription backend is not deployed; <code style="background:transparent;color:#FDFCE8">/api/transcribe</code> returns 501.</span>
+      <span style="opacity:.85">A-Anie /app · mic + waveform reconstructed from wispr /demo/web-demo.js. Transcription backend is not deployed; <code style="background:transparent;color:#FDFCE8">/api/transcribe</code> returns 501 (or 401 behind Vercel SSO / deployment-protection on the preview). Phase 0 (browser capture) only — phases 1-5 not built here. See <code style="background:transparent;color:#FDFCE8">harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md</code>.</span>
     </div>
 
     <!-- Navbar (canonical A-Anie shell) -->
@@ -151,7 +151,7 @@
           <audio class="wd-playback" id="wdPlayback" controls></audio>
 
           <p class="meta">
-            Source: <code>/demo/dist/web-demo.js</code> · Network: <code>/v1/dash/client_ws</code> is mocked locally · Backend: <code>/api/transcribe</code> returns 501.
+            Phase 0 (browser capture) only. Phases 1-5 are not built in this web surface. Source: <code>/demo/dist/web-demo.js</code> · Network: <code>/v1/dash/client_ws</code> is mocked locally · Backend: <code>/api/transcribe</code> returns 501 · See <code>harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md</code>.
           </p>
         </div>
       </div>
@@ -250,6 +250,7 @@
         var dataArray = null;
         var rafId = null;
         var transcript = '';
+        var watchdogId = null;
 
         function setStatus(label, cls) {
           statusEl.textContent = label;
@@ -315,6 +316,9 @@
           transcriptEl.textContent = 'Listening…';
           transcriptEl.classList.remove('empty');
           audioChunks = [];
+          var recordingId = (crypto && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : 'rec-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
           if (playback.src) {
             playback.removeAttribute('src');
             playback.load();
@@ -347,12 +351,19 @@
             mediaRecorder.onstop = function () {
               var blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
               playback.src = URL.createObjectURL(blob);
+              playback.setAttribute('data-recording-id', recordingId);
               playback.style.display = 'block';
               sendForTranscription(blob);
             };
             mediaRecorder.start();
+            watchdogId = setTimeout(function () {
+              if (state === 'recording') {
+                setStatus('Recording stopped (60s limit)', 'idle');
+                stopRecording();
+              }
+            }, 60000);
             state = 'recording';
-            setStatus('Recording', 'recording');
+            setStatus('Phase 0 — Capture', 'recording');
             var label = document.getElementById('wdPillLabel');
             if (label) label.textContent = 'Recording… release to stop';
             updateWave();
@@ -365,9 +376,10 @@
         }
 
         function stopRecording() {
+          if (watchdogId) { clearTimeout(watchdogId); watchdogId = null; }
           if (state !== 'recording') return;
           state = 'transcribing';
-          setStatus('Transcribing…', 'transcribing');
+          setStatus('Phase 0 complete — sending…', 'transcribing');
           var label = document.getElementById('wdPillLabel');
           if (label) label.textContent = 'Hold Space to talk';
           if (rafId) cancelAnimationFrame(rafId);
@@ -392,9 +404,9 @@
             .then(function (out) {
               state = 'idle';
               if (out.status === 501 || (out.j && out.j.error === 'not_implemented')) {
-                transcriptEl.textContent = 'Backend not deployed. /api/transcribe returned: ' + (out.j && out.j.message ? out.j.message : '501 Not Implemented');
+                transcriptEl.textContent = 'Backend not deployed. /api/transcribe returned: ' + (out.j && out.j.message ? out.j.message : '501 Not Implemented') + ' — Phase 0 (browser capture) only. Phases 1-5 (Promote, Recognize, Clean up, Commit, Deliver) are not built in this web surface. No audio is sent to a transcription service by this page. See harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md for the full six-phase model.';
                 transcriptEl.classList.remove('empty');
-                setStatus('Not deployed', 'idle');
+                setStatus('Not deployed · Phase 0 only', 'idle');
                 copyBtn.disabled = true;
                 return;
               }

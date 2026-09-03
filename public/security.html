@@ -63,18 +63,7 @@
 
 <header class="nav" role="banner">
   <div class="nav-inner">
-    <a class="brand" href="/" aria-label="A-Anie — home">
-      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-        <rect width="32" height="32" rx="8" fill="#131313"/>
-        <path d="M6 16h2v-4l3 6V12h2v8H11l-3-6v6H6z" fill="#FDFCE8"/>
-      </svg>
-      <span class="brand-name">A-Anie</span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-    </button>
+    <div data-nav-partial></div>
     <nav class="nav-links" id="navMenu" aria-label="Primary">
       <a href="index.html#how">How it works</a>
       <a href="app">App</a>
@@ -238,6 +227,7 @@
   </div>
 </footer>
 
+<script src="nav.js" defer></script>
 <script src="script.js" defer></script>
 </body>
 </html>

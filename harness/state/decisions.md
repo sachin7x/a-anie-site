@@ -64,3 +64,15 @@ Each decision is dated, named, and points to the file/line that codifies it.
 - **CODIFIED IN:** `api/contact.js`.
 - **SUPERSEDES:** previous contact-handler success message.
 - **REVISIT IF:** a real email-send step is added to the handler.
+
+## D008. Adopt the six-phase audio-processing-failure contract as ANNIE architectural vocabulary
+
+- **DECIDED:** 2026-09-03.
+- **WHAT:** A-Anie adopts the **shape** of the aidictation six-phase audio-processing-failure contract as architectural vocabulary and failure-model reference. A-Anie's web `/app` surface currently implements **phase 0 only** (browser-side capture via `getUserMedia` + `MediaRecorder`); phases 1-5 (Promote, Recognize, Clean up, Commit, Deliver) are not implemented by the marketing site. The `/api/transcribe` endpoint remains an honest 501 stub (D001, D002) — it is not a real transcription pipeline. The contract is documented at `harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md` with an ANNIE-specific scope header, the eight invariants, the persisted-state vocabulary, the request policy, the local/persistence failure table, bulk/chunk behavior, relaunch recovery, and the 21 deterministic scenarios. The reference contract source (verbatim) is preserved in the same document under a `verbatim` divider.
+- **WHY:** The audit (`harness/ANNIE_V2_AIDICTATION_WISPR_ARCHITECTURE_AUDIT.md`) identified the six-phase contract as the single most borrowable pattern from aidictation. The contract is engine-agnostic and platform-agnostic; A-Anie can adopt the vocabulary without adopting the cloud STT, cloud LLM, Supabase, or cross-platform native features.
+- **DISTINGUISHES:** pattern adoption (D008) from implementation (D002, D005, D007). D008 does not claim A-Anie implements the contract; it documents the contract, scopes A-Anie's current implementation to phase 0, and lists what is deliberately not adopted.
+- **PRESERVES:** D005's deliberate cuts (no cloud, no LLM, no accounts, no billing, no cross-platform natives, no IDE smart-paste, no Sparkle, no history infrastructure). A-Anie does not gain any cloud or native capability by adopting the contract vocabulary.
+- **CODIFIED IN:** `harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md` (new), `api/transcribe.js` (501 error string references the phase model), `public/app.html` (status pill reads "Phase 0 — Capture" while recording; 501 branch surfaces the phase model), `harness/scripts/smoke.sh` (new static existence check).
+- **SUPERSEDES:** none.
+- **PROVENANCE:** `harness/reference/aidictation/docs/audio-processing-failure-contract.md` (reference source, MIT-licensed, read-only). The ANNIE scope header is original; the verbatim section is the reference contract, unchanged.
+- **AUDIT:** `harness/ANNIE_V2_AIDICTATION_WISPR_ARCHITECTURE_AUDIT.md` §5-§11 (reusable patterns, native-only cuts, source mappings, P0 list).

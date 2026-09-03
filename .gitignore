@@ -5,6 +5,10 @@ node_modules/
 .vercel
 .env*
 
+# Stray Vercel error page artifact (saved by `curl -o -w` or similar mishap).
+# Not site content. Delete on sight if it reappears.
+/-w
+
 # Local reference clones — read-only, large, never committed.
 # Re-clone with: git clone --depth 1 https://github.com/writingmate/aidictation harness/reference/aidictation
 harness/reference/

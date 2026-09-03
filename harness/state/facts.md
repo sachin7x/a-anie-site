@@ -74,6 +74,14 @@ Each fact is auditable: source, observation date, related test or file.
 - **CONFIDENCE:** HIGH.
 - **RELATED TEST:** `harness/tests/api-contracts.md` test 6.
 
+## F010. "On-device" / "private" copy on marketing pages matches the architecture
+
+- **WHAT:** `public/how-it-works.html` §"What runs on your Mac" and §"What A-Anie does not do" claim on-device processing and no cloud round-trip. The contact form's privacy section says the form is not encrypted in transit, security disclosures should not go through the form.
+- **SOURCE:** read of `/Users/sachin/Pictures/ANNIE/public/how-it-works.html` (2026-09-03).
+- **STATUS:** VERIFIED (the text exists; the architectural claim cannot be audited from this repo because the desktop app is external).
+- **CONFIDENCE:** MEDIUM (text is in place; underlying claim depends on a binary that is not in this repo).
+- **RELATED TEST:** out of scope for this repo. The marketing site can only assert what the desktop app actually does if a separate verification passes.
+
 ## F011. /api/contact is log-only, not a real email send
 
 - **WHAT:** `api/contact.js` validates the body, then `console.log()`s the submission and returns 200 with `{message:"Message sent. Thanks — Sachin will reply soon."}`. The "In a real implementation you would send an email here" comment is explicit: the email step is not implemented.
@@ -83,10 +91,11 @@ Each fact is auditable: source, observation date, related test or file.
 - **RELATED TEST:** `harness/tests/api-contracts.md` test 1 still passes (200, valid body), but the user-facing message is misleading. Q002 closed; the success message on `/contact` and the API response both need to be honest about "logged, not emailed".
 - **HYPOTHESIS STATUS:** H003 promoted to FACT — and the original hypothesis ("real email send") is now falsified.
 
-## F010. "On-device" / "private" copy on marketing pages matches the architecture
+## F012. Audio failure contract is documented and adopted as vocabulary (D008)
 
-- **WHAT:** `public/how-it-works.html` §"What runs on your Mac" and §"What A-Anie does not do" claim on-device processing and no cloud round-trip. The contact form's privacy section says the form is not encrypted in transit, security disclosures should not go through the form.
-- **SOURCE:** read of `/Users/sachin/Pictures/ANNIE/public/how-it-works.html` (2026-09-03).
-- **STATUS:** VERIFIED (the text exists; the architectural claim cannot be audited from this repo because the desktop app is external).
-- **CONFIDENCE:** MEDIUM (text is in place; underlying claim depends on a binary that is not in this repo).
-- **RELATED TEST:** out of scope for this repo. The marketing site can only assert what the desktop app actually does if a separate verification passes.
+- **WHAT:** `harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md` exists and contains the full six-phase audio-processing-failure contract (Capture / Promote / Recognize / Clean up / Commit / Deliver), the eight invariants, the persisted-state vocabulary (`processing` / `retrying` / `success` / `failed` / `cancelled`), the request policy, the local/persistence failure table, bulk/chunk behavior, relaunch recovery, and the 21 deterministic scenarios. The document has an ANNIE-specific scope header that names A-Anie's phase-0-only implementation and lists what is deliberately not adopted (cloud STT, cloud LLM, Supabase auth, Stripe / AppSumo billing, cross-platform natives, etc., per D005). `api/transcribe.js` 501 message and `public/app.html` 501 branch + recording state pill both reference the contract. `harness/scripts/smoke.sh` adds T16 (document structure) and T17 (/app phase model) as static checks.
+- **SOURCE:** Read of `harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md`, `api/transcribe.js`, `public/app.html`, `harness/scripts/smoke.sh`, `harness/state/decisions.md` D008 (2026-09-03).
+- **STATUS:** VERIFIED.
+- **CONFIDENCE:** HIGH.
+- **RELATED TEST:** `harness/scripts/smoke.sh` T16 + T17 (static existence + structural check; runs without network).
+- **OUT OF SCOPE:** A-Anie does **not** claim to implement the contract — only the vocabulary is adopted. Phases 1-5 of the contract are not implemented in this repo. D005 deliberate cuts remain deliberate.

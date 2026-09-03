@@ -55,6 +55,7 @@ The marketing site is **not** the architecture. It is a static description of a 
 | `docs/PREVIEW_VERIFICATION.md` | The most recent verified snapshot of the preview deploy |
 | `docs/BUILD_STEPS.md` | The runbook for shipping a preview |
 | `harness/` | This harness. Living memory, agent specs, tests, scripts, decisions |
+| `harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md` | The six-phase audio-processing-failure contract adopted as ANNIE architectural vocabulary (D008). Phase 0 only is implemented in this repo. |
 
 ## What this repo *does not* contain
 
@@ -64,6 +65,14 @@ The marketing site is **not** the architecture. It is a static description of a 
 - Any real LLM refinement pipeline.
 - Any real authentication backend.
 - Any personal data, real or test.
+
+## Audio failure contract (vocabulary, not implementation)
+
+`harness/docs/ANNIE_AUDIO_FAILURE_CONTRACT.md` documents the six-phase audio-processing-failure contract (Capture / Promote / Recognize / Clean up / Commit / Deliver) plus the eight invariants, persisted-state vocabulary, request policy, local/persistence failure table, bulk/chunk behavior, relaunch recovery, and the 21 deterministic scenarios.
+
+A-Anie adopts the **shape** of this contract as architectural vocabulary (D008). A-Anie's web `/app` surface implements **phase 0 only** — browser-side audio capture via `getUserMedia` + `MediaRecorder`. Phases 1-5 are not implemented in this repo. The contract is **not** permission to import aidictation's cloud STT, cloud LLM refinement, Supabase auth, Stripe / AppSumo billing, Sparkle auto-update, or any cross-platform native feature. Those remain deliberate cuts per D005.
+
+When a future agent is asked to add audio pipeline behavior to the web surface, this document is the first place to look. The contract is the failure model; the ANNIE scope header in that document is the scope boundary.
 
 ## Re-evaluation triggers
 
